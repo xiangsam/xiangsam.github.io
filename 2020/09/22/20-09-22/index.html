@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      618 字
+      823 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      9
        分钟
     </span>
   
@@ -235,6 +235,11 @@ RewriteRule ^8d829d8568e46455104209db5cd9228d.html$ 404.php [L]
 <p>　　x-forwarded-for简称XFF，它其实和http协议本身并没什么关系，是很多代理服务器在请求转发时添加上去的。如果客户端和服务器之间存在代理服务器，那么直接通过remote_addr获取的IP就是代理服务器的地址，并不是客户端真实的IP地址。因此，需要代理服务器（通常是反向代理服务器）将真实客户端的IP地址转发给服务器，转发时客户端的真实IP地址通常就存在于x-forwarded-for请求头中。</p>
 <p>　　client-ip同x-forwarded-for，也是代理服务器添加的用于转发客户端请求的真实IP地址，同样保存于请求头中。</p>
 </blockquote>
+<hr>
+<p>upload(ichunqiu第一届百度杯总决赛线上选拔赛)<br>以为是个缝合怪，结果我错了</p>
+<p>首先是响应头中的flag两次base64decode得到真正的flag，由于会变化python脚本上传得到Path，进入就是登录界面了</p>
+<p>以为依然是md5碰撞加上SQL注入，结果显示error，查看wp发现是svn源码泄露。<br><a href="https://www.cnblogs.com/Lmg66/p/13598803.html" target="_blank" rel="noopener">ctf常见源码泄露</a><br><a href="https://zhuanlan.zhihu.com/p/27014481" target="_blank" rel="noopener">啊哈，还有一个</a><br>找到/.svn/wc.db，提示My username is md5(HEL10W10rDEveryOn3)，MD5加密得到username，成功登录。</p>
+<p>之后是文件上传漏洞，尝试jpg后缀拦包改成php后缀，发现上传失败：JPG!!!，改Content-Type尝试绕过waf，上传成功但是后缀被改成jpg，考虑是后缀黑名单，依然是php2,php3,php4,php5,phps,pht,phtm,phtml各种尝试，发现pht成功并直接得到flag</p>
 
             </div>
             <hr>
