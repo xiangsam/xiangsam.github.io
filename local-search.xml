@@ -8,7 +8,7 @@
     <link href="/2020/09/25/20-09-25/"/>
     <url>/2020/09/25/20-09-25/</url>
     
-    <content type="html"><![CDATA[<p>emm，这几天沉迷在java图形化编程上，就做了一题，还没完全弄清除。。<br>想做一个小小的工具箱，把一些写过的加密算法放进去。目前做出的东西连个选择界面和菜单都没，就干巴巴的DES加解密界面（写出来的简单DES加解密算法结果还和网上不一样 : )  ）<br><img src="/2020/09/25/20-09-25/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-09-25%20110948.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="一个不完全且简陋的工具~~箱~~页"></p>]]></content>
+    <content type="html"><![CDATA[<p>emm，这几天沉迷在java图形化编程上，就做了一题，还没完全弄清除。。<br>想做一个小小的工具箱，把一些写过的加密算法放进去。目前做出的东西连个选择界面和菜单都没，就干巴巴的DES加解密界面（写出来的简单DES加解密算法结果还和网上不一样 : )  ）<br><img src="/2020/09/25/20-09-25/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-09-25%20110948.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="一个不完全且简陋的工具~~箱~~页"></p><hr><p>hash(ichunqiu)<br>看源代码没有啥，直接点进链接，显示you are 123;if you are not 123,you can get the flag</p><p>查看源码发现提示hash是sign+key经过md5加密得到，且sign长度是8，用md5解密工具得到kkkkkk01123，所以sign是kkkkkk01，再由显示的内容改key，和sign结合后md5加密得到新的hash值提交，得到next step is Gu3ss_m3_h2h2.php<br>进去发现源码，修改变量个数绕过_wakeup函数，用+4代替4绕过正则过滤得到f15g_1s_here.php的源码，应该是利用eval执行操作。但是由于addslashes函数的过滤，不好通过闭合引号来执行，需要利用<a href="https://www.php.net/manual/zh/language.types.string.php#language.types.string.parsing" target="_blank" rel="noopener">双引号的变量解析</a><br>eval语句执行$value=”addslashes($val)”;命令，val是get得到，构造<code>payload: f15g_1s_here.php?val=${eval($_GET[a])}&amp;a=echo `ls`;</code><br>关于构造的几点说明：</p><ul><li>本来习惯是{$}来利用变量解析，但是这道题把$放在{右边直接page don’t work，改成放在左边正常</li><li>由于addslashes会给单引号加上\， 因此直接使用a，此时会先把a当常量解析，在上下文中找不到a时，才当成索引引用</li><li>反引号 ` (执行运算符)在安全模式关闭时相当与shell_exec()，将其中内容当shell运行并返回结果</li><li>注意要有;分号！<br>再就是cat打开文件了</li></ul>]]></content>
     
     
     <categories>
