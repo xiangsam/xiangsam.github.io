@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>20-09-25</title>
+    <link href="/2020/09/25/20-09-25/"/>
+    <url>/2020/09/25/20-09-25/</url>
+    
+    <content type="html"><![CDATA[<p>emm，这几天沉迷在java图形化编程上，就做了一题，还没完全弄清除。。<br>想做一个小小的工具箱，把一些写过的加密算法放进去。目前做出的东西连个选择界面和菜单都没，就干巴巴的DES加解密界面（写出来的简单DES加解密算法结果还和网上不一样 : )  ）<br><img src="/2020/09/25/20-09-25/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-09-25%20110948.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="一个不完全且简陋的工具~~箱~~页"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ctf刷题笔记</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>20-09-22</title>
     <link href="/2020/09/22/20-09-22/"/>
     <url>/2020/09/22/20-09-22/</url>
