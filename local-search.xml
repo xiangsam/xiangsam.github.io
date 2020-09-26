@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>20-09-26</title>
+    <link href="/2020/09/26/20-09-26/"/>
+    <url>/2020/09/26/20-09-26/</url>
+    
+    <content type="html"><![CDATA[<p>写完第一个自己的图形化程序后不想再编程了，做ctf冷静一下</p><hr><p>notebook(ichunqiu)<br>每次可以注木马都挺开心的<br>登录界面，查看源码，导航栏分别对应的链接是</p><ul><li>./</li><li>./action.php?module=php&amp;file=login</li><li>./action.php?module=php&amp;file=register</li></ul><p>没有其他信息，尝试用用户名admin密码password注册，跳转到index.php显示there is no flag（希望没记错），尝试爆破目录没有得到有用的页面，尝试robots.txt得到php1nFo.php，进去后就是php的信息页了。allow_url_include是关着的，放弃直接读的念头，到这一步就有点不知所措了。<br>看题解涨知识：</p><blockquote><p>open_basedir设置用户访问文件的活动范围，其指定的限制实际上是前缀,而不是目录名。 举个例子: 若”open_basedir =/dir/user”, 那么目录 “/dir/user” 和 “/dir/user1”都可访问。所以如果要将访问限制在仅为指定的目录，请用斜线结束路径名。例如设置成:”open_basedir =/dir/user/“<br>session.save_path是session文件存在的位置 session 的文件名格式为 sess_[PHPSESSID]，而sessionid 在发送的请求的 cookie 字段中PHPSESSID值也可以看到</p></blockquote><p>查看open_basedir只能访问tmp，页面上查找发现没有这个目录下的文件。。<br>根据题目提示的文件包含回到登录页面，分析url应该是把file和module拼接后就是访问的界面，尝试module=php&amp;file=php1nFo又是php信息页。</p><p>此时再次搜索tmp发现在session.save_path里有/tmp/SESS，尝试访问这个文件，构造payload：../../../tmp/SESS/sess_+cookie里面PHPSESSID的值，发现显示语言，用户名以及id，这里用户名是可以自己控制的，因此可以上传木马</p><p>重新注册，用户名构造为&lt;?php @eval($_POST[cmd]);?&gt;<br><em>这里之前尝试省去@以及用’cmd’结果都不行，引号可能是被过滤了？但是查资料@只是屏蔽警告信息，为什么不加上也不行呢？mark一下</em><br>之后就可以利用post进行shell啦</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ctf刷题笔记</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>20-09-25</title>
     <link href="/2020/09/25/20-09-25/"/>
     <url>/2020/09/25/20-09-25/</url>

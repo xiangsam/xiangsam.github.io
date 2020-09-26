@@ -17,10 +17,23 @@
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
   <meta name="keywords" content="">
-  <title>Archives - renex的杂烩集</title>
+  <title>20-09-26 - renex的杂烩集</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/an-old-hope.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +56,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,6 +160,43 @@
             </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-26 16:23" pubdate>
+        September 26, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      513 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
           </div>
 
           
@@ -157,37 +207,92 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">31 posts in total.</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/07/14/%E5%85%B3%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E7%9A%84%E4%B8%80%E7%82%B9%E6%84%9F%E6%85%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">关于网络环境的一点感慨</span>
-      <time style="float: right;">07-14</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">20-09-26</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>写完第一个自己的图形化程序后不想再编程了，做ctf冷静一下</p>
+<hr>
+<p>notebook(ichunqiu)<br>每次可以注木马都挺开心的<br>登录界面，查看源码，导航栏分别对应的链接是</p>
+<ul>
+<li>./</li>
+<li>./action.php?module=php&amp;file=login</li>
+<li>./action.php?module=php&amp;file=register</li>
+</ul>
+<p>没有其他信息，尝试用用户名admin密码password注册，跳转到index.php显示there is no flag（希望没记错），尝试爆破目录没有得到有用的页面，尝试robots.txt得到php1nFo.php，进去后就是php的信息页了。allow_url_include是关着的，放弃直接读的念头，到这一步就有点不知所措了。<br>看题解涨知识：</p>
+<blockquote>
+<p>open_basedir设置用户访问文件的活动范围，其指定的限制实际上是前缀,而不是目录名。 举个例子: 若”open_basedir =/dir/user”, 那么目录 “/dir/user” 和 “/dir/user1”都可访问。所以如果要将访问限制在仅为指定的目录，请用斜线结束路径名。例如设置成:”open_basedir =/dir/user/“<br>session.save_path是session文件存在的位置 session 的文件名格式为 sess_[PHPSESSID]，而sessionid 在发送的请求的 cookie 字段中PHPSESSID值也可以看到</p>
+</blockquote>
+<p>查看open_basedir只能访问tmp，页面上查找发现没有这个目录下的文件。。<br>根据题目提示的文件包含回到登录页面，分析url应该是把file和module拼接后就是访问的界面，尝试module=php&amp;file=php1nFo又是php信息页。</p>
+<p>此时再次搜索tmp发现在session.save_path里有/tmp/SESS，尝试访问这个文件，构造payload：../../../tmp/SESS/sess_+cookie里面PHPSESSID的值，发现显示语言，用户名以及id，这里用户名是可以自己控制的，因此可以上传木马</p>
+<p>重新注册，用户名构造为&lt;?php @eval($_POST[cmd]);?&gt;<br><em>这里之前尝试省去@以及用’cmd’结果都不行，引号可能是被过滤了？但是查资料@只是屏蔽警告信息，为什么不加上也不行呢？mark一下</em><br>之后就可以利用post进行shell啦</p>
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/25/20-09-25/">
+                        <span class="hidden-mobile">20-09-25</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -269,6 +374,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -276,7 +406,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "20-09-26&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -291,6 +421,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -304,6 +449,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

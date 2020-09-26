@@ -176,6 +176,46 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/09/04/%E7%99%BE%E5%BA%A6%E6%9D%AF%E4%B9%9D%E6%9C%88%E5%9C%BA123/">百度杯九月场123-20.09.04</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/04/%E7%99%BE%E5%BA%A6%E6%9D%AF%E4%B9%9D%E6%9C%88%E5%9C%BA123/">
+          
+          
+            
+          
+          进入链接，直接是登录界面，查看源码得知用户都在user.php里，密码是用户名+出生日期。直接进user.php发现什么都没有，尝试下载备份文件user.php.bak，果然可以。得到用户名单后用burpsuit爆破。注意爆破技巧，选择多payload,对用户名自然用得到得user.php.bak文件，密码复制payload1加后缀，尝试原来index.php界面源码提示里的1995成功爆破登录。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-04 13:38" pubdate>
+              2020-09-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ctf%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">ctf刷题笔记</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/09/02/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%9F%A5%E6%89%BE/">SQL注入漏洞查找</a>
       </h1>
 
@@ -535,54 +575,11 @@ Submitting some SQL-specific syntax that evaluates to the base (original) value 
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/05/08/something-about-Tmin/">something about Tmin</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/05/08/something-about-Tmin/">
-          
-          
-            
-          
-          在C语言中，表示TMin（32位为例）通常不用-2147483648,而用-2147483647-1
-reason:
-When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it.
-对于十进制与十六进制数c的处理为
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-05-08 18:22" pubdate>
-              2020-05-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/C/">C</a>
-            
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
