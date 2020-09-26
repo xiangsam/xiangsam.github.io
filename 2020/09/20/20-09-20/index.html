@@ -220,7 +220,7 @@
             <h1 style="display: none">20-09-20</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>悄悄参加了tokyoctf，结果除了签到题就会一个，web全是用python flask框架，完全懵逼。感觉web好难啊，有点受到打击。</p>
+              <p>悄悄参加了tokyoctf，结果除了签到题就会一个，web全是用python flask框架，完全懵逼。感觉web好难啊，有点受到打击。<br><a id="more"></a></p>
 <hr>
 <p>GetFlag(ichunqiu)<br>打开链接被正常嘲讽，还是提示了登录可以下载文件获得flag啥的。看源码没有发现有啥问题，登录呗。<br>除了账号密码还有个验证码，每次刷新会变。起初是脚本md5生成验证码加SQL注入，但是先手注尝试admin’— 就直接成功了。。。<br>登录后果然有三个文件可以下载，最后的a.php提示flag在根目录,根据源码中三个文件的下载链接知道是在./file/download.php?f=filename.php下载文件，尝试../寻找根目录以及伪协议读取但一直得到flag{wow!!!but not true}，应该是被过滤了，尝试大写双写绕过均失败<br>网上找wp知道Linux web网站的默认路径 /var/www/html，构造payload: f= /var/www/html/flag.php不行，再试f=/var/www/html/Challenges/flag.php成功下载flag.php文件<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 <span class="php">$f = $_POST[<span class="hljs-string">'flag'</span>];</span>

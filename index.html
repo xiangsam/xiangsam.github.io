@@ -186,14 +186,6 @@
             
           
           写完第一个自己的图形化程序后不想再编程了，做ctf冷静一下
-
-notebook(ichunqiu)每次可以注木马都挺开心的登录界面，查看源码，导航栏分别对应的链接是
-
-./
-./action.php?module=php&amp;file=login
-./action.php?module=php&amp;file=register
-
-没有其他信息，尝试用用户名admin密码password注册，
         </a>
       </p>
 
@@ -233,9 +225,7 @@ notebook(ichunqiu)每次可以注木马都挺开心的登录界面，查看源�
           
             
           
-          emm，这几天沉迷在java图形化编程上，就做了一题，还没完全弄清除。。想做一个小小的工具箱，把一些写过的加密算法放进去。目前做出的东西连个选择界面和菜单都没，就干巴巴的DES加解密界面（写出来的简单DES加解密算法结果还和网上不一样 : )  ）
-
-hash(ichunqiu)看源代码没有啥，直接点进链接，显示you are 123;if you are not 123,you can get 
+          emm，这几天沉迷在java图形化编程上，就做了一题，还没完全弄清楚。。
         </a>
       </p>
 
@@ -275,7 +265,7 @@ hash(ichunqiu)看源代码没有啥，直接点进链接，显示you are 123;if 
           
             
           
-          Not Found(ichunqiu)进去之后就是Not Found，看到404.php，源码没有发现什么，在响应头发现自定义响应头X-Method：haha。先查看404.php，页面也显示haha，尝试对目录爆破搜索，基本全是404，在1.php的时候得到not here,plz trying，还是没什么用。回到index.php，开始对X-Method研究，尝试各种请求头最后在OPTIONS
+          Not Found(ichunqiu)进去之后就是Not Found，看到404.php，源码没有发现什么，在响应头发现自定义响应头X-Method：haha。
         </a>
       </p>
 
@@ -316,8 +306,6 @@ hash(ichunqiu)看源代码没有啥，直接点进链接，显示you are 123;if 
             
           
           象棋（ichuqiu）昨天就做到的题，猫腻在源码里就能找到，js链接是个正则表达式，不过之前一直想着的是用python做，但是只会单线程的我半天没找到答案。今天看wp突然醒悟用bp就挺好的，成功爆破flag
-
-SQLi(ichunqiu)收获颇多的一道题进入就是登录界面，尝试admin为用户名一次就对，想着直接爆破结果失败了。发现回显只有username error!以及password erro
         </a>
       </p>
 
@@ -358,8 +346,6 @@ SQLi(ichunqiu)收获颇多的一道题进入就是登录界面，尝试admin为�
             
           
           悄悄参加了tokyoctf，结果除了签到题就会一个，web全是用python flask框架，完全懵逼。感觉web好难啊，有点受到打击。
-
-GetFlag(ichunqiu)打开链接被正常嘲讽，还是提示了登录可以下载文件获得flag啥的。看源码没有发现有啥问题，登录呗。除了账号密码还有个验证码，每次刷新会变。起初是脚本md5生成验证码加SQL注入，但是先手注尝试admin’— 就直接成功了。。。登
         </a>
       </p>
 
@@ -400,8 +386,6 @@ GetFlag(ichunqiu)打开链接被正常嘲讽，还是提示了登录可以下载
             
           
           感觉还是好多不会，知识点太散了。。: )
-
-include(ichunqiu)phpinfo()中发现allow_url_include是打开的，可以用php://input&lt;?php system(&quot;ls&quot;);?&gt;得到目录&lt;?php system(&quot;cat file_name&quot;);?&gt;得到flag或者用php://filter得到f
         </a>
       </p>
 
@@ -441,11 +425,7 @@ include(ichunqiu)phpinfo()中发现allow_url_include是打开的，可以用php:
           
             
           
-          NaNNaNNaNNaN-Batman（xctf）下载附件后发现是一段混乱的js代码，发现eval函数，可能是js混淆加密，和昨天的题类似。直接输入到控制台生成一个提交界面，通过console.log()把混淆的js代码解密得到以下内容：function  $()&#123;
-
-	var  e=document.getElementById("c").value;
-
-	if(e.length==1
+          NaNNaNNaNNaN-Batman（xctf）下载附件后发现是一段混乱的js代码，发现eval函数，可能是js混淆加密，和昨天的题类似。直接输入到控制台生成一个提交界面，通过console.log()把混淆的js代码解密得到以下内容：
         </a>
       </p>
 
@@ -485,7 +465,7 @@ include(ichunqiu)phpinfo()中发现allow_url_include是打开的，可以用php:
           
             
           
-          虽然花了很多时间才得到flag居然莫名很开心。。。江湖魔头(bugku)进界面发现是个小游戏，查看源码发现链接指向wulin.php?action=start，没有其他信息，点进链接洗点界面，在源码上依然发现啥，继续游戏，大概是要挣钱买如来神掌。在源码上没有发现什么，想抓包修改发现请求头只有cookie，可以猜测相关角色数据信息就在cookie的user里，先url解码再base64解码，结果只得
+          虽然花了很多时间才得到flag居然莫名很开心。。。
         </a>
       </p>
 
@@ -526,10 +506,6 @@ include(ichunqiu)phpinfo()中发现allow_url_include是打开的，可以用php:
             
           
           一道时间盲注弄不出来，一道布尔盲注被暴力破解了。。注意补上
-
-Trim(bugku)登录注册重置密码界面都尝试sql注入，发现只会提示mysql connect error!，用bp扫描目录发现clear.php，show.php，以及index.php会重定向到login.php，flag就在show.php里面。。
-
-文件上传2(湖湘杯)(bugku)做的莫名其妙。。。总感觉最后一行是被人改的
         </a>
       </p>
 
@@ -569,9 +545,7 @@ Trim(bugku)登录注册重置密码界面都尝试sql注入，发现只会提示
           
             
           
-           PHP_encrypt_1(ISCCCTF)(bugku) 很简单的解密题，居然错了好几次。。 php的求模运算得到的结果正负和被除数相同。。一直习惯了python的求模结果和除数相同，想着不用去处理负数情况，结果: )，早知道用python写了。 php: -5 % 3 = -2 python: -5 % 3 = 1  &lt;?php
-function decrypt($str)
-&#123
+           PHP_encrypt_1(ISCCCTF)(bugku) 很简单的解密题，居然错了好几次。。
         </a>
       </p>
 

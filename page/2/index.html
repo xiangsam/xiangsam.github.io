@@ -186,13 +186,6 @@
             
           
           多次(bugku)id从1-5显示，id=5时提示SQL注入（使用url输入时的形式写）
-
-id=5’%23 (%23为#)，有回显
-id=5’+or+1=1%23，显示error，考虑是关键字被过滤了
-尝试加注释，没有效果
-双写or，有回显
-id=5’+oorrder+by+2%23有回显，3无回显,说明有两列
-id=5’+union+select+null,null%23显示error，依次尝
         </a>
       </p>
 
@@ -233,19 +226,6 @@ id=5’+union+select+null,null%23显示error，依次尝
             
           
           程序员本地网站(bugku)显然是xff欺骗，bp拦包加上X-Forwarded-For: 127.0.0.1即可
-
-各种绕过先补充一些小细节：
-
-无论get还是post传参，页面上的传参都只能传字符串
-hash对数组无效，返回0
-
-&lt;?php
-$b=$_GET['b'];
-var_dump($b);
-$c=$_POST['c'];
-var_dump($c);
-?&gt;
-b=1（或c）时，
         </a>
       </p>
 
@@ -286,15 +266,6 @@ b=1（或c）时，
             
           
           bugku旧平台上的题没人维护。。
-
-你从哪里来(bugku)注意Referer头要加http://(https://)协议头！！！
-
-md5 collision(NUPT_CTF)bugku里没给出a的判别条件，裂开\\bugku缺的源码代码
-&lt;?php
-$md51 = md5('QNKCDZO');
-$a = @$_GET['a'];
-$md52 = @md5($a);
-if(isset
         </a>
       </p>
 
@@ -335,8 +306,6 @@ if(isset
             
           
           这学期可好像会有点多 | 网安老师都喜欢说课会比较难 | 希望学到抽代的时候可以顺顺利利
-
-cookie欺骗(bugku)进网页一串乱码，尝试base64解码没什么用，注意到url的filename参数有点奇怪，base64解码得到是keys.txt，那串乱码应该是他的内容。尝试各种常用目录base64加密到filename，发现就index.php，line=1时有一行php代码，尝试不同lin
         </a>
       </p>
 
@@ -377,16 +346,6 @@ cookie欺骗(bugku)进网页一串乱码，尝试base64解码没什么用，注�
             
           
           一直把python当成工具库用，好像这思想不太对啊。。。。
-
-秋名山老司机(bugku)看源码没发现啥，刷新界面后发现应该是要在快速计算表达式并且提交。拿python 写脚本。import requests
-
-import re
-
-url =  'http://123.206.87.240:8002/qiumingshan/'
-
-s = requests.session()
-
-response=s
         </a>
       </p>
 
@@ -426,9 +385,7 @@ response=s
           
             
           
-          是懒得写笔记以及成功使用菜刀的一天，检查的时候也顺便检查了一下一直在用的burpsuit的MD5（网站上下的一直懒得检查。。）cmd下检查文件MD5: certitul -hashfile [filename] MD5
-
-upload1(攻防世界/xctf)文件上传表单，随便交了个文件后显示选择图片上传。一句话木马，文件后缀改成jpg，bp拦包修改回php后显示了文件传到的地址，尝试进upload
+          是懒得写笔记以及成功使用菜刀的一天，检查的时候也顺便检查了一下一直在用的burpsuit的MD5（网站上下的一直懒得检查。。）
         </a>
       </p>
 
@@ -469,14 +426,6 @@ upload1(攻防世界/xctf)文件上传表单，随便交了个文件后显示选
             
           
           接触php序列化的一天。。
-
-web php unserialiaze进去就看到php代码&lt;?php  
-class Demo &#123;  
-	private $file = 'index.php';  
-	public function __construct($file) &#123;  
-		$this-&gt;file = $file;  
-	&#125;  
-	function
         </a>
       </p>
 
@@ -516,11 +465,7 @@ class Demo &#123;
           
             
           
-          Code(ichunqiu)点开链接只有一张图片，查看源码发现file:hei.jpg以及图片源码的base64编码串，解码没有作用，标题的提示应该是访问jpg的内容，改成1.jpg等显示没有资源的图片。改询问?jpg=index.php，图片链接里又发现base64编码，解码得到：&lt;?php
-/**
- * Created by PhpStorm.
- * Date: 2015/11/16
- 
+          Code(ichunqiu)
         </a>
       </p>
 
@@ -561,8 +506,6 @@ class Demo &#123;
             
           
           又是一脸懵逼的一天。。
-
-成绩单进去啥也没发现，查看源码没什么收获，看到表单自然就想着SQL注入。正常的输入数字1、2、3都得到结果，尝试1’错误，再试1’—没用，加空格（1’— ）或者1’#正常返回，应该是MYSQL数据库。再尝试数字注入1+1结果返回结果和1一样，应该不是    按数字格式处理。最后尝试注入查询结构。看查询返回的界面应该是有4列（姓名以及三门分数），尝试1’ order by 
         </a>
       </p>
 
@@ -603,10 +546,6 @@ class Demo &#123;
             
           
           懒得上图，随便写几个题
-
-网站被黑进去界面后没有找到提示，尝试burpsuit爬虫结果连续错误太多自动停止，改用爆破，得到shell.php（似乎许多后门都叫这个？），之后正常密码爆破就行。
-
-管理员系统进去就是登录界面，看源码发现”dGVzdDEyMw== “的字符串，base64解码得到test123，猜测这是密码，账号用admin，结果出现“IP禁止访问，请联系本地管理员登陆，IP已被记录.
         </a>
       </p>
 

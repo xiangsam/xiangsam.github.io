@@ -221,6 +221,7 @@
             
             <div class="markdown-body" id="post-body">
               <p>这学期可好像会有点多 | 网安老师都喜欢说课会比较难 | 希望学到抽代的时候可以顺顺利利</p>
+<a id="more"></a>
 <hr>
 <p>cookie欺骗(bugku)<br>进网页一串乱码，尝试base64解码没什么用，注意到url的filename参数有点奇怪，base64解码得到是keys.txt，那串乱码应该是他的内容。尝试各种常用目录base64加密到filename，发现就index.php，line=1时有一行php代码，尝试不同line得到不同行，python爬取全部内容得到：<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 

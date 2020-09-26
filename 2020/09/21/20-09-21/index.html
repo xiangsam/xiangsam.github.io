@@ -220,7 +220,7 @@
             <h1 style="display: none">20-09-21</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>象棋（ichuqiu）<br>昨天就做到的题，猫腻在源码里就能找到，js链接是个正则表达式，不过之前一直想着的是用python做，但是只会单线程的我半天没找到答案。<br>今天看wp突然醒悟用bp就挺好的，成功爆破flag</p>
+              <p>象棋（ichuqiu）<br>昨天就做到的题，猫腻在源码里就能找到，js链接是个正则表达式，不过之前一直想着的是用python做，但是只会单线程的我半天没找到答案。<br>今天看wp突然醒悟用bp就挺好的，成功爆破flag<br><a id="more"></a></p>
 <hr>
 <p>SQLi(ichunqiu)<br>收获颇多的一道题<br>进入就是登录界面，尝试admin为用户名一次就对，想着直接爆破结果失败了。发现回显只有username error!以及password error!两种，bool盲注<br>先试试过滤点，发现后缀是%时报错时sprintf参数问题，查找关于sprintf的漏洞找到这篇<a href="https://zhuanlan.zhihu.com/p/115777073" target="_blank" rel="noopener">文章</a><br>应该就是单引号逃逸闭合来注入<br>构造payload:  </p>
 <ul>
