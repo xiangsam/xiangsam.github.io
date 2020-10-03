@@ -223,7 +223,7 @@
               <p>这学期可好像会有点多 | 网安老师都喜欢说课会比较难 | 希望学到抽代的时候可以顺顺利利</p>
 <a id="more"></a>
 <hr>
-<p>cookie欺骗(bugku)<br>进网页一串乱码，尝试base64解码没什么用，注意到url的filename参数有点奇怪，base64解码得到是keys.txt，那串乱码应该是他的内容。尝试各种常用目录base64加密到filename，发现就index.php，line=1时有一行php代码，尝试不同line得到不同行，python爬取全部内容得到：<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
+<p>cookie欺骗(bugku)<br>进网页一串乱码，尝试base64解码没什么用，注意到url的filename参数有点奇怪，base64解码得到是keys.txt，那串乱码应该是他的内容。尝试各种常用目录base64加密到filename，发现就index.php，line=1时有一行php代码，尝试不同line得到不同行，python爬取全部内容得到：<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 
 <span class="php">error_reporting(<span class="hljs-number">0</span>);</span>
 
@@ -255,17 +255,17 @@
 
 <span class="php">&#125;</span>
 
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>cookie加上margin，filename换成keys.php的编码结果，line改成0就得到flag</p>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>cookie加上margin，filename换成keys.php的编码结果，line改成0就得到flag</p>
 <hr>
-<p>never give up(bugku)<br>点进去后发现有个明显的重定向到bugku的主页，用bp抓包发现重定向，以及hello.php的response注释的1p.html，bp抓包发送得到<br><pre><code class="hljs perl">var Words =<span class="hljs-string">"%3Cscript%3Ewindow.location.href%3D%27http%3A//www.bugku.com%27%3B%3C/script%3E%20%0A%3C%21--JTIyJTNCaWYlMjglMjElMjRfR0VUJTVCJTI3aWQlMjclNUQlMjklMEElN0IlMEElMDloZWFkZXIlMjglMjdMb2NhdGlvbiUzQSUyMGhlbGxvLnBocCUzRmlkJTNEMSUyNyUyOSUzQiUwQSUwOWV4aXQlMjglMjklM0IlMEElN0QlMEElMjRpZCUzRCUyNF9HRVQlNUIlMjdpZCUyNyU1RCUzQiUwQSUyNGElM0QlMjRfR0VUJTVCJTI3YSUyNyU1RCUzQiUwQSUyNGIlM0QlMjRfR0VUJTVCJTI3YiUyNyU1RCUzQiUwQWlmJTI4c3RyaXBvcyUyOCUyNGElMkMlMjcuJTI3JTI5JTI5JTBBJTdCJTBBJTA5ZWNobyUyMCUyN25vJTIwbm8lMjBubyUyMG5vJTIwbm8lMjBubyUyMG5vJTI3JTNCJTBBJTA5cmV0dXJuJTIwJTNCJTBBJTdEJTBBJTI0ZGF0YSUyMCUzRCUyMEBmaWxlX2dldF9jb250ZW50cyUyOCUyNGElMkMlMjdyJTI3JTI5JTNCJTBBaWYlMjglMjRkYXRhJTNEJTNEJTIyYnVna3UlMjBpcyUyMGElMjBuaWNlJTIwcGxhdGVmb3JtJTIxJTIyJTIwYW5kJTIwJTI0aWQlM0QlM0QwJTIwYW5kJTIwc3RybGVuJTI4JTI0YiUyOSUzRTUlMjBhbmQlMjBlcmVnaSUyOCUyMjExMSUyMi5zdWJzdHIlMjglMjRiJTJDMCUyQzElMjklMkMlMjIxMTE0JTIyJTI5JTIwYW5kJTIwc3Vic3RyJTI4JTI0YiUyQzAlMkMxJTI5JTIxJTNENCUyOSUwQSU3QiUwQSUwOXJlcXVpcmUlMjglMjJmNGwyYTNnLnR4dCUyMiUyOSUzQiUwQSU3RCUwQWVsc2UlMEElN0IlMEElMDlwcmludCUyMCUyMm5ldmVyJTIwbmV2ZXIlMjBuZXZlciUyMGdpdmUlMjB1cCUyMCUyMSUyMSUyMSUyMiUzQiUwQSU3RCUwQSUwQSUwQSUzRiUzRQ%3D%3D--%3E"</span> 
+<p>never give up(bugku)<br>点进去后发现有个明显的重定向到bugku的主页，用bp抓包发现重定向，以及hello.php的response注释的1p.html，bp抓包发送得到<br><div class="hljs"><pre><code class="hljs perl">var Words =<span class="hljs-string">"%3Cscript%3Ewindow.location.href%3D%27http%3A//www.bugku.com%27%3B%3C/script%3E%20%0A%3C%21--JTIyJTNCaWYlMjglMjElMjRfR0VUJTVCJTI3aWQlMjclNUQlMjklMEElN0IlMEElMDloZWFkZXIlMjglMjdMb2NhdGlvbiUzQSUyMGhlbGxvLnBocCUzRmlkJTNEMSUyNyUyOSUzQiUwQSUwOWV4aXQlMjglMjklM0IlMEElN0QlMEElMjRpZCUzRCUyNF9HRVQlNUIlMjdpZCUyNyU1RCUzQiUwQSUyNGElM0QlMjRfR0VUJTVCJTI3YSUyNyU1RCUzQiUwQSUyNGIlM0QlMjRfR0VUJTVCJTI3YiUyNyU1RCUzQiUwQWlmJTI4c3RyaXBvcyUyOCUyNGElMkMlMjcuJTI3JTI5JTI5JTBBJTdCJTBBJTA5ZWNobyUyMCUyN25vJTIwbm8lMjBubyUyMG5vJTIwbm8lMjBubyUyMG5vJTI3JTNCJTBBJTA5cmV0dXJuJTIwJTNCJTBBJTdEJTBBJTI0ZGF0YSUyMCUzRCUyMEBmaWxlX2dldF9jb250ZW50cyUyOCUyNGElMkMlMjdyJTI3JTI5JTNCJTBBaWYlMjglMjRkYXRhJTNEJTNEJTIyYnVna3UlMjBpcyUyMGElMjBuaWNlJTIwcGxhdGVmb3JtJTIxJTIyJTIwYW5kJTIwJTI0aWQlM0QlM0QwJTIwYW5kJTIwc3RybGVuJTI4JTI0YiUyOSUzRTUlMjBhbmQlMjBlcmVnaSUyOCUyMjExMSUyMi5zdWJzdHIlMjglMjRiJTJDMCUyQzElMjklMkMlMjIxMTE0JTIyJTI5JTIwYW5kJTIwc3Vic3RyJTI4JTI0YiUyQzAlMkMxJTI5JTIxJTNENCUyOSUwQSU3QiUwQSUwOXJlcXVpcmUlMjglMjJmNGwyYTNnLnR4dCUyMiUyOSUzQiUwQSU3RCUwQWVsc2UlMEElN0IlMEElMDlwcmludCUyMCUyMm5ldmVyJTIwbmV2ZXIlMjBuZXZlciUyMGdpdmUlMjB1cCUyMCUyMSUyMSUyMSUyMiUzQiUwQSU3RCUwQSUwQSUwQSUzRiUzRQ%3D%3D--%3E"</span> 
 function OutWord()
 &#123;
 var NewWords;
 NewWords = unescape(Words);
 document.write(NewWords);
 &#125; 
-OutWord();</code></pre><br>words内容url编码，解码得<br><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"><span class="hljs-built_in">window</span>.location.href=<span class="hljs-string">'http://www.bugku.com'</span>;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span> 
-<span class="hljs-comment">&lt;!--JTIyJTNCaWYlMjglMjElMjRfR0VUJTVCJTI3aWQlMjclNUQlMjklMEElN0IlMEElMDloZWFkZXIlMjglMjdMb2NhdGlvbiUzQSUyMGhlbGxvLnBocCUzRmlkJTNEMSUyNyUyOSUzQiUwQSUwOWV4aXQlMjglMjklM0IlMEElN0QlMEElMjRpZCUzRCUyNF9HRVQlNUIlMjdpZCUyNyU1RCUzQiUwQSUyNGElM0QlMjRfR0VUJTVCJTI3YSUyNyU1RCUzQiUwQSUyNGIlM0QlMjRfR0VUJTVCJTI3YiUyNyU1RCUzQiUwQWlmJTI4c3RyaXBvcyUyOCUyNGElMkMlMjcuJTI3JTI5JTI5JTBBJTdCJTBBJTA5ZWNobyUyMCUyN25vJTIwbm8lMjBubyUyMG5vJTIwbm8lMjBubyUyMG5vJTI3JTNCJTBBJTA5cmV0dXJuJTIwJTNCJTBBJTdEJTBBJTI0ZGF0YSUyMCUzRCUyMEBmaWxlX2dldF9jb250ZW50cyUyOCUyNGElMkMlMjdyJTI3JTI5JTNCJTBBaWYlMjglMjRkYXRhJTNEJTNEJTIyYnVna3UlMjBpcyUyMGElMjBuaWNlJTIwcGxhdGVmb3JtJTIxJTIyJTIwYW5kJTIwJTI0aWQlM0QlM0QwJTIwYW5kJTIwc3RybGVuJTI4JTI0YiUyOSUzRTUlMjBhbmQlMjBlcmVnaSUyOCUyMjExMSUyMi5zdWJzdHIlMjglMjRiJTJDMCUyQzElMjklMkMlMjIxMTE0JTIyJTI5JTIwYW5kJTIwc3Vic3RyJTI4JTI0YiUyQzAlMkMxJTI5JTIxJTNENCUyOSUwQSU3QiUwQSUwOXJlcXVpcmUlMjglMjJmNGwyYTNnLnR4dCUyMiUyOSUzQiUwQSU3RCUwQWVsc2UlMEElN0IlMEElMDlwcmludCUyMCUyMm5ldmVyJTIwbmV2ZXIlMjBuZXZlciUyMGdpdmUlMjB1cCUyMCUyMSUyMSUyMSUyMiUzQiUwQSU3RCUwQSUwQSUwQSUzRiUzRQ==--&gt;</span></code></pre><br>注释中内容再base64解码+url解码得<br><pre><code class="hljs stata">";<span class="hljs-keyword">if</span>(!<span class="hljs-variable">$_GET</span>['id'])
+OutWord();</code></pre></div><br>words内容url编码，解码得<br><div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"><span class="hljs-built_in">window</span>.location.href=<span class="hljs-string">'http://www.bugku.com'</span>;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span> 
+<span class="hljs-comment">&lt;!--JTIyJTNCaWYlMjglMjElMjRfR0VUJTVCJTI3aWQlMjclNUQlMjklMEElN0IlMEElMDloZWFkZXIlMjglMjdMb2NhdGlvbiUzQSUyMGhlbGxvLnBocCUzRmlkJTNEMSUyNyUyOSUzQiUwQSUwOWV4aXQlMjglMjklM0IlMEElN0QlMEElMjRpZCUzRCUyNF9HRVQlNUIlMjdpZCUyNyU1RCUzQiUwQSUyNGElM0QlMjRfR0VUJTVCJTI3YSUyNyU1RCUzQiUwQSUyNGIlM0QlMjRfR0VUJTVCJTI3YiUyNyU1RCUzQiUwQWlmJTI4c3RyaXBvcyUyOCUyNGElMkMlMjcuJTI3JTI5JTI5JTBBJTdCJTBBJTA5ZWNobyUyMCUyN25vJTIwbm8lMjBubyUyMG5vJTIwbm8lMjBubyUyMG5vJTI3JTNCJTBBJTA5cmV0dXJuJTIwJTNCJTBBJTdEJTBBJTI0ZGF0YSUyMCUzRCUyMEBmaWxlX2dldF9jb250ZW50cyUyOCUyNGElMkMlMjdyJTI3JTI5JTNCJTBBaWYlMjglMjRkYXRhJTNEJTNEJTIyYnVna3UlMjBpcyUyMGElMjBuaWNlJTIwcGxhdGVmb3JtJTIxJTIyJTIwYW5kJTIwJTI0aWQlM0QlM0QwJTIwYW5kJTIwc3RybGVuJTI4JTI0YiUyOSUzRTUlMjBhbmQlMjBlcmVnaSUyOCUyMjExMSUyMi5zdWJzdHIlMjglMjRiJTJDMCUyQzElMjklMkMlMjIxMTE0JTIyJTI5JTIwYW5kJTIwc3Vic3RyJTI4JTI0YiUyQzAlMkMxJTI5JTIxJTNENCUyOSUwQSU3QiUwQSUwOXJlcXVpcmUlMjglMjJmNGwyYTNnLnR4dCUyMiUyOSUzQiUwQSU3RCUwQWVsc2UlMEElN0IlMEElMDlwcmludCUyMCUyMm5ldmVyJTIwbmV2ZXIlMjBuZXZlciUyMGdpdmUlMjB1cCUyMCUyMSUyMSUyMSUyMiUzQiUwQSU3RCUwQSUwQSUwQSUzRiUzRQ==--&gt;</span></code></pre></div><br>注释中内容再base64解码+url解码得<br><div class="hljs"><pre><code class="hljs stata">";<span class="hljs-keyword">if</span>(!<span class="hljs-variable">$_GET</span>['id'])
 &#123;
 	header('Location: hello.php?id=1');
 	<span class="hljs-keyword">exit</span>();
@@ -289,7 +289,7 @@ OutWord();</code></pre><br>words内容url编码，解码得<br><pre><code class=
 &#125;
 
 
-?&gt;</code></pre><br><del>已经得到了flag存放得目录</del><br>接下来是php黑魔法</p>
+?&gt;</code></pre></div><br><del>已经得到了flag存放得目录</del><br>接下来是php黑魔法</p>
 <blockquote>
 <p><a href="https://skysec.top/2017/07/22/PHP%E5%87%BD%E6%95%B0%E9%BB%91%E9%AD%94%E6%B3%95%E5%B0%8F%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">https://skysec.top/2017/07/22/PHP%E5%87%BD%E6%95%B0%E9%BB%91%E9%AD%94%E6%B3%95%E5%B0%8F%E6%80%BB%E7%BB%93/</a></p>
 </blockquote>
@@ -303,14 +303,14 @@ OutWord();</code></pre><br>words内容url编码，解码得<br><pre><code class=
 <hr>
 <p>过狗一句话(bugku)<br>被删库了。。。<br>查询php目录：print_r(scandir($dir))</p>
 <hr>
-<p>字符？正则？<br>匹配代码如下<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>  </span>
+<p>字符？正则？<br>匹配代码如下<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span>  </span>
 <span class="php">highlight_file(<span class="hljs-string">'2.php'</span>);  </span>
 <span class="php">$key=<span class="hljs-string">'KEY&#123;********************************&#125;'</span>;  </span>
 <span class="php">$IM= preg_match(<span class="hljs-string">"/key.*key.&#123;4,7&#125;key:\/.\/(.*key)[a-z][[:punct:]]/i"</span>, trim($_GET[<span class="hljs-string">"id"</span>]), $match);  </span>
 <span class="php"><span class="hljs-keyword">if</span>( $IM )&#123;  </span>
 <span class="php">	<span class="hljs-keyword">die</span>(<span class="hljs-string">'key is: '</span>.$key);  </span>
 <span class="php">&#125;  </span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>[[:punct:]]匹配标点符号<br>构造payload即可</p>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>[[:punct:]]匹配标点符号<br>构造payload即可</p>
 
             </div>
             <hr>

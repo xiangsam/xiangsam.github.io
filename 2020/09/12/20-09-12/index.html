@@ -228,12 +228,12 @@
 <li>无论get还是post传参，页面上的传参都只能传字符串</li>
 <li>hash对数组无效，返回0</li>
 </ul>
-<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
+<div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 <span class="php">$b=$_GET[<span class="hljs-string">'b'</span>];</span>
 <span class="php">var_dump($b);</span>
 <span class="php">$c=$_POST[<span class="hljs-string">'c'</span>];</span>
 <span class="php">var_dump($c);</span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div>
 <p>b=1（或c）时，显示string(1) “1”<br>b(或c)[]=123时，显示array(1) { [0]=&gt; string(3) “123” }<br>b(或c)[]=1,2,3时，显示array(1) { [0]=&gt; string(5) “1,2,3” }</p>
 <p>扯远了，开始做题<br>要uname和passwd不相等而sha1加密后的值相等，只需要传入数组。<br>id==’margin’，本想着让id=0，但是传参得到的id是字符串，无效，老老实实传入id=margin即可</p>
 <hr>

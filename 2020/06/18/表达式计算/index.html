@@ -261,7 +261,7 @@
 <li>如果根节点是+号，那么无论左子树以及右子树是什么操作符，它们都是不需要加括号的，因为根节点+号是最小优先级的</li>
 <li>如果根节点是-号，那么只有右子树是+号或者-号时，右子树才需要加括号</li>
 <li>如果根节点是*号，那么只有左子树或右子树是+号或者-号时，它们才需要加括号</li>
-<li>如果根节点是/号，那么如果左子树或右子树是+号或者-号时，它们需要加括号，其次，如果右子树是*号或者/号时，右子树也需要加括号<pre><code class="hljs xl">void dfs(bt* q)
+<li>如果根节点是/号，那么如果左子树或右子树是+号或者-号时，它们需要加括号，其次，如果右子树是*号或者/号时，右子树也需要加括号<div class="hljs"><pre><code class="hljs xl">void dfs(bt* q)
 &#123;
 	<span class="hljs-keyword">if</span>(q == NULL)
 		return;
@@ -317,7 +317,7 @@
 			<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>rchild);
 		&#125;
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 </ul>
 </li>

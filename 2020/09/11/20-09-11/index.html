@@ -225,7 +225,7 @@
 <hr>
 <p>你从哪里来(bugku)<br>注意Referer头要加<a href="http://(https://)协议头！！！" target="_blank" rel="noopener">http://(https://)协议头！！！</a></p>
 <hr>
-<p>md5 collision(NUPT_CTF)<br>bugku里没给出a的判别条件，裂开<br><pre><code class="hljs xml">\\bugku缺的源码代码
+<p>md5 collision(NUPT_CTF)<br>bugku里没给出a的判别条件，裂开<br><div class="hljs"><pre><code class="hljs xml">\\bugku缺的源码代码
 <span class="php"><span class="hljs-meta">&lt;?php</span></span>
 <span class="php">$md51 = md5(<span class="hljs-string">'QNKCDZO'</span>);</span>
 <span class="php">$a = @$_GET[<span class="hljs-string">'a'</span>];</span>
@@ -237,7 +237,7 @@
 <span class="php">    <span class="hljs-keyword">echo</span> <span class="hljs-string">"false!!!"</span>;</span>
 <span class="php">&#125;&#125;</span>
 <span class="php"><span class="hljs-keyword">else</span>&#123;<span class="hljs-keyword">echo</span> <span class="hljs-string">"please input a"</span>;&#125;</span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>要构造a使a != ‘QNKCDZO’并且md51==md52<br>md51=0e830400451993494058024219903391，根据php弱比较的特点：</p>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>要构造a使a != ‘QNKCDZO’并且md51==md52<br>md51=0e830400451993494058024219903391，根据php弱比较的特点：</p>
 <blockquote>
 <p>如果比较一个数字和字符串或者比较涉及到数字内容的字符串，则字符串会被转换为数值并且比较按照数值来进行</p>
 </blockquote>

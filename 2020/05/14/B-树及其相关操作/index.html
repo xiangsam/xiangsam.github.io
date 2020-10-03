@@ -238,14 +238,14 @@
 <p>图例：<br><img src="/2020/05/14/B-%E6%A0%91%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/2-1G024101S02K.png?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"></p>
 <hr>
 <h3 id="相关操作"><a href="#相关操作" class="headerlink" title="相关操作"></a>相关操作</h3><hr>
-<h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><p>查找过程与二叉查找树相似。<br><pre><code class="hljs crmsh"><span class="hljs-comment">#define M 1000</span>
+<h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><p>查找过程与二叉查找树相似。<br><div class="hljs"><pre><code class="hljs crmsh"><span class="hljs-comment">#define M 1000</span>
 struct <span class="hljs-keyword">Node</span><span class="hljs-title">&#123;</span>
 <span class="hljs-title">	int</span> keynum;
 	keytype key[M];
 	struct <span class="hljs-keyword">Node</span> <span class="hljs-title">*ptr</span>[M];
 &#125;;
-typedef struct <span class="hljs-keyword">Node</span> <span class="hljs-title">BNode</span>;</code></pre></p>
-<h2 id><a href="#" class="headerlink" title></a><pre><code class="hljs gauss">keytype <span class="hljs-built_in">searchBTree</span>(BNode *t,keytype k)
+typedef struct <span class="hljs-keyword">Node</span> <span class="hljs-title">BNode</span>;</code></pre></div></p>
+<h2 id><a href="#" class="headerlink" title></a><div class="hljs"><pre><code class="hljs gauss">keytype <span class="hljs-built_in">searchBTree</span>(BNode *t,keytype k)
 &#123;
 	int i,n;
 	BNode *p = t;
@@ -258,9 +258,9 @@ typedef struct <span class="hljs-keyword">Node</span> <span class="hljs-title">B
 		<span class="hljs-keyword">else</span>
 			p = p-&gt;ptr[i<span class="hljs-number">-1</span>];
 	&#125;<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
-&#125;</code></pre></h2><h4 id="插入节点（建树）"><a href="#插入节点（建树）" class="headerlink" title="插入节点（建树）"></a>插入节点（建树）</h4><p>B-树的生成从空树开始，即逐个在叶节点中插入节点而得到。当m阶树节点中关键字个数大于m-1，则要节点分裂。<br>节点分裂：若将k插入到节点后使该节点的关键字个数超过m-1，则要以该节点位置居中的那个关键字值为界将该节点一分为二，产生一个新节点（q:[1,$\ldots$,$\lceil$m/2$\rceil$-1],q’:[$\lceil$m/2$\rceil$+1,$\ldots$,m-1]），并将$key_{\lceil m/2 \rceil}$与指向q和q’的指针插入到双亲节点中。<br><img src="/2020/05/14/B-%E6%A0%91%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/2-1G024102942E3.png?v=1&amp;type=image" srcset="/img/loading.gif" alt><br>插入26：<br><img src="/2020/05/14/B-%E6%A0%91%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/2-1G024103030D2.png?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"></p>
-<p>代码示例：<br><pre><code class="hljs plain">
-</code></pre></p>
+&#125;</code></pre></div></h2><h4 id="插入节点（建树）"><a href="#插入节点（建树）" class="headerlink" title="插入节点（建树）"></a>插入节点（建树）</h4><p>B-树的生成从空树开始，即逐个在叶节点中插入节点而得到。当m阶树节点中关键字个数大于m-1，则要节点分裂。<br>节点分裂：若将k插入到节点后使该节点的关键字个数超过m-1，则要以该节点位置居中的那个关键字值为界将该节点一分为二，产生一个新节点（q:[1,$\ldots$,$\lceil$m/2$\rceil$-1],q’:[$\lceil$m/2$\rceil$+1,$\ldots$,m-1]），并将$key_{\lceil m/2 \rceil}$与指向q和q’的指针插入到双亲节点中。<br><img src="/2020/05/14/B-%E6%A0%91%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/2-1G024102942E3.png?v=1&amp;type=image" srcset="/img/loading.gif" alt><br>插入26：<br><img src="/2020/05/14/B-%E6%A0%91%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/2-1G024103030D2.png?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"></p>
+<p>代码示例：<br><div class="hljs"><pre><code class="hljs plain">
+</code></pre></div></p>
 
             </div>
             <hr>

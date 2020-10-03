@@ -237,18 +237,18 @@
 <p>64位程序 unsigned</p>
 <p>ISO99:32位程序 unsigned</p>
 <p>64位程序 unsigned</p>
-<pre><code class="hljs angelscript">
+<div class="hljs"><pre><code class="hljs angelscript">
 <span class="hljs-built_in">int</span> dpos32 = (<span class="hljs-number">-2147483648</span> &gt; <span class="hljs-number">0</span>);
 
 <span class="hljs-built_in">int</span> hpos32 = (<span class="hljs-number">0x80000000</span> &gt; <span class="hljs-number">0</span>);
 
-printf(<span class="hljs-string">"%d %d"</span>,dpos32,hpos32);</code></pre>
+printf(<span class="hljs-string">"%d %d"</span>,dpos32,hpos32);</code></pre></div>
 <p>对ISO90标准，32位程序输出1 1</p>
 <p>64位程序输出0 1</p>
 <p>对ISO99标准，32位程序输出0 1</p>
 <p>64位程序输出0 1</p>
 <p>但是对于</p>
-<pre><code class="hljs angelscript">
+<div class="hljs"><pre><code class="hljs angelscript">
 <span class="hljs-built_in">int</span> dtmin32 = <span class="hljs-number">-2147483648</span>;
 
 <span class="hljs-built_in">int</span> dposa = (dtmin32 &gt; <span class="hljs-number">0</span>);
@@ -257,7 +257,7 @@ printf(<span class="hljs-string">"%d %d"</span>,dpos32,hpos32);</code></pre>
 
 <span class="hljs-built_in">int</span> hposa = (htmin32 &gt; <span class="hljs-number">0</span>);
 
-printf(<span class="hljs-string">"%d %d"</span>,dposa,hposa);</code></pre>
+printf(<span class="hljs-string">"%d %d"</span>,dposa,hposa);</code></pre></div>
 <p>无论32位或64位，无论ISO90或ISO99 ,输出都是：0 0</p>
 
             </div>

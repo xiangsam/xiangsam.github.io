@@ -220,7 +220,7 @@
             <h1 style="display: none">百度杯九月场code-20.09.06</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>Code(ichunqiu)<br><a id="more"></a><br>点开链接只有一张图片，查看源码发现file:hei.jpg以及图片源码的base64编码串，解码没有作用，标题的提示应该是访问jpg的内容，改成1.jpg等显示没有资源的图片。改询问?jpg=index.php，图片链接里又发现base64编码，解码得到：<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
+              <p>Code(ichunqiu)<br><a id="more"></a><br>点开链接只有一张图片，查看源码发现file:hei.jpg以及图片源码的base64编码串，解码没有作用，标题的提示应该是访问jpg的内容，改成1.jpg等显示没有资源的图片。改询问?jpg=index.php，图片链接里又发现base64编码，解码得到：<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 /**
  * Created by PhpStorm.
  * Date: 2015/11/16
@@ -242,12 +242,12 @@
  *
 <span class="php"> */</span>
 
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>知道了过滤方法依然不知道flag在哪。。<br>看题解发现提示在注释里，”created by Phpstorm”，(感觉自己啥也不知道: )  )</p>
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>知道了过滤方法依然不知道flag在哪。。<br>看题解发现提示在注释里，”created by Phpstorm”，(感觉自己啥也不知道: )  )</p>
 <blockquote>
 <p>phpstorm是php代码的集成开发环境，下载phpstorm，并新建一个项目，会发现在项目文件夹里面会生成一个.idea文件，它存储了项目的配置文件，</p>
 <p>打开.idea文件可以发现misc.xml,modules.xml,workspace.xml文件。</p>
 </blockquote>
-<p>进入.idea/workspace.xml发现有config.php以及fl3g_ichuqiu.php，进config.php发现啥也没有，再进fl3g_ichuqiu.php发现╮(╯▽╰)╭暂时也没什么用。<br>想到之前得到的php代码，尝试访问index.php?jpg=fl3gconfigichuqiu.php，得到又一串base64编码，解码得：<br><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
+<p>进入.idea/workspace.xml发现有config.php以及fl3g_ichuqiu.php，进config.php发现啥也没有，再进fl3g_ichuqiu.php发现╮(╯▽╰)╭暂时也没什么用。<br>想到之前得到的php代码，尝试访问index.php?jpg=fl3gconfigichuqiu.php，得到又一串base64编码，解码得：<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
 /**
  * Created by PhpStorm.
  * Date: 2015/11/16
@@ -301,7 +301,7 @@
 <span class="php">    setcookie(<span class="hljs-string">'user'</span>,encrypt(<span class="hljs-string">'guest'</span>,$key));</span>
 <span class="php">    <span class="hljs-keyword">echo</span> <span class="hljs-string">"­╮(╯▽╰)╭"</span>;</span>
 <span class="php">&#125;</span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre><br>先进输出╮(╯▽╰)╭得网页得到cookie，根据encrypt以及decrypt解出需要得cookie值<br><pre><code class="hljs perl">//要得到flag需要username=<span class="hljs-string">'system'</span>，就需要cookie[<span class="hljs-string">'user'</span>]和key解密得到
+<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>先进输出╮(╯▽╰)╭得网页得到cookie，根据encrypt以及decrypt解出需要得cookie值<br><div class="hljs"><pre><code class="hljs perl">//要得到flag需要username=<span class="hljs-string">'system'</span>，就需要cookie[<span class="hljs-string">'user'</span>]和key解密得到
 //username不是<span class="hljs-string">'system'</span>时cookie[<span class="hljs-string">'user'</span>]由<span class="hljs-string">'guest'</span>和key加密得到，根据此可以得到五位key
 //爆破最后一位key得到第六位即可得到需要的cookie[<span class="hljs-string">'user'</span>]
 &lt;?php
@@ -333,7 +333,7 @@ function getAns($txt,$cookie)&#123;
     &#125;
 &#125;
 getAns(<span class="hljs-string">'guest'</span>,<span class="hljs-string">'YnV6RhQdCx4a'</span>)
-?&gt;</code></pre><br>再到config.php爆破cookie就好了<br>注：每次下发得cookie不一样，cookie—key-cookie,但是按照key在encrypt和dectypt函数中的使用，应该是加了$rnd$再md5加密后才使用，并且并未用到key的第一位，不知道为什么可以互用，留个坑。</p>
+?&gt;</code></pre></div><br>再到config.php爆破cookie就好了<br>注：每次下发得cookie不一样，cookie—key-cookie,但是按照key在encrypt和dectypt函数中的使用，应该是加了$rnd$再md5加密后才使用，并且并未用到key的第一位，不知道为什么可以互用，留个坑。</p>
 
             </div>
             <hr>

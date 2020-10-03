@@ -222,7 +222,7 @@
             <div class="markdown-body" id="post-body">
               <p>一直把python当成工具库用，好像这思想不太对啊。。。。<br><a id="more"></a></p>
 <hr>
-<p>秋名山老司机(bugku)<br><img src="/2020/09/09/20-09-09/image.png?v=1&amp;type=image" srcset="/img/loading.gif" alt><br>看源码没发现啥，刷新界面后发现<br><img src="/2020/09/09/20-09-09/image.png?v=1&amp;type=image" srcset="/img/loading.gif" alt><br>应该是要在快速计算表达式并且提交。拿python 写脚本。<br><pre><code class="hljs pgsql"><span class="hljs-keyword">import</span> requests
+<p>秋名山老司机(bugku)<br><img src="/2020/09/09/20-09-09/image.png?v=1&amp;type=image" srcset="/img/loading.gif" alt><br>看源码没发现啥，刷新界面后发现<br><img src="/2020/09/09/20-09-09/image.png?v=1&amp;type=image" srcset="/img/loading.gif" alt><br>应该是要在快速计算表达式并且提交。拿python 写脚本。<br><div class="hljs"><pre><code class="hljs pgsql"><span class="hljs-keyword">import</span> requests
 
 <span class="hljs-keyword">import</span> re
 
@@ -244,7 +244,7 @@ data=&#123;<span class="hljs-string">'value'</span>:ans&#125;
 
 r = s.post(url,data=data)
 
-print(r.text)</code></pre><br>通过session建立会话。</p>
+print(r.text)</code></pre></div><br>通过session建立会话。</p>
 <hr>
 <p>速度要快（bugku）<br>python base64好难用好难用 : )<br>起初界面就说要快一点，查看源码是要提交margin（还以为是交css的margin属性，唉），真的傻乎乎交了margin看到让你快点，写脚本提交还是没有用。（这个人是有多蠢）<br>查看请求头和响应头发现有base64编码的flag（？？），解码后是一堆看不懂得乱码+’:’+字母。且发现每次下发得flag不一样。<br>考虑margin的值就是那串字母，继续写脚本，发现base64的b64decode会把str类型变成bytes，但是split需要str，上网搜索发现函数decode:<br><code>str=bytes.decode()</code><br>解决数据类型的问题后运行脚本还是要我快一点。崩溃<br>一通喝茶后发现flag是二次base64编码（？？？），幸福的连续两场b64decode结果python报错（fu*k）：</p>
 <blockquote>

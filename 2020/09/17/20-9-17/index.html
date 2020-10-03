@@ -220,7 +220,7 @@
             <h1 style="display: none">20-9-17</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>NaNNaNNaNNaN-Batman（xctf）<br>下载附件后发现是一段混乱的js代码，发现eval函数，可能是js混淆加密，和昨天的题类似。直接输入到控制台生成一个提交界面，通过console.log()把混淆的js代码解密得到以下内容：<br><a id="more"></a><br><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span>  <span class="hljs-title">$</span>(<span class="hljs-params"></span>)</span>&#123;
+              <p>NaNNaNNaNNaN-Batman（xctf）<br>下载附件后发现是一段混乱的js代码，发现eval函数，可能是js混淆加密，和昨天的题类似。直接输入到控制台生成一个提交界面，通过console.log()把混淆的js代码解密得到以下内容：<br><a id="more"></a><br><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span>  <span class="hljs-title">$</span>(<span class="hljs-params"></span>)</span>&#123;
 
 	<span class="hljs-keyword">var</span>  e=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"c"</span>).value;
 
@@ -256,7 +256,7 @@
 
 <span class="hljs-built_in">document</span>.write(<span class="hljs-string">'&lt;input id="c"&gt;&lt;button onclick=$()&gt;Ok&lt;/button&gt;'</span>);
 
-<span class="hljs-keyword">delete</span> _</code></pre><br>根据if语句构造提交字符串或者根据生成flag的代码直接写成flag都行</p>
+<span class="hljs-keyword">delete</span> _</code></pre></div><br>根据if语句构造提交字符串或者根据生成flag的代码直接写成flag都行</p>
 
             </div>
             <hr>
