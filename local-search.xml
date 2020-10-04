@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>20-10-04</title>
+    <link href="/2020/10/04/20-10-04/"/>
+    <url>/2020/10/04/20-10-04/</url>
+    
+    <content type="html"><![CDATA[<p>降转原因重学C，乘这个机会学学以前买的《C和指针》，感觉受益匪浅。<br><a id="more"></a></p><hr><p>guess_num(ichunqiu)<br>checksec查看一下防护：<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20163843.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>防护全开，真不错。<br>上IDA反编译<br><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function">__int64 __fastcall <span class="hljs-title">main</span><span class="hljs-params">(__int64 a1, <span class="hljs-keyword">char</span> **a2, <span class="hljs-keyword">char</span> **a3)</span></span><span class="hljs-function"></span>&#123;  <span class="hljs-keyword">int</span> v4; <span class="hljs-comment">// [rsp+4h] [rbp-3Ch]</span>  <span class="hljs-keyword">int</span> i; <span class="hljs-comment">// [rsp+8h] [rbp-38h]</span>  <span class="hljs-keyword">int</span> v6; <span class="hljs-comment">// [rsp+Ch] [rbp-34h]</span>  <span class="hljs-keyword">char</span> v7; <span class="hljs-comment">// [rsp+10h] [rbp-30h]</span>  <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> seed[<span class="hljs-number">2</span>]; <span class="hljs-comment">// [rsp+30h] [rbp-10h]</span>  <span class="hljs-keyword">unsigned</span> __int64 v9; <span class="hljs-comment">// [rsp+38h] [rbp-8h]</span>  v9 = __readfsqword(<span class="hljs-number">0x28</span>u);  setbuf(<span class="hljs-built_in">stdin</span>, <span class="hljs-number">0L</span>L);  setbuf(<span class="hljs-built_in">stdout</span>, <span class="hljs-number">0L</span>L);  setbuf(<span class="hljs-built_in">stderr</span>, <span class="hljs-number">0L</span>L);  v4 = <span class="hljs-number">0</span>;  v6 = <span class="hljs-number">0</span>;  *(_QWORD *)seed = sub_BB0();  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"-------------------------------"</span>);  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Welcome to a guess number game!"</span>);  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"-------------------------------"</span>);  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Please let me know your name!"</span>);  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Your name:"</span>);  gets(&amp;v7);  srand(seed[<span class="hljs-number">0</span>]);  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">9</span>; ++i )  &#123;    v6 = rand() % <span class="hljs-number">6</span> + <span class="hljs-number">1</span>;    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"-------------Turn:%d-------------\n"</span>, (<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span>)(i + <span class="hljs-number">1</span>));    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Please input your guess number:"</span>);    __isoc99_scanf(<span class="hljs-string">"%d"</span>, &amp;v4);    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"---------------------------------"</span>);    <span class="hljs-keyword">if</span> ( v4 != v6 )    &#123;      <span class="hljs-built_in">puts</span>(<span class="hljs-string">"GG!"</span>);      <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);    &#125;    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Success!"</span>);  &#125;  sub_C3E();  <span class="hljs-keyword">return</span> <span class="hljs-number">0L</span>L;&#125;</code></pre></div><br>大概就是要十次成功的猜中随机数。利用伪随机数原理想到控制种子。利用gets的漏洞可以成功覆盖seed内存。查看一下变量内存图：<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20164531.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>使用0x20个字符可以到seed，直接用40个’a’全部覆盖了<br>写个程序看看用4个’a’为种子会得到什么结果：<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20165008.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>得到5 6 4 6 6 2 3 6 2 2<br>运行程序依次输入即可得到flag<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20165422.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ctf刷题笔记</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>20-10-3</title>
     <link href="/2020/10/03/20-10-3/"/>
     <url>/2020/10/03/20-10-3/</url>
