@@ -17,7 +17,7 @@
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
   <meta name="keywords" content="">
-  <title>20-10-04 - renex的杂烩集</title>
+  <title>20-10-7-踩住国庆的尾巴 - renex的杂烩集</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -165,8 +165,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-04 16:30" pubdate>
-        October 4, 2020 pm
+      <time datetime="2020-10-07 16:05" pubdate>
+        October 7, 2020 pm
       </time>
     </span>
   
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      304 字
+      551 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      6
        分钟
     </span>
   
@@ -217,51 +217,22 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">20-10-04</h1>
+            <h1 style="display: none">20-10-7-踩住国庆的尾巴</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>降转原因重学C，乘这个机会学学以前买的《C和指针》，感觉受益匪浅。<br><a id="more"></a></p>
+              <p>其实基本上每天都还在刷题，不过最近电脑上倒腾wsl2，把系统升级到了20H2版本，尝试用docker（太爱折腾了）。再加上pwn写题解的话会比较多，所以一直没有更新blog。</p>
 <hr>
-<p>guess_num(ichunqiu)<br>checksec查看一下防护：<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20163843.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>防护全开，真不错。<br>上IDA反编译<br><div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function">__int64 __fastcall <span class="hljs-title">main</span><span class="hljs-params">(__int64 a1, <span class="hljs-keyword">char</span> **a2, <span class="hljs-keyword">char</span> **a3)</span></span>
-<span class="hljs-function"></span>&#123;
-  <span class="hljs-keyword">int</span> v4; <span class="hljs-comment">// [rsp+4h] [rbp-3Ch]</span>
-  <span class="hljs-keyword">int</span> i; <span class="hljs-comment">// [rsp+8h] [rbp-38h]</span>
-  <span class="hljs-keyword">int</span> v6; <span class="hljs-comment">// [rsp+Ch] [rbp-34h]</span>
-  <span class="hljs-keyword">char</span> v7; <span class="hljs-comment">// [rsp+10h] [rbp-30h]</span>
-  <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> seed[<span class="hljs-number">2</span>]; <span class="hljs-comment">// [rsp+30h] [rbp-10h]</span>
-  <span class="hljs-keyword">unsigned</span> __int64 v9; <span class="hljs-comment">// [rsp+38h] [rbp-8h]</span>
-
-  v9 = __readfsqword(<span class="hljs-number">0x28</span>u);
-  setbuf(<span class="hljs-built_in">stdin</span>, <span class="hljs-number">0L</span>L);
-  setbuf(<span class="hljs-built_in">stdout</span>, <span class="hljs-number">0L</span>L);
-  setbuf(<span class="hljs-built_in">stderr</span>, <span class="hljs-number">0L</span>L);
-  v4 = <span class="hljs-number">0</span>;
-  v6 = <span class="hljs-number">0</span>;
-  *(_QWORD *)seed = sub_BB0();
-  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"-------------------------------"</span>);
-  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Welcome to a guess number game!"</span>);
-  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"-------------------------------"</span>);
-  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Please let me know your name!"</span>);
-  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Your name:"</span>);
-  gets(&amp;v7);
-  srand(seed[<span class="hljs-number">0</span>]);
-  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">9</span>; ++i )
-  &#123;
-    v6 = rand() % <span class="hljs-number">6</span> + <span class="hljs-number">1</span>;
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"-------------Turn:%d-------------\n"</span>, (<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span>)(i + <span class="hljs-number">1</span>));
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Please input your guess number:"</span>);
-    __isoc99_scanf(<span class="hljs-string">"%d"</span>, &amp;v4);
-    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"---------------------------------"</span>);
-    <span class="hljs-keyword">if</span> ( v4 != v6 )
-    &#123;
-      <span class="hljs-built_in">puts</span>(<span class="hljs-string">"GG!"</span>);
-      <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);
-    &#125;
-    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Success!"</span>);
-  &#125;
-  sub_C3E();
-  <span class="hljs-keyword">return</span> <span class="hljs-number">0L</span>L;
-&#125;</code></pre></div><br>大概就是要十次成功的猜中随机数。利用伪随机数原理想到控制种子。利用gets的漏洞可以成功覆盖seed内存。查看一下变量内存图：<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20164531.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>使用0x20个字符可以到seed，直接用40个’a’全部覆盖了<br>写个程序看看用4个’a’为种子会得到什么结果：<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20165008.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>得到5 6 4 6 6 2 3 6 2 2<br>运行程序依次输入即可得到flag<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20165422.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"></p>
+<p>win10 20H2 + wsl2</p>
+<p>更新windows用了整整一个晚上，再开启wsl2，终于wsl2的ubuntu有了ip地址，十分符合我的需求。powershell7和Windows Terminal终于让我愿意用windows的powershell了。Windows Terminal用ubuntu默认打开的位置是User目录，进入windows目录终于不用通过mnt一点点的cd，进ubuntu root目录也很快，感觉二者的交互性加强了挺多，用起来挺舒服。</p>
+<hr>
+<p>用docker拉取作业环境</p>
+<p>下了docker就想用，正好计算机网络安全最近的作业是用自制ssl证书配置web服务器，并分析握手协议和记录协议。是在不想用wsl安装apache2和openssl等一系列东西去摧残我那变红的C盘，也不想下载在windows里，就尝试用docker完成配置web服务器的任务。</p>
+<p>结果就是从晚上7点开始做这个作业，到凌晨3点才完成: )，不清楚宿主机和docker的端口映射，之前拉的docker ubuntu端口都没开放，之后开了-p 80:80的端口映射，宿主机终于可以访问，但是ssl配置完后https连接打不开，又是一番折腾后发现还得再建立一个映射到443端口的映射，折腾到1点多才全部配置好，成功抓包。写报告写到3点才睡。。。</p>
+<p>虽然像个傻子一样绕了很多弯路，不过倒是对docker有了更深的了解。</p>
+<hr>
+<p>回到ctf正题<br>level0、int overflow、cgpwn2、hello pwn(xctf)<br>基本都是栈方面的题，直接写收获好了：</p>
+<p>python3使用pwntools时注意字符串和bytes不能隐式转换，和p32、p64这些函数一起构造payload时不要用字符串，而是使用bytes：前面加b。eg: b”a*0x30”</p>
+<p>在进入函数前先将函数参数压栈，然后将返回地址压栈，然后跳转到函数内执行。要覆盖函数参数时注意要加上期望的函数返回地址！！！</p>
 
             </div>
             <hr>
@@ -285,18 +256,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/07/20-10-7-%E8%B8%A9%E4%BD%8F%E5%9B%BD%E5%BA%86%E7%9A%84%E5%B0%BE%E5%B7%B4/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">20-10-7-踩住国庆的尾巴</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/03/20-10-3/">
-                        <span class="hidden-mobile">20-10-3</span>
+                      <a href="/2020/10/04/20-10-04/">
+                        <span class="hidden-mobile">20-10-04</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -439,7 +404,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "20-10-04&nbsp;",
+        "20-10-7-踩住国庆的尾巴&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
