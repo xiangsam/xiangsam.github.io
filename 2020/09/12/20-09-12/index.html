@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -177,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      484 字
+      488 字
     </span>
   
 
@@ -228,12 +218,12 @@
 <li>无论get还是post传参，页面上的传参都只能传字符串</li>
 <li>hash对数组无效，返回0</li>
 </ul>
-<div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
-<span class="php">$b=$_GET[<span class="hljs-string">'b'</span>];</span>
-<span class="php">var_dump($b);</span>
-<span class="php">$c=$_POST[<span class="hljs-string">'c'</span>];</span>
-<span class="php">var_dump($c);</span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div>
+<div class="hljs"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$b</span>=<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;b&#x27;</span>];
+var_dump(<span class="hljs-variable">$b</span>);
+<span class="hljs-variable">$c</span>=<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;c&#x27;</span>];
+var_dump(<span class="hljs-variable">$c</span>);
+<span class="hljs-meta">?&gt;</span></code></pre></div>
 <p>b=1（或c）时，显示string(1) “1”<br>b(或c)[]=123时，显示array(1) { [0]=&gt; string(3) “123” }<br>b(或c)[]=1,2,3时，显示array(1) { [0]=&gt; string(5) “1,2,3” }</p>
 <p>扯远了，开始做题<br>要uname和passwd不相等而sha1加密后的值相等，只需要传入数组。<br>id==’margin’，本想着让id=0，但是传参得到的id是字符串，无效，老老实实传入id=margin即可</p>
 <hr>
@@ -243,7 +233,7 @@
 <hr>
 <p>getshell(bugku)<br>文件上传绕过WAF检测的题<br>随便上传一张照片，提交正常，POST表单提交文件，使用multipart/form-data编码方式，会有Content-Type检测文件类型，multipart/form-data严格小写，可以通过大写某个字母绕过这种WAF检测<br>上传jpg文件再bp拦包改回成php文件，同时绕过WAF检测，但是发现还是不行，虽然可以长传文件但是会变成jpg文件，考虑后缀黑名单，依次改后缀为php2,php3,php4,php5,phps,pht, phtm, phtml，在php5使成功上传得到flag</p>
 <blockquote>
-<p>关于WAF相关文章：<a href="http://www.lmxspace.com/2018/11/10/%E5%85%B3%E4%BA%8EWAF%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/" target="_blank" rel="noopener">关于WAF那些事</a></p>
+<p>关于WAF相关文章：<a target="_blank" rel="noopener" href="http://www.lmxspace.com/2018/11/10/%E5%85%B3%E4%BA%8EWAF%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/">关于WAF那些事</a></p>
 </blockquote>
 
             </div>
@@ -261,7 +251,7 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -483,6 +473,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

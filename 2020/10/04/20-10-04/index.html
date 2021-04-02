@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -177,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      304 字
+      326 字
     </span>
   
 
@@ -187,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      5
        分钟
     </span>
   
@@ -232,35 +222,35 @@
   <span class="hljs-keyword">unsigned</span> __int64 v9; <span class="hljs-comment">// [rsp+38h] [rbp-8h]</span>
 
   v9 = __readfsqword(<span class="hljs-number">0x28</span>u);
-  setbuf(<span class="hljs-built_in">stdin</span>, <span class="hljs-number">0L</span>L);
-  setbuf(<span class="hljs-built_in">stdout</span>, <span class="hljs-number">0L</span>L);
-  setbuf(<span class="hljs-built_in">stderr</span>, <span class="hljs-number">0L</span>L);
+  setbuf(<span class="hljs-built_in">stdin</span>, <span class="hljs-number">0LL</span>);
+  setbuf(<span class="hljs-built_in">stdout</span>, <span class="hljs-number">0LL</span>);
+  setbuf(<span class="hljs-built_in">stderr</span>, <span class="hljs-number">0LL</span>);
   v4 = <span class="hljs-number">0</span>;
   v6 = <span class="hljs-number">0</span>;
   *(_QWORD *)seed = sub_BB0();
-  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"-------------------------------"</span>);
-  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Welcome to a guess number game!"</span>);
-  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"-------------------------------"</span>);
-  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Please let me know your name!"</span>);
-  <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Your name:"</span>);
+  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;-------------------------------&quot;</span>);
+  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Welcome to a guess number game!&quot;</span>);
+  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;-------------------------------&quot;</span>);
+  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Please let me know your name!&quot;</span>);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Your name:&quot;</span>);
   gets(&amp;v7);
   srand(seed[<span class="hljs-number">0</span>]);
   <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">9</span>; ++i )
   &#123;
     v6 = rand() % <span class="hljs-number">6</span> + <span class="hljs-number">1</span>;
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"-------------Turn:%d-------------\n"</span>, (<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span>)(i + <span class="hljs-number">1</span>));
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Please input your guess number:"</span>);
-    __isoc99_scanf(<span class="hljs-string">"%d"</span>, &amp;v4);
-    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"---------------------------------"</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;-------------Turn:%d-------------\n&quot;</span>, (<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span>)(i + <span class="hljs-number">1</span>));
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please input your guess number:&quot;</span>);
+    __isoc99_scanf(<span class="hljs-string">&quot;%d&quot;</span>, &amp;v4);
+    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;---------------------------------&quot;</span>);
     <span class="hljs-keyword">if</span> ( v4 != v6 )
     &#123;
-      <span class="hljs-built_in">puts</span>(<span class="hljs-string">"GG!"</span>);
+      <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;GG!&quot;</span>);
       <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);
     &#125;
-    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Success!"</span>);
+    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Success!&quot;</span>);
   &#125;
   sub_C3E();
-  <span class="hljs-keyword">return</span> <span class="hljs-number">0L</span>L;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0LL</span>;
 &#125;</code></pre></div><br>大概就是要十次成功的猜中随机数。利用伪随机数原理想到控制种子。利用gets的漏洞可以成功覆盖seed内存。查看一下变量内存图：<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20164531.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>使用0x20个字符可以到seed，直接用40个’a’全部覆盖了<br>写个程序看看用4个’a’为种子会得到什么结果：<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20165008.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>得到5 6 4 6 6 2 3 6 2 2<br>运行程序依次输入即可得到flag<br><img src="/2020/10/04/20-10-04/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-10-04%20165422.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"></p>
 
             </div>
@@ -278,7 +268,7 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -500,6 +490,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

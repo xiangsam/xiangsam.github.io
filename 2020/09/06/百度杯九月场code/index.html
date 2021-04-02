@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -177,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      797 字
+      865 字
     </span>
   
 
@@ -187,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      13
        分钟
     </span>
   
@@ -220,120 +210,120 @@
             <h1 style="display: none">百度杯九月场code-20.09.06</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>Code(ichunqiu)<br><a id="more"></a><br>点开链接只有一张图片，查看源码发现file:hei.jpg以及图片源码的base64编码串，解码没有作用，标题的提示应该是访问jpg的内容，改成1.jpg等显示没有资源的图片。改询问?jpg=index.php，图片链接里又发现base64编码，解码得到：<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
-/**
- * Created by PhpStorm.
- * Date: 2015/11/16
- * Time: 1:31
-<span class="php"> */</span>
-<span class="php">header(<span class="hljs-string">'content-type:text/html;charset=utf-8'</span>);</span>
-<span class="php"><span class="hljs-keyword">if</span>(! <span class="hljs-keyword">isset</span>($_GET[<span class="hljs-string">'jpg'</span>]))</span>
-<span class="php">    header(<span class="hljs-string">'Refresh:0;url=./index.php?jpg=hei.jpg'</span>);</span>
-<span class="php">$file = $_GET[<span class="hljs-string">'jpg'</span>];</span>
-<span class="php"><span class="hljs-keyword">echo</span> <span class="hljs-string">'&lt;title&gt;file:'</span>.$file.<span class="hljs-string">'&lt;/title&gt;'</span>;</span>
-<span class="php">$file = preg_replace(<span class="hljs-string">"/[^a-zA-Z0-9.]+/"</span>,<span class="hljs-string">""</span>, $file);</span>
-<span class="php">$file = str_replace(<span class="hljs-string">"config"</span>,<span class="hljs-string">"_"</span>, $file);</span>
-<span class="php">$txt = base64_encode(file_get_contents($file));</span>
+              <p>Code(ichunqiu)<br><a id="more"></a><br>点开链接只有一张图片，查看源码发现file:hei.jpg以及图片源码的base64编码串，解码没有作用，标题的提示应该是访问jpg的内容，改成1.jpg等显示没有资源的图片。改询问?jpg=index.php，图片链接里又发现base64编码，解码得到：<br><div class="hljs"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Created by PhpStorm.</span>
+<span class="hljs-comment"> * Date: 2015/11/16</span>
+<span class="hljs-comment"> * Time: 1:31</span>
+<span class="hljs-comment"> */</span>
+header(<span class="hljs-string">&#x27;content-type:text/html;charset=utf-8&#x27;</span>);
+<span class="hljs-keyword">if</span>(! <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;jpg&#x27;</span>]))
+    header(<span class="hljs-string">&#x27;Refresh:0;url=./index.php?jpg=hei.jpg&#x27;</span>);
+<span class="hljs-variable">$file</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;jpg&#x27;</span>];
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;title&gt;file:&#x27;</span>.<span class="hljs-variable">$file</span>.<span class="hljs-string">&#x27;&lt;/title&gt;&#x27;</span>;
+<span class="hljs-variable">$file</span> = preg_replace(<span class="hljs-string">&quot;/[^a-zA-Z0-9.]+/&quot;</span>,<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-variable">$file</span>);
+<span class="hljs-variable">$file</span> = str_replace(<span class="hljs-string">&quot;config&quot;</span>,<span class="hljs-string">&quot;_&quot;</span>, <span class="hljs-variable">$file</span>);
+<span class="hljs-variable">$txt</span> = base64_encode(file_get_contents(<span class="hljs-variable">$file</span>));
 
-<span class="php"><span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;img src='data:image/gif;base64,"</span>.$txt.<span class="hljs-string">"'&gt;&lt;/img&gt;"</span>;</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;img src=&#x27;data:image/gif;base64,&quot;</span>.<span class="hljs-variable">$txt</span>.<span class="hljs-string">&quot;&#x27;&gt;&lt;/img&gt;&quot;</span>;
 
-/*
- * Can you find the flag file?
- *
-<span class="php"> */</span>
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * Can you find the flag file?</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> */</span>
 
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>知道了过滤方法依然不知道flag在哪。。<br>看题解发现提示在注释里，”created by Phpstorm”，(感觉自己啥也不知道: )  )</p>
+<span class="hljs-meta">?&gt;</span></code></pre></div><br>知道了过滤方法依然不知道flag在哪。。<br>看题解发现提示在注释里，”created by Phpstorm”，(感觉自己啥也不知道: )  )</p>
 <blockquote>
 <p>phpstorm是php代码的集成开发环境，下载phpstorm，并新建一个项目，会发现在项目文件夹里面会生成一个.idea文件，它存储了项目的配置文件，</p>
 <p>打开.idea文件可以发现misc.xml,modules.xml,workspace.xml文件。</p>
 </blockquote>
-<p>进入.idea/workspace.xml发现有config.php以及fl3g_ichuqiu.php，进config.php发现啥也没有，再进fl3g_ichuqiu.php发现╮(╯▽╰)╭暂时也没什么用。<br>想到之前得到的php代码，尝试访问index.php?jpg=fl3gconfigichuqiu.php，得到又一串base64编码，解码得：<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
-/**
- * Created by PhpStorm.
- * Date: 2015/11/16
- * Time: 1:31
-<span class="php"> */</span>
-<span class="php">error_reporting(E_ALL || ~E_NOTICE);</span>
-<span class="php"><span class="hljs-keyword">include</span>(<span class="hljs-string">'config.php'</span>);</span>
-<span class="php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">random</span><span class="hljs-params">($length, $chars = <span class="hljs-string">'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz'</span>)</span> </span>&#123;</span>
-<span class="php">    $hash = <span class="hljs-string">''</span>;</span>
-<span class="php">    $max = strlen($chars) - <span class="hljs-number">1</span>;</span>
-<span class="php">    <span class="hljs-keyword">for</span>($i = <span class="hljs-number">0</span>; $i &lt; $length; $i++)	&#123;</span>
-<span class="php">        $hash .= $chars[mt_rand(<span class="hljs-number">0</span>, $max)];</span>
-<span class="php">    &#125;</span>
-<span class="php">    <span class="hljs-keyword">return</span> $hash;</span>
-<span class="php">&#125;</span>
+<p>进入.idea/workspace.xml发现有config.php以及fl3g_ichuqiu.php，进config.php发现啥也没有，再进fl3g_ichuqiu.php发现╮(╯▽╰)╭暂时也没什么用。<br>想到之前得到的php代码，尝试访问index.php?jpg=fl3gconfigichuqiu.php，得到又一串base64编码，解码得：<br><div class="hljs"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Created by PhpStorm.</span>
+<span class="hljs-comment"> * Date: 2015/11/16</span>
+<span class="hljs-comment"> * Time: 1:31</span>
+<span class="hljs-comment"> */</span>
+error_reporting(E_ALL || ~E_NOTICE);
+<span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;config.php&#x27;</span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">random</span>(<span class="hljs-params"><span class="hljs-variable">$length</span>, <span class="hljs-variable">$chars</span> = <span class="hljs-string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz&#x27;</span></span>) </span>&#123;
+    <span class="hljs-variable">$hash</span> = <span class="hljs-string">&#x27;&#x27;</span>;
+    <span class="hljs-variable">$max</span> = strlen(<span class="hljs-variable">$chars</span>) - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-variable">$length</span>; <span class="hljs-variable">$i</span>++)	&#123;
+        <span class="hljs-variable">$hash</span> .= <span class="hljs-variable">$chars</span>[mt_rand(<span class="hljs-number">0</span>, <span class="hljs-variable">$max</span>)];
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$hash</span>;
+&#125;
 
-<span class="php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">encrypt</span><span class="hljs-params">($txt,$key)</span></span>&#123;</span>
-<span class="php">    <span class="hljs-keyword">for</span>($i=<span class="hljs-number">0</span>;$i&lt;strlen($txt);$i++)&#123;</span>
-<span class="php">        $tmp .= chr(ord($txt[$i])+<span class="hljs-number">10</span>);</span>
-<span class="php">    &#125;</span>
-<span class="php">    $txt = $tmp;</span>
-<span class="php">    $rnd=random(<span class="hljs-number">4</span>);</span>
-<span class="php">    $key=md5($rnd.$key);</span>
-<span class="php">    $s=<span class="hljs-number">0</span>;</span>
-<span class="php">    <span class="hljs-keyword">for</span>($i=<span class="hljs-number">0</span>;$i&lt;strlen($txt);$i++)&#123;</span>
-<span class="php">        <span class="hljs-keyword">if</span>($s == <span class="hljs-number">32</span>) $s = <span class="hljs-number">0</span>;</span>
-<span class="php">        $ttmp .= $txt[$i] ^ $key[++$s];</span>
-<span class="php">    &#125;</span>
-<span class="php">    <span class="hljs-keyword">return</span> base64_encode($rnd.$ttmp);</span>
-<span class="php">&#125;</span>
-<span class="php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrypt</span><span class="hljs-params">($txt,$key)</span></span>&#123;</span>
-<span class="php">    $txt=base64_decode($txt);</span>
-<span class="php">    $rnd = substr($txt,<span class="hljs-number">0</span>,<span class="hljs-number">4</span>);</span>
-<span class="php">    $txt = substr($txt,<span class="hljs-number">4</span>);</span>
-<span class="php">    $key=md5($rnd.$key);</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">encrypt</span>(<span class="hljs-params"><span class="hljs-variable">$txt</span>,<span class="hljs-variable">$key</span></span>)</span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;strlen(<span class="hljs-variable">$txt</span>);<span class="hljs-variable">$i</span>++)&#123;
+        <span class="hljs-variable">$tmp</span> .= chr(ord(<span class="hljs-variable">$txt</span>[<span class="hljs-variable">$i</span>])+<span class="hljs-number">10</span>);
+    &#125;
+    <span class="hljs-variable">$txt</span> = <span class="hljs-variable">$tmp</span>;
+    <span class="hljs-variable">$rnd</span>=random(<span class="hljs-number">4</span>);
+    <span class="hljs-variable">$key</span>=md5(<span class="hljs-variable">$rnd</span>.<span class="hljs-variable">$key</span>);
+    <span class="hljs-variable">$s</span>=<span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;strlen(<span class="hljs-variable">$txt</span>);<span class="hljs-variable">$i</span>++)&#123;
+        <span class="hljs-keyword">if</span>(<span class="hljs-variable">$s</span> == <span class="hljs-number">32</span>) <span class="hljs-variable">$s</span> = <span class="hljs-number">0</span>;
+        <span class="hljs-variable">$ttmp</span> .= <span class="hljs-variable">$txt</span>[<span class="hljs-variable">$i</span>] ^ <span class="hljs-variable">$key</span>[++<span class="hljs-variable">$s</span>];
+    &#125;
+    <span class="hljs-keyword">return</span> base64_encode(<span class="hljs-variable">$rnd</span>.<span class="hljs-variable">$ttmp</span>);
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decrypt</span>(<span class="hljs-params"><span class="hljs-variable">$txt</span>,<span class="hljs-variable">$key</span></span>)</span>&#123;
+    <span class="hljs-variable">$txt</span>=base64_decode(<span class="hljs-variable">$txt</span>);
+    <span class="hljs-variable">$rnd</span> = substr(<span class="hljs-variable">$txt</span>,<span class="hljs-number">0</span>,<span class="hljs-number">4</span>);
+    <span class="hljs-variable">$txt</span> = substr(<span class="hljs-variable">$txt</span>,<span class="hljs-number">4</span>);
+    <span class="hljs-variable">$key</span>=md5(<span class="hljs-variable">$rnd</span>.<span class="hljs-variable">$key</span>);
 
-<span class="php">    $s=<span class="hljs-number">0</span>;</span>
-<span class="php">    <span class="hljs-keyword">for</span>($i=<span class="hljs-number">0</span>;$i&lt;strlen($txt);$i++)&#123;</span>
-<span class="php">        <span class="hljs-keyword">if</span>($s == <span class="hljs-number">32</span>) $s = <span class="hljs-number">0</span>;</span>
-<span class="php">        $tmp .= $txt[$i]^$key[++$s];</span>
-<span class="php">    &#125;</span>
-<span class="php">    <span class="hljs-keyword">for</span>($i=<span class="hljs-number">0</span>;$i&lt;strlen($tmp);$i++)&#123;</span>
-<span class="php">        $tmp1 .= chr(ord($tmp[$i])<span class="hljs-number">-10</span>);</span>
-<span class="php">    &#125;</span>
-<span class="php">    <span class="hljs-keyword">return</span> $tmp1;</span>
-<span class="php">&#125;</span>
-<span class="php">$username = decrypt($_COOKIE[<span class="hljs-string">'user'</span>],$key);</span>
-<span class="php"><span class="hljs-keyword">if</span> ($username == <span class="hljs-string">'system'</span>)&#123;</span>
-<span class="php">    <span class="hljs-keyword">echo</span> $flag;</span>
-<span class="php">&#125;<span class="hljs-keyword">else</span>&#123;</span>
-<span class="php">    setcookie(<span class="hljs-string">'user'</span>,encrypt(<span class="hljs-string">'guest'</span>,$key));</span>
-<span class="php">    <span class="hljs-keyword">echo</span> <span class="hljs-string">"­╮(╯▽╰)╭"</span>;</span>
-<span class="php">&#125;</span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>先进输出╮(╯▽╰)╭得网页得到cookie，根据encrypt以及decrypt解出需要得cookie值<br><div class="hljs"><pre><code class="hljs perl">//要得到flag需要username=<span class="hljs-string">'system'</span>，就需要cookie[<span class="hljs-string">'user'</span>]和key解密得到
-//username不是<span class="hljs-string">'system'</span>时cookie[<span class="hljs-string">'user'</span>]由<span class="hljs-string">'guest'</span>和key加密得到，根据此可以得到五位key
-//爆破最后一位key得到第六位即可得到需要的cookie[<span class="hljs-string">'user'</span>]
-&lt;?php
-function getAns($txt,$cookie)&#123;
-    <span class="hljs-keyword">for</span>($i=<span class="hljs-number">0</span>;$i&lt;strlen($txt);$i++)&#123;
-        $tmp.=<span class="hljs-keyword">chr</span>(<span class="hljs-keyword">ord</span>($txt[$i])+<span class="hljs-number">10</span>);
+    <span class="hljs-variable">$s</span>=<span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;strlen(<span class="hljs-variable">$txt</span>);<span class="hljs-variable">$i</span>++)&#123;
+        <span class="hljs-keyword">if</span>(<span class="hljs-variable">$s</span> == <span class="hljs-number">32</span>) <span class="hljs-variable">$s</span> = <span class="hljs-number">0</span>;
+        <span class="hljs-variable">$tmp</span> .= <span class="hljs-variable">$txt</span>[<span class="hljs-variable">$i</span>]^<span class="hljs-variable">$key</span>[++<span class="hljs-variable">$s</span>];
     &#125;
-    $txt = $tmp;
-    $cookie = base64_decode($cookie);
-    $rnd=<span class="hljs-keyword">substr</span>($cookie,<span class="hljs-number">0</span>,<span class="hljs-number">4</span>);
-    $ttmp=<span class="hljs-keyword">substr</span>($cookie,<span class="hljs-number">4</span>);
-    $s=<span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>($i=<span class="hljs-number">0</span>;$i&lt;strlen($ttmp);$i++)&#123;
-        $key.=$ttmp[$i]^$txt[$i];
+    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;strlen(<span class="hljs-variable">$tmp</span>);<span class="hljs-variable">$i</span>++)&#123;
+        <span class="hljs-variable">$tmp1</span> .= chr(ord(<span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$i</span>])<span class="hljs-number">-10</span>);
     &#125;
-    $tmp1=<span class="hljs-string">'system'</span>;
-    $tmp=<span class="hljs-string">''</span>;
-    <span class="hljs-keyword">for</span>($i=<span class="hljs-number">0</span>;$i&lt;strlen($tmp1);$i++)&#123;
-        $tmp.=<span class="hljs-keyword">chr</span>(<span class="hljs-keyword">ord</span>($tmp1[$i])+<span class="hljs-number">10</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$tmp1</span>;
+&#125;
+<span class="hljs-variable">$username</span> = decrypt(<span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;user&#x27;</span>],<span class="hljs-variable">$key</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$username</span> == <span class="hljs-string">&#x27;system&#x27;</span>)&#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$flag</span>;
+&#125;<span class="hljs-keyword">else</span>&#123;
+    setcookie(<span class="hljs-string">&#x27;user&#x27;</span>,encrypt(<span class="hljs-string">&#x27;guest&#x27;</span>,<span class="hljs-variable">$key</span>));
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;­╮(╯▽╰)╭&quot;</span>;
+&#125;
+<span class="hljs-meta">?&gt;</span></code></pre></div><br>先进输出╮(╯▽╰)╭得网页得到cookie，根据encrypt以及decrypt解出需要得cookie值<br><div class="hljs"><pre><code class="hljs php"><span class="hljs-comment">//要得到flag需要username=&#x27;system&#x27;，就需要cookie[&#x27;user&#x27;]和key解密得到</span>
+<span class="hljs-comment">//username不是&#x27;system&#x27;时cookie[&#x27;user&#x27;]由&#x27;guest&#x27;和key加密得到，根据此可以得到五位key</span>
+<span class="hljs-comment">//爆破最后一位key得到第六位即可得到需要的cookie[&#x27;user&#x27;]</span>
+<span class="hljs-meta">&lt;?php</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAns</span>(<span class="hljs-params"><span class="hljs-variable">$txt</span>,<span class="hljs-variable">$cookie</span></span>)</span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;strlen(<span class="hljs-variable">$txt</span>);<span class="hljs-variable">$i</span>++)&#123;
+        <span class="hljs-variable">$tmp</span>.=chr(ord(<span class="hljs-variable">$txt</span>[<span class="hljs-variable">$i</span>])+<span class="hljs-number">10</span>);
     &#125;
-    $dir=<span class="hljs-string">'0123456789abcdef'</span>;
-    <span class="hljs-keyword">for</span>($i=<span class="hljs-number">0</span>;$i&lt;strlen($dir);++$i)&#123;
-        $nkey=$key.$dir[$i];
-        $ans=<span class="hljs-string">''</span>;
-        <span class="hljs-keyword">for</span>($j=<span class="hljs-number">0</span>;$j&lt;strlen($tmp);++$j)&#123;
-            $ans.=$tmp[$j]^$nkey[$j];
+    <span class="hljs-variable">$txt</span> = <span class="hljs-variable">$tmp</span>;
+    <span class="hljs-variable">$cookie</span> = base64_decode(<span class="hljs-variable">$cookie</span>);
+    <span class="hljs-variable">$rnd</span>=substr(<span class="hljs-variable">$cookie</span>,<span class="hljs-number">0</span>,<span class="hljs-number">4</span>);
+    <span class="hljs-variable">$ttmp</span>=substr(<span class="hljs-variable">$cookie</span>,<span class="hljs-number">4</span>);
+    <span class="hljs-variable">$s</span>=<span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;strlen(<span class="hljs-variable">$ttmp</span>);<span class="hljs-variable">$i</span>++)&#123;
+        <span class="hljs-variable">$key</span>.=<span class="hljs-variable">$ttmp</span>[<span class="hljs-variable">$i</span>]^<span class="hljs-variable">$txt</span>[<span class="hljs-variable">$i</span>];
+    &#125;
+    <span class="hljs-variable">$tmp1</span>=<span class="hljs-string">&#x27;system&#x27;</span>;
+    <span class="hljs-variable">$tmp</span>=<span class="hljs-string">&#x27;&#x27;</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;strlen(<span class="hljs-variable">$tmp1</span>);<span class="hljs-variable">$i</span>++)&#123;
+        <span class="hljs-variable">$tmp</span>.=chr(ord(<span class="hljs-variable">$tmp1</span>[<span class="hljs-variable">$i</span>])+<span class="hljs-number">10</span>);
+    &#125;
+    <span class="hljs-variable">$dir</span>=<span class="hljs-string">&#x27;0123456789abcdef&#x27;</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;strlen(<span class="hljs-variable">$dir</span>);++<span class="hljs-variable">$i</span>)&#123;
+        <span class="hljs-variable">$nkey</span>=<span class="hljs-variable">$key</span>.<span class="hljs-variable">$dir</span>[<span class="hljs-variable">$i</span>];
+        <span class="hljs-variable">$ans</span>=<span class="hljs-string">&#x27;&#x27;</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-variable">$j</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$j</span>&lt;strlen(<span class="hljs-variable">$tmp</span>);++<span class="hljs-variable">$j</span>)&#123;
+            <span class="hljs-variable">$ans</span>.=<span class="hljs-variable">$tmp</span>[<span class="hljs-variable">$j</span>]^<span class="hljs-variable">$nkey</span>[<span class="hljs-variable">$j</span>];
         &#125;
-        echo base64_encode($rnd.$ans).<span class="hljs-string">'&lt;/br&gt;'</span>;
+        <span class="hljs-keyword">echo</span> base64_encode(<span class="hljs-variable">$rnd</span>.<span class="hljs-variable">$ans</span>).<span class="hljs-string">&#x27;&lt;/br&gt;&#x27;</span>;
     &#125;
 &#125;
-getAns(<span class="hljs-string">'guest'</span>,<span class="hljs-string">'YnV6RhQdCx4a'</span>)
-?&gt;</code></pre></div><br>再到config.php爆破cookie就好了<br>注：每次下发得cookie不一样，cookie—key-cookie,但是按照key在encrypt和dectypt函数中的使用，应该是加了$rnd$再md5加密后才使用，并且并未用到key的第一位，不知道为什么可以互用，留个坑。</p>
+getAns(<span class="hljs-string">&#x27;guest&#x27;</span>,<span class="hljs-string">&#x27;YnV6RhQdCx4a&#x27;</span>)
+<span class="hljs-meta">?&gt;</span></code></pre></div><br>再到config.php爆破cookie就好了<br>注：每次下发得cookie不一样，cookie—key-cookie,但是按照key在encrypt和dectypt函数中的使用，应该是加了$rnd$再md5加密后才使用，并且并未用到key的第一位，不知道为什么可以互用，留个坑。</p>
 
             </div>
             <hr>
@@ -350,7 +340,7 @@ getAns(<span class="hljs-string">'guest'</span>,<span class="hljs-string">'YnV6R
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -572,6 +562,45 @@ getAns(<span class="hljs-string">'guest'</span>,<span class="hljs-string">'YnV6R
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

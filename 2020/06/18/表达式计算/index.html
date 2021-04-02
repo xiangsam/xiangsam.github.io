@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -177,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      698 字
+      760 字
     </span>
   
 
@@ -187,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      10
        分钟
     </span>
   
@@ -266,59 +256,58 @@
 	<span class="hljs-keyword">if</span>(q == NULL)
 		return;
 	<span class="hljs-keyword">else</span>&#123;
-		<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span>op == <span class="hljs-string">'+'</span>)&#123;
+		<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span>op == <span class="hljs-string">&#x27;+&#x27;</span>)&#123;
 			<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>lchild);
-			<span class="hljs-function"><span class="hljs-title">printf</span>("%c",q-&gt;</span>op);
+			<span class="hljs-function"><span class="hljs-title">printf</span>(&quot;%c&quot;,q-&gt;</span>op);
 			<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>rchild);
 		&#125;
-		<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(q-&gt;</span>op == <span class="hljs-string">'-'</span>)&#123;
+		<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(q-&gt;</span>op == <span class="hljs-string">&#x27;-&#x27;</span>)&#123;
 			<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>lchild);
-			<span class="hljs-function"><span class="hljs-title">printf</span>("%c",q-&gt;</span>op);
-			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>=='+'||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span>op==<span class="hljs-string">'-'</span>))&#123;
-				printf(<span class="hljs-string">"("</span>);
+			<span class="hljs-function"><span class="hljs-title">printf</span>(&quot;%c&quot;,q-&gt;</span>op);
+			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>==&#x27;+&#x27;||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span>op==<span class="hljs-string">&#x27;-&#x27;</span>))&#123;
+				printf(<span class="hljs-string">&quot;(&quot;</span>);
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>rchild);
-				printf(<span class="hljs-string">")"</span>);
+				printf(<span class="hljs-string">&quot;)&quot;</span>);
 			&#125;<span class="hljs-keyword">else</span>&#123;
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>rchild);
 			&#125;
-		&#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(q-&gt;</span>op == <span class="hljs-string">'*'</span>)&#123;
-			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>=='+'||q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>-&gt;</span>op==<span class="hljs-string">'-'</span>))&#123;
-				printf(<span class="hljs-string">"("</span>);
+		&#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(q-&gt;</span>op == <span class="hljs-string">&#x27;*&#x27;</span>)&#123;
+			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>==&#x27;+&#x27;||q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>-&gt;</span>op==<span class="hljs-string">&#x27;-&#x27;</span>))&#123;
+				printf(<span class="hljs-string">&quot;(&quot;</span>);
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>lchild);
-				printf(<span class="hljs-string">")"</span>);
+				printf(<span class="hljs-string">&quot;)&quot;</span>);
 			&#125;<span class="hljs-keyword">else</span>&#123;
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>lchild);
-			&#125;<span class="hljs-function"><span class="hljs-title">printf</span>("%c",q-&gt;</span>op);
-			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>=='+'||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span>op==<span class="hljs-string">'-'</span>))&#123;
-				printf(<span class="hljs-string">"("</span>);
+			&#125;<span class="hljs-function"><span class="hljs-title">printf</span>(&quot;%c&quot;,q-&gt;</span>op);
+			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>==&#x27;+&#x27;||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span>op==<span class="hljs-string">&#x27;-&#x27;</span>))&#123;
+				printf(<span class="hljs-string">&quot;(&quot;</span>);
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>rchild);
-				printf(<span class="hljs-string">")"</span>);
+				printf(<span class="hljs-string">&quot;)&quot;</span>);
 			&#125;<span class="hljs-keyword">else</span>&#123;
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>rchild);
 			&#125;
-		&#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(q-&gt;</span>op==<span class="hljs-string">'/'</span>)&#123;
-			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>=='+'||q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>-&gt;</span>op==<span class="hljs-string">'-'</span>))&#123;
-				printf(<span class="hljs-string">"("</span>);
+		&#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(q-&gt;</span>op==<span class="hljs-string">&#x27;/&#x27;</span>)&#123;
+			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>==&#x27;+&#x27;||q-&gt;</span><span class="hljs-function"><span class="hljs-title">lchild</span>-&gt;</span>op==<span class="hljs-string">&#x27;-&#x27;</span>))&#123;
+				printf(<span class="hljs-string">&quot;(&quot;</span>);
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>lchild);
-				printf(<span class="hljs-string">")"</span>);
+				printf(<span class="hljs-string">&quot;)&quot;</span>);
 			&#125;<span class="hljs-keyword">else</span>&#123;
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>lchild);
-			&#125;<span class="hljs-function"><span class="hljs-title">printf</span>("%c",q-&gt;</span>op);
-			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span> == '+'||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>=='-'||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>=='*'||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span>op == <span class="hljs-string">'/'</span>))&#123;
-				printf(<span class="hljs-string">"("</span>);
+			&#125;<span class="hljs-function"><span class="hljs-title">printf</span>(&quot;%c&quot;,q-&gt;</span>op);
+			<span class="hljs-function"><span class="hljs-title">if</span>(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>!=NULL&amp;&amp;(q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span> == &#x27;+&#x27;||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>==&#x27;-&#x27;||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">op</span>==&#x27;*&#x27;||q-&gt;</span><span class="hljs-function"><span class="hljs-title">rchild</span>-&gt;</span>op == <span class="hljs-string">&#x27;/&#x27;</span>))&#123;
+				printf(<span class="hljs-string">&quot;(&quot;</span>);
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>rchild);
-				printf(<span class="hljs-string">")"</span>);
+				printf(<span class="hljs-string">&quot;)&quot;</span>);
 			&#125;<span class="hljs-keyword">else</span>&#123;
 				<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>rchild);
 			&#125;
 		&#125;<span class="hljs-keyword">else</span>&#123;
 			<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>lchild);
-			<span class="hljs-function"><span class="hljs-title">printf</span>("%d",q-&gt;</span>num);
+			<span class="hljs-function"><span class="hljs-title">printf</span>(&quot;%d&quot;,q-&gt;</span>num);
 			<span class="hljs-function"><span class="hljs-title">dfs</span>(q-&gt;</span>rchild);
 		&#125;
 	&#125;
-&#125;</code></pre></div>
-</li>
+&#125;</code></pre></div></li>
 </ul>
 </li>
 </ul>
@@ -338,7 +327,7 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -560,6 +549,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

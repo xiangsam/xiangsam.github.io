@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -177,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      206 字
+      213 字
     </span>
   
 
@@ -224,10 +214,10 @@
 <ul>
 <li>1’报错，1’#成功，字符串注入，同时可能报错注入</li>
 <li>1’ order by 2#正常回显，1’ order by 3#错误，两行</li>
-<li>1’ union select null,null#显示<div class="hljs"><pre><code class="hljs n1ql">returnpreg_match("/<span class="hljs-keyword">select</span>|<span class="hljs-keyword">update</span>|<span class="hljs-keyword">delete</span>|<span class="hljs-keyword">drop</span>|<span class="hljs-keyword">insert</span>|<span class="hljs-keyword">where</span>|\./i<span class="hljs-string">",$inject);</span></code></pre></div></li>
+<li>1’ union select null,null#显示<div class="hljs"><pre><code class="hljs n1ql">returnpreg_match(&quot;/<span class="hljs-keyword">select</span>|<span class="hljs-keyword">update</span>|<span class="hljs-keyword">delete</span>|<span class="hljs-keyword">drop</span>|<span class="hljs-keyword">insert</span>|<span class="hljs-keyword">where</span>|\./i<span class="hljs-string">&quot;,$inject);</span></code></pre></div></li>
 <li>select被正则过滤了，联合注入和报错注入都走不通</li>
 </ul>
-<p>查看题解，发现存在<a href="https://www.cnblogs.com/0nth3way/articles/7128189.html" target="_blank" rel="noopener">堆叠注入</a></p>
+<p>查看题解，发现存在<a target="_blank" rel="noopener" href="https://www.cnblogs.com/0nth3way/articles/7128189.html">堆叠注入</a></p>
 <ul>
 <li>1’;show tables#  得到两个表名：words，1919810931114514</li>
 <li>1’;show columns from `words` （反引号）</li>
@@ -236,8 +226,7 @@
 <span class="hljs-keyword">prepare</span>用于预备一个语句，并赋予名称，以后可以引用该语句 
 <span class="hljs-keyword">execute</span>执行语句 
 <span class="hljs-keyword">deallocate</span>  <span class="hljs-keyword">prepare</span>用来释放掉预处理的语句</code></pre></div>
-payload:<div class="hljs"><pre><code class="hljs sql">1';<span class="hljs-keyword">set</span> @<span class="hljs-keyword">sql</span> = <span class="hljs-keyword">concat</span>(<span class="hljs-string">'se'</span>,<span class="hljs-string">'lect flag from `1919810931114514`;'</span>);<span class="hljs-keyword">PREPARE</span> stml <span class="hljs-keyword">from</span> @<span class="hljs-keyword">sql</span>;<span class="hljs-keyword">execute</span> stml;<span class="hljs-comment">#</span></code></pre></div>
-</li>
+payload:<div class="hljs"><pre><code class="hljs pgsql"><span class="hljs-number">1</span><span class="hljs-string">&#x27;;set @sql = concat(&#x27;</span>s<span class="hljs-string">e&#x27;,&#x27;</span>lect flag <span class="hljs-keyword">from</span> `<span class="hljs-number">1919810931114514</span>`;<span class="hljs-string">&#x27;);PREPARE stml from @sql;execute stml;#</span></code></pre></div></li>
 </ul>
 
             </div>
@@ -255,7 +244,7 @@ payload:<div class="hljs"><pre><code class="hljs sql">1';<span class="hljs-keywo
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -477,6 +466,45 @@ payload:<div class="hljs"><pre><code class="hljs sql">1';<span class="hljs-keywo
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

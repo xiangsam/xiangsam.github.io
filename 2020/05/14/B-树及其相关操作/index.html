@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -259,8 +249,7 @@ typedef struct <span class="hljs-keyword">Node</span> <span class="hljs-title">B
 			p = p-&gt;ptr[i<span class="hljs-number">-1</span>];
 	&#125;<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
 &#125;</code></pre></div></h2><h4 id="插入节点（建树）"><a href="#插入节点（建树）" class="headerlink" title="插入节点（建树）"></a>插入节点（建树）</h4><p>B-树的生成从空树开始，即逐个在叶节点中插入节点而得到。当m阶树节点中关键字个数大于m-1，则要节点分裂。<br>节点分裂：若将k插入到节点后使该节点的关键字个数超过m-1，则要以该节点位置居中的那个关键字值为界将该节点一分为二，产生一个新节点（q:[1,$\ldots$,$\lceil$m/2$\rceil$-1],q’:[$\lceil$m/2$\rceil$+1,$\ldots$,m-1]），并将$key_{\lceil m/2 \rceil}$与指向q和q’的指针插入到双亲节点中。<br><img src="/2020/05/14/B-%E6%A0%91%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/2-1G024102942E3.png?v=1&amp;type=image" srcset="/img/loading.gif" alt><br>插入26：<br><img src="/2020/05/14/B-%E6%A0%91%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/2-1G024103030D2.png?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"></p>
-<p>代码示例：<br><div class="hljs"><pre><code class="hljs plain">
-</code></pre></div></p>
+<p>代码示例：<br><div class="hljs"><pre><code class="hljs plain"></code></pre></div></p>
 
             </div>
             <hr>
@@ -277,7 +266,7 @@ typedef struct <span class="hljs-keyword">Node</span> <span class="hljs-title">B
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -499,6 +488,45 @@ typedef struct <span class="hljs-keyword">Node</span> <span class="hljs-title">B
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -177,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      689 字
+      729 字
     </span>
   
 
@@ -187,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      10
        分钟
     </span>
   
@@ -222,7 +212,7 @@
             <div class="markdown-body" id="post-body">
               <p>不想学java的一天，，图形化编程讲的太碎了，感觉不太好。</p>
 <hr>
-<p>Vld(ichunqiu)<br>进入就是do you know Vulcan Logic Dumper?,顺便也帮我答了false，查看源码发现index.php.txt文件，进去有点像C的汇编语言，网上搜一下发现是zend引擎opcode(中间代码)<br><a href="https://www.php.net/manual/en/internals2.opcodes.php" target="_blank" rel="noopener">官方链接</a><br>大概需要知道的就是：</p>
+<p>Vld(ichunqiu)<br>进入就是do you know Vulcan Logic Dumper?,顺便也帮我答了false，查看源码发现index.php.txt文件，进去有点像C的汇编语言，网上搜一下发现是zend引擎opcode(中间代码)<br><a target="_blank" rel="noopener" href="https://www.php.net/manual/en/internals2.opcodes.php">官方链接</a><br>大概需要知道的就是：</p>
 <ul>
 <li>ECHO 显然</li>
 <li>ASSIGN 赋值(assigns value1 to result)，如!0=$a表示为operands中!0, $a</li>
@@ -232,21 +222,21 @@
 </li>
 <li>JMPZ 在传来的值为0时跳转（注意是传到JMPZ行的值，即~0！！！）<br><img src="/2020/09/27/20-09-27/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202020-09-27%20195131.jpg?v=1&amp;type=image" srcset="/img/loading.gif" alt="输入图片描述"><br>这题其他都比较好理解</li>
 </ul>
-<p>分析出的源代码大概逻辑如下：<br><div class="hljs"><pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?php</span></span>
-<span class="php"><span class="hljs-keyword">echo</span> <span class="hljs-string">'do you know Vulcan Logic Dumper?&lt;br&gt;'</span></span>
-<span class="php">$a = $_GET[<span class="hljs-string">'flag1'</span>];</span>
-<span class="php">$b = $_GET[<span class="hljs-string">'flag2'</span>];</span>
-<span class="php">$c = $_GET[<span class="hljs-string">'flag3'</span>];</span>
-<span class="php"><span class="hljs-keyword">if</span>($a== <span class="hljs-string">'fvhjjihfcv'</span>)&#123;</span>
-<span class="php">    <span class="hljs-keyword">if</span>($b == <span class="hljs-string">'gfuyiyhioyf'</span>)&#123;</span>
-<span class="php">        <span class="hljs-keyword">if</span>($c == <span class="hljs-string">'yugoiiyhi'</span>)&#123;</span>
-<span class="php">            <span class="hljs-keyword">echo</span> <span class="hljs-string">'the+next+step+is+xxx.zip'</span>;</span>
-<span class="php">        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">'flase&lt;br&gt;'</span>;</span>
-<span class="php">    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">'flase&lt;br&gt;'</span>;</span>
-<span class="php">&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">'flase&lt;br&gt;'</span>;</span>
-<span class="php"><span class="hljs-keyword">echo</span> <span class="hljs-string">'%3C%21--+index.php.txt+%3F%3E%0D%0A%0D%0A'</span></span>
-<span class="php"><span class="hljs-meta">?&gt;</span></span></code></pre></div><br>根据源码构造payload后得到如下显示<br><div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">do</span> you know <span class="hljs-type">Vulcan</span> <span class="hljs-type">Logic</span> <span class="hljs-type">Dumper?</span>  
-the next step <span class="hljs-keyword">is</span> 1chunqiu.<span class="hljs-built_in">zip</span></code></pre></div><br>下载审计应该是SQL漏洞，由于addslashes函数以及str_replace函数对username中number所含字段的替换，构造出payload: number=0&amp;username=%00’ 从而让单引号逃逸提前闭合查询语句<br><div class="hljs"><pre><code class="hljs bash"><span class="hljs-variable">$sql</span> = <span class="hljs-string">"select * from"</span>.<span class="hljs-string">"`"</span>.table_name.<span class="hljs-string">"`"</span>.<span class="hljs-string">"where username="</span>.<span class="hljs-string">"'"</span>.<span class="hljs-string">"<span class="hljs-variable">$username</span>"</span>.<span class="hljs-string">"'"</span></code></pre></div><br>由于addslashes,username首先变成\0\’，之后str_replace把0替换成空，username就变成了\\’，从而让单引号逃逸<br>进入1chunqiu/login.html尝试填写表单时注入发现不行，直接POST也不行。bp抓包发现POST查询时会变成login.php，直接抓包repeate。<br>回显是sql查询的报错信息，报错注入即可（只写username的值）：</p>
+<p>分析出的源代码大概逻辑如下：<br><div class="hljs"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;do you know Vulcan Logic Dumper?&lt;br&gt;&#x27;</span>
+<span class="hljs-variable">$a</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;flag1&#x27;</span>];
+<span class="hljs-variable">$b</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;flag2&#x27;</span>];
+<span class="hljs-variable">$c</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;flag3&#x27;</span>];
+<span class="hljs-keyword">if</span>(<span class="hljs-variable">$a</span>== <span class="hljs-string">&#x27;fvhjjihfcv&#x27;</span>)&#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-variable">$b</span> == <span class="hljs-string">&#x27;gfuyiyhioyf&#x27;</span>)&#123;
+        <span class="hljs-keyword">if</span>(<span class="hljs-variable">$c</span> == <span class="hljs-string">&#x27;yugoiiyhi&#x27;</span>)&#123;
+            <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;the+next+step+is+xxx.zip&#x27;</span>;
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;flase&lt;br&gt;&#x27;</span>;
+    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;flase&lt;br&gt;&#x27;</span>;
+&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;flase&lt;br&gt;&#x27;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;%3C%21--+index.php.txt+%3F%3E%0D%0A%0D%0A&#x27;</span>
+<span class="hljs-meta">?&gt;</span></code></pre></div><br>根据源码构造payload后得到如下显示<br><div class="hljs"><pre><code class="hljs vbnet"><span class="hljs-keyword">do</span> you know Vulcan Logic Dumper?  
+the <span class="hljs-keyword">next</span> <span class="hljs-keyword">step</span> <span class="hljs-built_in">is</span> <span class="hljs-number">1</span>chunqiu.zip</code></pre></div><br>下载审计应该是SQL漏洞，由于addslashes函数以及str_replace函数对username中number所含字段的替换，构造出payload: number=0&amp;username=%00’ 从而让单引号逃逸提前闭合查询语句<br><div class="hljs"><pre><code class="hljs bash"><span class="hljs-variable">$sql</span> = <span class="hljs-string">&quot;select * from&quot;</span>.<span class="hljs-string">&quot;`&quot;</span>.table_name.<span class="hljs-string">&quot;`&quot;</span>.<span class="hljs-string">&quot;where username=&quot;</span>.<span class="hljs-string">&quot;&#x27;&quot;</span>.<span class="hljs-string">&quot;<span class="hljs-variable">$username</span>&quot;</span>.<span class="hljs-string">&quot;&#x27;&quot;</span></code></pre></div><br>由于addslashes,username首先变成\0\’，之后str_replace把0替换成空，username就变成了\\’，从而让单引号逃逸<br>进入1chunqiu/login.html尝试填写表单时注入发现不行，直接POST也不行。bp抓包发现POST查询时会变成login.php，直接抓包repeate。<br>回显是sql查询的报错信息，报错注入即可（只写username的值）：</p>
 <ul>
 <li>%00’ and extractvalue(1,concat(0x7e,user(),0x7e))#回显Unknown column ‘x72’ in ‘where clause’</li>
 <li>改成%00’ and extractvalue(1,concat(1,user(),1))#回显user@localhost1，注入应该可行</li>
@@ -273,7 +263,7 @@ the next step <span class="hljs-keyword">is</span> 1chunqiu.<span class="hljs-bu
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -495,6 +485,45 @@ the next step <span class="hljs-keyword">is</span> 1chunqiu.<span class="hljs-bu
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

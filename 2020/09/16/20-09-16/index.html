@@ -13,6 +13,8 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
@@ -52,7 +54,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -104,18 +106,6 @@
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 Categories
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                Tags
               </a>
             </li>
           
@@ -220,7 +210,7 @@
             <h1 style="display: none">20-09-16</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>虽然花了很多时间才得到flag居然莫名很开心。。。<br><a id="more"></a><br>江湖魔头(bugku)<br>进界面发现是个小游戏，查看源码发现链接指向wulin.php?action=start，没有其他信息，点进链接洗点界面，在源码上依然发现啥，继续游戏，大概是要挣钱买如来神掌。在源码上没有发现什么，想抓包修改发现请求头只有cookie，可以猜测相关角色数据信息就在cookie的user里，先url解码再base64解码，结果只得到一串乱码。。。<br>已经明确猫腻在cookie里，尝试寻找其相关代码，查看三个js文件，base,js和md5.js都比较好理解，但是script.js看不懂。。参考一下别人的wp发现这个js文件是加密混淆处理过的。<br><a href="https://strcpy.me/index.php/archives/213/" target="_blank" rel="noopener">js加密</a><br>把三个js文件复制到本地，通过console.log(p)得到script.js。这下终于看懂了，大致步骤就是将cookie是明文加密得到的，通过script.js提供的解密算法得到当前cookie的明文，修改后自己编写加密算法得到cookie，从而打败boss得到flag。<br><del>为啥会开心捏~(￣▽￣)~*，可能是开挂的感觉真好</del></p>
+              <p>虽然花了很多时间才得到flag居然莫名很开心。。。<br><a id="more"></a><br>江湖魔头(bugku)<br>进界面发现是个小游戏，查看源码发现链接指向wulin.php?action=start，没有其他信息，点进链接洗点界面，在源码上依然发现啥，继续游戏，大概是要挣钱买如来神掌。在源码上没有发现什么，想抓包修改发现请求头只有cookie，可以猜测相关角色数据信息就在cookie的user里，先url解码再base64解码，结果只得到一串乱码。。。<br>已经明确猫腻在cookie里，尝试寻找其相关代码，查看三个js文件，base,js和md5.js都比较好理解，但是script.js看不懂。。参考一下别人的wp发现这个js文件是加密混淆处理过的。<br><a target="_blank" rel="noopener" href="https://strcpy.me/index.php/archives/213/">js加密</a><br>把三个js文件复制到本地，通过console.log(p)得到script.js。这下终于看懂了，大致步骤就是将cookie是明文加密得到的，通过script.js提供的解密算法得到当前cookie的明文，修改后自己编写加密算法得到cookie，从而打败boss得到flag。<br><del>为啥会开心捏~(￣▽￣)~*，可能是开挂的感觉真好</del></p>
 
             </div>
             <hr>
@@ -237,7 +227,7 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
                 <div class="post-prevnext row">
@@ -459,6 +449,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 
