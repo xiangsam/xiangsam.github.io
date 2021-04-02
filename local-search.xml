@@ -763,24 +763,5 @@
   
   
   
-  <entry>
-    <title>something about Tmin</title>
-    <link href="/2020/05/08/something-about-Tmin/"/>
-    <url>/2020/05/08/something-about-Tmin/</url>
-    
-    <content type="html"><![CDATA[<p>在C语言中，表示TMin（32位为例）通常不用-2147483648,而用-2147483647-1</p><p>reason:</p><p>When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it.</p><p>对于十进制与十六进制数c的处理为</p><p>ISO90:Decimal int-long-unsigned-unsigned long</p><p>Hexadecimal int-unsigned-long-unsigned long</p><p>ISO99:Decinal int-long-long long</p><p>Hexadecimal int-unsigned-long-unsigned long-long long-unsigned long long<br><a id="more"></a><br>对于数-2147483648的处理：</p><p>ISO90:32位程序 unsigned</p><p>64位程序 long</p><p>ISO99:32位程序 long long</p><p>64位程序 long</p><p>对于-2147483648的十六进制表示0x80000000:</p><p>ISO90:32位程序 unsigned</p><p>64位程序 unsigned</p><p>ISO99:32位程序 unsigned</p><p>64位程序 unsigned</p><pre><code class="hljs apache"><span class="hljs-attribute">int</span> dpos<span class="hljs-number">32</span> = (-<span class="hljs-number">2147483648</span> &gt; <span class="hljs-number">0</span>);<span class="hljs-attribute">int</span> hpos<span class="hljs-number">32</span> = (<span class="hljs-number">0</span>x<span class="hljs-number">80000000</span> &gt; <span class="hljs-number">0</span>);<span class="hljs-attribute">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>,dpos<span class="hljs-number">32</span>,hpos<span class="hljs-number">32</span>);</code></pre><p>对ISO90标准，32位程序输出1 1</p><p>64位程序输出0 1</p><p>对ISO99标准，32位程序输出0 1</p><p>64位程序输出0 1</p><p>但是对于</p><pre><code class="hljs apache"><span class="hljs-attribute">int</span> dtmin<span class="hljs-number">32</span> = -<span class="hljs-number">2147483648</span>;<span class="hljs-attribute">int</span> dposa = (dtmin<span class="hljs-number">32</span> &gt; <span class="hljs-number">0</span>);<span class="hljs-attribute">int</span> htmin<span class="hljs-number">32</span> = <span class="hljs-number">0</span>x<span class="hljs-number">80000000</span>;<span class="hljs-attribute">int</span> hposa = (htmin<span class="hljs-number">32</span> &gt; <span class="hljs-number">0</span>);<span class="hljs-attribute">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>,dposa,hposa);</code></pre><p>无论32位或64位，无论ISO90或ISO99 ,输出都是：0 0</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>C</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
   
 </search>
