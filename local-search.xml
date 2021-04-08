@@ -8,7 +8,7 @@
     <link href="/2021/04/03/2021%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
     <url>/2021/04/03/2021%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>看一下文章创建时间，居然已经是五天前了，还一个字没写上去。还是想着要写点的。</p><p>大二下终于还是逃不掉的，已经很幸运了，比别人多处一年的时间体验大学生活。不过要说是生活似乎也不太准确，毕竟到现在在学校呆了三年多，似乎还没有过什么社团活动，比赛什么的也很少参加。唔，仔细想来，上次参加比赛，还是19年的事了，不由心里压力又大了几分。</p><p>嗯，压力。也是因为最近压力有点过大，才会想着要跑来写东西吧。万物互联，却没有几个地方可以好好吐露心声。挺羡慕那些在朋友圈分享生活的人的，但我大概越来越不敢了。</p><p>没有去参加全国信息安全竞赛，虽然由两个队伍来找过我，但是最后还是拒绝了。其实自己也说不太清原因，但是确实对科研难以提起兴趣，也自认为自己没有能力做出什么满意的作品。大创，挑战杯，信安大赛，挺多比赛的，想来这也是让我最近这么压抑的一大因素。一个都没有参加，这个决定挺大的，毕竟听说这些东西对保研加分都挺多。</p><p>嗯，其实最想参加的是GSOC，但是可惜也是前几天在github上知道谷歌的这个活动，在开源项目里花了好几天，确是完全没有时间准备。明年定要早些准备。由一个没有参加的项目，这么看来，最近挺失败的。</p><p>我想要的是什么呢，计组我很喜欢，也想着折腾MIT6.828的操作系统，PWN依然是很有吸引力的东西，也不想放弃。其实还是有共通之处的。</p><p>我不知道怎样才是一个合格的网络空间安全专业毕业生，但是我想要成为的“技术不错的人”，似乎和学院教育目标有着较大的分歧。学院老师好像都很鼓励我们参加那些科研比赛，但是我确实是没有太多的兴趣。如果是编程或者做项目，又或是攻防， 我想是很乐意参加的。但是拿着实验室里的代码，或者是网上扒下来的代码，自己改动几处，然后说这是自己做出来的作品，我觉得自己实在不想把它加入自己的项目经历。就像上学期的java大作业，老师已经把小程序前端、后端代码都给了，要求加个后台管理系统和数据库交互，听着挺厉害，但是我自觉写完之后并没有任何的提升。甚至到最后我面对老师给的代码也只是敢做些无关痛痒的修改，无法说是完全理解。</p><p>但我又并非是讨厌使用已有框架和代码，否则也并不会希望参加GSOC的开源项目。这二者有何区别呢？目前依然不太能回答。</p><p>不知不觉好像也写了挺多，大部分都挺丧的。现在主要用的操作系统换成了kali，但是实在懒得搬运博客，毕竟配置起来有点麻烦。也不太愿意瞎写博客了，甚至考虑过把以前的博客全都删除，毕竟自己也饱受没什么营养的文章之苦。但毕竟还是自己写的东西，最后还是决定留下，不过以后写博客肯定不愿意再写之前那些了。</p><p>唔，就写这些吧，不愿再写了。</p>]]></content>
     
     
     <categories>
@@ -755,6 +755,25 @@
     <categories>
       
       <category>生活随笔</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>something about Tmin</title>
+    <link href="/2020/05/08/something-about-Tmin/"/>
+    <url>/2020/05/08/something-about-Tmin/</url>
+    
+    <content type="html"><![CDATA[<p>在C语言中，表示TMin（32位为例）通常不用-2147483648,而用-2147483647-1</p><a id="more"></a><p>reason:</p><p>When the compiler encounters a number of the form -X, it first determines the data type and value for X and then negates it.</p><p>对于十进制与十六进制数c的处理为</p><p>ISO90:</p><ul><li><p>Decimal int-long-unsigned-unsigned long</p></li><li><p>Hexadecimal int-unsigned-long-unsigned long</p></li></ul><p>ISO99:</p><ul><li><p>Decinal int-long-long long</p></li><li><p>Hexadecimal int-unsigned-long-unsigned long-long long-unsigned long long</p></li></ul><p>对于数-2147483648的处理：   </p><ul><li><p>ISO90-32位程序：unsigned  </p></li><li><p>ISO90-64位程序：long      </p></li><li><p>ISO99-32位程序：long long </p></li><li>ISO99-64位程序：long </li></ul><p>对于-2147483648的十六进制表示0x80000000:</p><ul><li>ISO90-32位程序：unsigned </li><li>ISO90-64位程序：unsigned </li><li>ISO99-32位程序：unsigned</li><li>ISO99-64位程序：unsigned </li></ul><hr><pre><code class="hljs apache"><span class="hljs-attribute">int</span> dpos<span class="hljs-number">32</span> = (-<span class="hljs-number">2147483648</span> &gt; <span class="hljs-number">0</span>);<span class="hljs-attribute">int</span> hpos<span class="hljs-number">32</span> = (<span class="hljs-number">0</span>x<span class="hljs-number">80000000</span> &gt; <span class="hljs-number">0</span>);<span class="hljs-attribute">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>,dpos<span class="hljs-number">32</span>,hpos<span class="hljs-number">32</span>);</code></pre><p>对ISO90标准，32位程序输出1 1</p><p>64位程序输出0 1</p><p>对ISO99标准，32位程序输出0 1</p><p>64位程序输出0 1</p><p>但是对于</p><pre><code class="hljs apache"><span class="hljs-attribute">int</span> dtmin<span class="hljs-number">32</span> = -<span class="hljs-number">2147483648</span>;<span class="hljs-attribute">int</span> dposa = (dtmin<span class="hljs-number">32</span> &gt; <span class="hljs-number">0</span>);<span class="hljs-attribute">int</span> htmin<span class="hljs-number">32</span> = <span class="hljs-number">0</span>x<span class="hljs-number">80000000</span>;<span class="hljs-attribute">int</span> hposa = (htmin<span class="hljs-number">32</span> &gt; <span class="hljs-number">0</span>);<span class="hljs-attribute">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>,dposa,hposa);</code></pre><p>无论32位或64位，无论ISO90或ISO99 ,输出都是：0 0</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>C</category>
       
     </categories>
     
