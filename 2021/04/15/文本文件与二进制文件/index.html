@@ -19,7 +19,7 @@
   <meta name="description" content="瞎写糊涂账">
   <meta name="author" content="renex">
   <meta name="keywords" content="">
-  <title>2021第一篇文章 - renex的杂烩集</title>
+  <title>文本文件与二进制文件 - renex的杂烩集</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -155,8 +155,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-03 00:07" pubdate>
-        April 3, 2021 am
+      <time datetime="2021-04-15 20:18" pubdate>
+        April 15, 2021 pm
       </time>
     </span>
   
@@ -167,7 +167,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      952 字
+      522 字
     </span>
   
 
@@ -177,7 +177,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      6
        分钟
     </span>
   
@@ -207,19 +207,63 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">2021第一篇文章</h1>
+            <h1 style="display: none">文本文件与二进制文件</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>看一下文章创建时间，居然已经是五天前了，还一个字没写上去。还是想着要写点的。</p>
-<p>大二下终于还是逃不掉的，已经很幸运了，比别人多处一年的时间体验大学生活。不过要说是生活似乎也不太准确，毕竟到现在在学校呆了三年多，似乎还没有过什么社团活动，比赛什么的也很少参加。唔，仔细想来，上次参加比赛，还是19年的事了，不由心里压力又大了几分。</p>
-<p>嗯，压力。也是因为最近压力有点过大，才会想着要跑来写东西吧。万物互联，却没有几个地方可以好好吐露心声。挺羡慕那些在朋友圈分享生活的人的，但我大概越来越不敢了。</p>
-<p>没有去参加全国信息安全竞赛，虽然由两个队伍来找过我，但是最后还是拒绝了。其实自己也说不太清原因，但是确实对科研难以提起兴趣，也自认为自己没有能力做出什么满意的作品。大创，挑战杯，信安大赛，挺多比赛的，想来这也是让我最近这么压抑的一大因素。一个都没有参加，这个决定挺大的，毕竟听说这些东西对保研加分都挺多。</p>
-<p>嗯，其实最想参加的是GSOC，但是可惜也是前几天在github上知道谷歌的这个活动，在开源项目里花了好几天，确是完全没有时间准备。明年定要早些准备。由一个没有参加的项目，这么看来，最近挺失败的。</p>
-<p>我想要的是什么呢，计组我很喜欢，也想着折腾MIT6.828的操作系统，PWN依然是很有吸引力的东西，也不想放弃。其实还是有共通之处的。</p>
-<p>我不知道怎样才是一个合格的网络空间安全专业毕业生，但是我想要成为的“技术不错的人”，似乎和学院教育目标有着较大的分歧。学院老师好像都很鼓励我们参加那些科研比赛，但是我确实是没有太多的兴趣。如果是编程或者做项目，又或是攻防， 我想是很乐意参加的。但是拿着实验室里的代码，或者是网上扒下来的代码，自己改动几处，然后说这是自己做出来的作品，我觉得自己实在不想把它加入自己的项目经历。就像上学期的java大作业，老师已经把小程序前端、后端代码都给了，要求加个后台管理系统和数据库交互，听着挺厉害，但是我自觉写完之后并没有任何的提升。甚至到最后我面对老师给的代码也只是敢做些无关痛痒的修改，无法说是完全理解。</p>
-<p>但我又并非是讨厌使用已有框架和代码，否则也并不会希望参加GSOC的开源项目。这二者有何区别呢？目前依然不太能回答。</p>
-<p>不知不觉好像也写了挺多，大部分都挺丧的。现在主要用的操作系统换成了kali，但是实在懒得搬运博客，毕竟配置起来有点麻烦。也不太愿意瞎写博客了，甚至考虑过把以前的博客全都删除，毕竟自己也饱受没什么营养的文章之苦。但毕竟还是自己写的东西，最后还是决定留下，不过以后写博客肯定不愿意再写之前那些了。</p>
-<p>唔，就写这些吧，不愿再写了。</p>
+              <p>文件都是二进制形式存储，文本文件与二进制文件是逻辑上的划分。对于文本文件，需要指定编码方式(如ASCII, UTF-8等)，而对于二进制文件，则是基于值编码。</p>
+<a id="more"></a>
+<h4 id="linux、windows下的文件"><a href="#linux、windows下的文件" class="headerlink" title="linux、windows下的文件"></a>linux、windows下的文件</h4><p>在POSIX系统中，要求文本文件以<LF>结尾（既’\n’）</LF></p>
+<blockquote>
+<p>3.206 Line</p>
+<p>A sequence of zero or more non- characters plus a terminating character.</p>
+</blockquote>
+<p>因此，如果用vim等文本编辑工具打开二进制文件并覆盖保存，会发现文件末尾多了个<LF>换行符</LF></p>
+<p><img src="C:/Users/黄翔/AppData/Roaming/Typora/typora-user-images/image-20210415203911582.png" srcset="/img/loading.gif" alt="image-20210415203911582"></p>
+<p>在Windows中，对文本文件则并没有这个要求</p>
+<hr>
+<h4 id="n问题"><a href="#n问题" class="headerlink" title="/n问题"></a>/n问题</h4><p>windows中，’\n’写入文本文件中时，会被转换为’\r\n’(<CR><LF>)后写入，读取时，又会将’\r\n’重新转换为’\n’显示，对linux系统则不会出现这种转换。二进制文件，操作系统不会对’\n’做隐式变换</LF></CR></p>
+<p>我们使用如下代码在windows系统下生成文件：</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> io
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
+    <span class="hljs-keyword">with</span> io.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;windowstext.txt&#x27;</span>,<span class="hljs-string">&#x27;w&#x27;</span>,encoding=<span class="hljs-string">&#x27;ascii&#x27;</span>) <span class="hljs-keyword">as</span> f:
+        w = <span class="hljs-string">&#x27;abcdefghijklmnopq\nhello&#x27;</span>
+        <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> w:
+            f.write(e.decode(<span class="hljs-string">&#x27;ascii&#x27;</span>))</code></pre></div>
+<p>生成文件如图：</p>
+<p><img src="C:/Users/黄翔/AppData/Roaming/Typora/typora-user-images/image-20210415204939451.png" srcset="/img/loading.gif" alt="image-20210415204939451" style="zoom:80%;"></p>
+<p>16进制表示如下：</p>
+<p><img src="C:/Users/黄翔/AppData/Roaming/Typora/typora-user-images/image-20210415205544859.png" srcset="/img/loading.gif" alt="image-20210415205544859" style="zoom:80%;"></p>
+<p>可以看到， windows将换行符转换为0x0d0x0a(<CR><LF>或说’\r\n’)存储。</LF></CR></p>
+<p>再尝试在windows下读该文本文件</p>
+<p><img src="C:/Users/黄翔/AppData/Roaming/Typora/typora-user-images/image-20210415213411588.png" srcset="/img/loading.gif" alt="image-20210415213411588"></p>
+<p>发现windows下读取该文本文件时，文件二进制存储的<CR><LF>再次被转换为<LF></LF></LF></CR></p>
+<p>直接用记事本创建上述文件(‘\n’用回车)，结果与上述相同。</p>
+<p>linux下’\n’存储时不会发生转换，仍然以’\n’存储</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> io
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
+    <span class="hljs-keyword">with</span> io.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;linuxtext.txt&#x27;</span>,<span class="hljs-string">&#x27;w&#x27;</span>,encoding=<span class="hljs-string">&#x27;ascii&#x27;</span>) <span class="hljs-keyword">as</span> f:
+        w = <span class="hljs-string">&#x27;abcdefghijklmnopq\nhello&#x27;</span>
+        <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> w:
+            f.write(e.decode(<span class="hljs-string">&#x27;ascii&#x27;</span>))</code></pre></div>
+<p><img src="C:/Users/黄翔/AppData/Roaming/Typora/typora-user-images/image-20210415210622911.png" srcset="/img/loading.gif" alt="image-20210415210622911" style="zoom:80%;"></p>
+<p><img src="C:/Users/黄翔/AppData/Roaming/Typora/typora-user-images/image-20210415210730632.png" srcset="/img/loading.gif" alt="image-20210415210730632" style="zoom: 80%;"></p>
+<p>如果在linux中读取以<CR><LF>结尾的windows文本文件会发生什么呢？（为什么用C读呢，因为发现python自己会把<CR><LF>变为<LF>…  : )</LF></LF></CR></LF></CR></p>
+<div class="hljs"><pre><code class="hljs C"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	FILE * fp = fopen(<span class="hljs-string">&quot;windowstext.txt&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>);
+	<span class="hljs-keyword">char</span> c;
+	<span class="hljs-keyword">while</span>((c=fgetc(fp))!= EOF)&#123;
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%02x\n&quot;</span>, c);
+	&#125;<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre></div>
+<p>windows下转换为<LF>：</LF></p>
+<p><img src="C:/Users/黄翔/AppData/Roaming/Typora/typora-user-images/image-20210415213411588.png" srcset="/img/loading.gif" alt="image-20210415213411588"></p>
+<p>linux下依然是<CR><LF></LF></CR></p>
+<p><img src="C:/Users/黄翔/AppData/Roaming/Typora/typora-user-images/image-20210415213513444.png" srcset="/img/loading.gif" alt="image-20210415213513444" style="zoom:80%;"></p>
 
             </div>
             <hr>
@@ -229,7 +273,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a>
+                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/">编程相关</a>
                     
                   </div>
                 
@@ -243,18 +287,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/15/%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E4%B8%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">文本文件与二进制文件</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/21/20-10-21/">
-                        <span class="hidden-mobile">20-10-21</span>
+                      <a href="/2021/04/03/2021%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
+                        <span class="hidden-mobile">2021第一篇文章</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -397,7 +435,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "2021第一篇文章&nbsp;",
+        "文本文件与二进制文件&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
